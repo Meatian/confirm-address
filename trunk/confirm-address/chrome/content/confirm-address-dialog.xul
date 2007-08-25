@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://confirm-address/locale/confirm-address.dtd">
+
+<dialog id="donothing" title="&confirm.dialog.title;"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	buttons="accept,cancel"
+	onload="startup()"
+	ondialogaccept="return doOK();"
+	ondialogcancel="return doCancel();"
+	minwidth="300">
+
+	<script type="application/x-javascript" src="chrome://confirm-address/content/confirm-address-dialog.js"/>
+
+	<label value="&confirm.dialog.message;"/>
+	<listbox id="yourDomains" rows="5">
+		<listhead>
+			<listheader label="&confirm.dialog.yourdomain.lable;"/>
+		</listhead>
+		<listcols>
+			<listcol flex="1"/>
+		</listcols>
+	</listbox>
+	<listbox id="otherDomains" rows="5">
+		<listhead>
+			<listheader label="&confirm.dialog.otherdomain.lable;"/>
+		</listhead>
+		<listcols>
+			<listcol flex="1"/>
+		</listcols>
+	</listbox>
+
+</dialog>
