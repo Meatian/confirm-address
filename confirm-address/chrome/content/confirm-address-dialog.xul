@@ -8,24 +8,32 @@
 	onload="startup()"
 	ondialogaccept="return doOK();"
 	ondialogcancel="return doCancel();"
-	minwidth="300">
+	width="500" height="370">
 
 	<script type="application/x-javascript" src="chrome://confirm-address/content/confirm-address-dialog.js"/>
 
-	<label value="&confirm.dialog.message;"/>
-	<listbox id="yourDomains" rows="5">
+	<stringbundleset id="strbundles">
+		<stringbundle id="strings" src="chrome://confirm-address/locale/confirm-address.properties"/>
+	</stringbundleset>
+
+	<label value="&confirm.dialog.message;" style="padding-bottom:3px; font-size:1.3em;"/>
+	<listbox id="yourDomains" height="125">
 		<listhead>
+			<listheader label="&confirm.dialog.check.lable;"/>
 			<listheader label="&confirm.dialog.yourdomain.lable;"/>
 		</listhead>
 		<listcols>
+			<listcol/>
 			<listcol flex="1"/>
 		</listcols>
 	</listbox>
-	<listbox id="otherDomains" rows="5">
+	<listbox id="otherDomains" height="125">
 		<listhead>
+			<listheader label="&confirm.dialog.check.lable;"/>
 			<listheader label="&confirm.dialog.otherdomain.lable;"/>
 		</listhead>
 		<listcols>
+			<listcol/>
 			<listcol flex="1"/>
 		</listcols>
 	</listbox>
