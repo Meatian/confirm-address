@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-31j"?>
+<project name="build XUL" default="build" basedir=".">
+
+	<property file="build.properties"/>
+	
+	<target name="build">
+		<echo>${dist}</echo>
+		<zip destfile="${dist}"
+			basedir="${base}"/>
+	</target>
+	
+</project>
