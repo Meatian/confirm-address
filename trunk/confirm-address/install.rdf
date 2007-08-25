@@ -3,8 +3,8 @@
 	xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 	
 	<Description about="urn:mozilla:install-manifest">
-		<em:id>confirm-address@d.hatena.ne.jp_kenmaz</em:id>
-		<em:version>1.0.4</em:version>
+		<em:id>confirm-address@kenmaz.net</em:id>
+		<em:version>1.0.5</em:version>
 		<em:type>2</em:type>
 		<em:targetApplication>
 			<Description>
@@ -16,7 +16,8 @@
 		<em:name>Confirm-Address</em:name>
 		<em:description>Confirm E-mail addresses before sending mail</em:description>
 		<em:creator>kenmaz</em:creator>
-		<em:homepageURL>http://kenmaz.is-a-geek.com/confirm_address</em:homepageURL>
+		<em:homepageURL>http://kenmaz.net/confirm_address</em:homepageURL>
+		<em:updateURL>http://confirm-address.googlecode.com/svn/trunk/release/confirm_address.rdf</em:updateURL>
 		<em:optionsURL>chrome://confirm-address/content/setting.xul</em:optionsURL>
 	</Description>
 </RDF>
