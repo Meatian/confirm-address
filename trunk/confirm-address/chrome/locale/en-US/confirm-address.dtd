@@ -1,0 +1,12 @@
+<!ENTITY confirm.dialog.title "Confirm E-mail addresses.">
+<!ENTITY confirm.dialog.message "Plean confirm the following E-mail Addresses">
+<!ENTITY confirm.dialog.yourdomain.lable "Your domain addresses">
+<!ENTITY confirm.dialog.otherdomain.lable "Other domain addresses">
+<!ENTITY setting.dialog.title "Confirm-Address settings">
+<!ENTITY setting.dialog.message "Add your group domain name.">
+<!ENTITY setting.dialog.list.label "Your group domain">
+<!ENTITY setting.dialog.button.add.label "add">
+<!ENTITY setting.dialog.button.edit.label "edit">
+<!ENTITY setting.dialog.button.remove.label "remove">
+<!ENTITY setting.sub-dialog.title "Input domain name">
+<!ENTITY setting.sub-dialog.message "Input your group domain name.">

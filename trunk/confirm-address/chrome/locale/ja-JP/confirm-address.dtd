@@ -1,0 +1,12 @@
+<!ENTITY confirm.dialog.title "あて先メールアドレスの確認">
+<!ENTITY confirm.dialog.message "あて先メールアドレスを確認してください。">
+<!ENTITY confirm.dialog.yourdomain.lable "組織内へのメール">
+<!ENTITY confirm.dialog.otherdomain.lable "組織外へのメール">
+<!ENTITY setting.dialog.title "Confirm-Address 設定">
+<!ENTITY setting.dialog.message "あなたの組織のメールアドレスのドメイン名を指定してください。">
+<!ENTITY setting.dialog.list.label "ドメイン名">
+<!ENTITY setting.dialog.button.add.label "追加">
+<!ENTITY setting.dialog.button.edit.label "編集">
+<!ENTITY setting.dialog.button.remove.label "削除">
+<!ENTITY setting.sub-dialog.title "ドメイン名の入力">
+<!ENTITY setting.sub-dialog.message "ドメイン名を入力してください(例：kenmaz.co.jp)">
