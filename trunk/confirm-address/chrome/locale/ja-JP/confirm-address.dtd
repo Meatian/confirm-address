@@ -2,6 +2,7 @@
 <!ENTITY confirm.dialog.message "あて先メールアドレスを確認してください。">
 <!ENTITY confirm.dialog.yourdomain.lable "組織内へのメール">
 <!ENTITY confirm.dialog.otherdomain.lable "組織外へのメール">
+<!ENTITY confirm.dialog.check.lable "確認！">
 <!ENTITY setting.dialog.title "Confirm-Address 設定">
 <!ENTITY setting.dialog.message "あなたの組織のメールアドレスのドメイン名を指定してください。">
 <!ENTITY setting.dialog.list.label "ドメイン名">
