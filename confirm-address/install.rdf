@@ -4,7 +4,7 @@
 	
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>confirm-address@kenmaz.net</em:id>
-		<em:version>1.0.5</em:version>
+		<em:version>1.1.0</em:version>
 		<em:type>2</em:type>
 		<em:targetApplication>
 			<Description>
@@ -17,7 +17,6 @@
 		<em:description>Confirm E-mail addresses before sending mail</em:description>
 		<em:creator>kenmaz</em:creator>
 		<em:homepageURL>http://kenmaz.net/confirm_address</em:homepageURL>
-		<em:updateURL>http://confirm-address.googlecode.com/svn/trunk/release/confirm_address.rdf</em:updateURL>
 		<em:optionsURL>chrome://confirm-address/content/setting.xul</em:optionsURL>
 	</Description>
 </RDF>
