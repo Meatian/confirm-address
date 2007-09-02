@@ -19,7 +19,9 @@
 	<label value="&confirm.dialog.message;" style="padding-bottom:3px; font-size:1.3em;"/>
 	<listbox id="yourDomains" height="125">
 		<listhead>
-			<listheader label="&confirm.dialog.check.lable;"/>
+			<listheader id="checkbox_header">
+				<checkbox style="margin:0px;" id="check_all"/>
+			</listheader>
 			<listheader label="&confirm.dialog.yourdomain.lable;"/>
 		</listhead>
 		<listcols>
@@ -29,7 +31,8 @@
 	</listbox>
 	<listbox id="otherDomains" height="125">
 		<listhead>
-			<listheader label="&confirm.dialog.check.lable;"/>
+			<!--<listheader label="&confirm.dialog.check.lable;"/>-->
+			<listheader/>
 			<listheader label="&confirm.dialog.otherdomain.lable;"/>
 		</listhead>
 		<listcols>
