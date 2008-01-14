@@ -9,5 +9,6 @@
 <!ENTITY setting.dialog.button.add.label "追加">
 <!ENTITY setting.dialog.button.edit.label "編集">
 <!ENTITY setting.dialog.button.remove.label "削除">
+<!ENTITY setting.dialog.checkbox.notdisplay "自ドメイン宛てのメール送信時は確認ダイアログを表示しない">
 <!ENTITY setting.sub-dialog.title "ドメイン名の入力">
 <!ENTITY setting.sub-dialog.message "ドメイン名を入力してください(例：kenmaz.co.jp)">
