@@ -21,9 +21,15 @@ function CheckAddresses()
 	judge(toList, domainList, internalList, externalList);
 	judge(ccList, domainList, internalList, externalList);
 	judge(bccList, domainList, internalList, externalList);
-	
+
 	dump("[INTERNAL] "+ internalList + "\n");
 	dump("[EXTERNAL] "+ externalList + "\n");
+
+	if(PrefUtil.isNotDisplay()){
+		if(externalList.length == 0){
+			return true;
+		}
+	}
 	
 	window.confirmOK = false;
 	window.openDialog("chrome://confirm-address/content/confirm-address-dialog.xul",
