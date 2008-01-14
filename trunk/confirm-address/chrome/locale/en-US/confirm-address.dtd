@@ -1,5 +1,5 @@
 <!ENTITY confirm.dialog.title "Confirm E-mail addresses.">
-<!ENTITY confirm.dialog.message "Plean confirm the following E-mail Addresses">
+<!ENTITY confirm.dialog.message "Please confirm the following E-mail Addresses">
 <!ENTITY confirm.dialog.yourdomain.lable "Your domain addresses">
 <!ENTITY confirm.dialog.otherdomain.lable "Other domain addresses">
 <!ENTITY confirm.dialog.check.lable "Check!">
