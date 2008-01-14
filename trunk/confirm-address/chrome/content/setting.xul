@@ -25,4 +25,5 @@
 		<button id="add" label="&setting.dialog.button.add.label;"/>
 		<button id="edit" label="&setting.dialog.button.edit.label;"/>
 		<button id="remove" label="&setting.dialog.button.remove.label;"/>
+		<checkbox id="not-display" label="&setting.dialog.checkbox.notdisplay;" checked="false"/>
 	</dialog>

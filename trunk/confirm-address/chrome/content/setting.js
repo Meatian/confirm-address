@@ -1,11 +1,12 @@
 var selectedItem;
 
 function startup(){
+
+	//ドメイン名リスト初期化
 	document.getElementById("add").addEventListener('command', add, true);
 	document.getElementById("edit").addEventListener('command', edit, true);
 	document.getElementById("remove").addEventListener('command', remove, true);
 	
-	//ドメイン名リスト初期化
 	var groupList = document.getElementById("group-list");
 	var domains = PrefUtil.getDomainList();
 	
@@ -21,6 +22,15 @@ function startup(){
 		listitem.setAttribute("label", domainList[i]);
 		listitem.setAttribute("id", Math.random());
 		groupList.appendChild(listitem);
+	}
+	
+	//チェックボックス初期化
+	var checkbox = document.getElementById("not-display");
+	var isNotDisplay = PrefUtil.isNotDisplay();
+	if(isNotDisplay == null || isNotDisplay == false){
+		checkbox.checked=false;
+	}else{
+		checkbox.checked=true;
 	}
 }
 
@@ -70,7 +80,8 @@ function selectList(item){
 
 function doOK(){
 	dump("[OK]\n");
-	
+
+	//ドメイン設定保存
 	var domainList = new Array();
 	
 	var groupList = document.getElementById("group-list");
@@ -81,8 +92,11 @@ function doOK(){
 		}
 	}
 	var domainListStr = domainList.join(",");
-	
 	PrefUtil.setDomainList(domainListStr);
+
+	//チェックボックス設定保存
+	var checked = document.getElementById("not-display").checked;
+	PrefUtil.setNotDisplay(checked);
 	
 	return true;
 }

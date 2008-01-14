@@ -9,5 +9,6 @@
 <!ENTITY setting.dialog.button.add.label "add">
 <!ENTITY setting.dialog.button.edit.label "edit">
 <!ENTITY setting.dialog.button.remove.label "remove">
+<!ENTITY setting.dialog.checkbox.notdisplay "Not display a message for my domain emails">
 <!ENTITY setting.sub-dialog.title "Input domain name">
 <!ENTITY setting.sub-dialog.message "Input your group domain name.">

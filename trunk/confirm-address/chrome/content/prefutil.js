@@ -1,38 +1,61 @@
 PrefUtil = {
 	PREF : Components.classes['@mozilla.org/preferences;1'].getService(Components.interfaces.nsIPrefBranch),
 	
-	KEY : "com.kenmaz.confirm-address.domain-list",
+	KEY_DOMAIN_LIST : "com.kenmaz.confirm-address.domain-list",
+	KEY_NOT_DISPLAY : "com.kenmaz.confirm-address.not-display",
 
 	getDomainList : function() {
+		return this.getPref(PrefUtil.KEY_DOMAIN_LIST);
+	},
+	setDomainList : function(listStr) {
+		PrefUtil.setPref(PrefUtil.KEY_DOMAIN_LIST, listStr);
+	},
+	
+	isNotDisplay : function() {
+		return this.getPref(PrefUtil.KEY_NOT_DISPLAY);
+	},
+	setNotDisplay : function(b) {
+		PrefUtil.setPref(PrefUtil.KEY_NOT_DISPLAY, b);
+	},
+	
+	getPref : function(key) {
 		try{
 			const nsIPrefBranch = Components.interfaces.nsIPrefBranch;
 			var value = "";
 
-			var type = this.PREF.getPrefType(this.KEY);
+			var type = this.PREF.getPrefType(key);
 			switch (type) {
 			case nsIPrefBranch.PREF_STRING:
-				value = this.PREF.getCharPref(this.KEY);
+				value = this.PREF.getCharPref(key);
 				break;
 				
 			case nsIPrefBranch.PREF_INT:
-				value = this.PREF.getIntPref(this.KEY);
+				value = this.PREF.getIntPref(key);
 				break;
 				
 		    case nsIPrefBranch.PREF_BOOL:
 			default:
-				value = this.PREF.getBoolPref(this.KEY);
+				value = this.PREF.getBoolPref(key);
 				break;
 			}
-			dump("[GET PREF] "+ value + "\n");
+			dump("[GET PREF] key="+ key + ", value=" + value + "\n");
 			return value;
 			
 		}catch(e){
-			dump("[NO PREF] " + this.KEY +"\n");
-			return "";
+			dump("[GET PREF ERROR] key="+ key + "\n");
+			return null;
 		}
 	},
-	setDomainList : function(listStr) {
-		dump("[SET PREF] "+ listStr + "\n");
-		PrefUtil.PREF.setCharPref(PrefUtil.KEY, listStr);
+	setPref : function(key, value) {
+		var type = typeof(value);
+		if(type == "string"){
+			PrefUtil.PREF.setCharPref(key, value);
+		}else if(type == "boolean"){
+			PrefUtil.PREF.setBoolPref(key, value);
+		}else if(type == "integer"){
+			PrefUtil.PREF.setIntPref(key, value);
+		}else{
+		}
+		dump("[SET PREF] key="+ key + ", value=" + value + "\n");
 	}
 }
