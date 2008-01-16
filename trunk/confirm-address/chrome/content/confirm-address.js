@@ -99,8 +99,17 @@ function collectAddresses(msgCompFields, toList, ccList, bccList){
 function judge(addressArray, domainList, yourDomainAddress, otherDomainAddress)
 {
 	dump("[JUDGE] "+addressArray+"\n");
-		
-	for(i = 0; i < addressArray.length; i++){
+	
+	//if domainList is empty, all addresses are external.
+	if(domainList.length == 0){
+		for(var i = 0; i < addressArray.length; i++){
+			otherDomainAddress.push(addressArray[i]);
+		}
+		return;
+	}
+	
+	//compare addresses with registered domain lists.
+	for(var i = 0; i < addressArray.length; i++){
 		var address = addressArray[i];
 		if(address.length == 0){
 			continue;
@@ -110,7 +119,7 @@ function judge(addressArray, domainList, yourDomainAddress, otherDomainAddress)
 
 		var yourDomain = false;
 		
-		for(j = 0; j < domainList.length; j++){
+		for(var j = 0; j < domainList.length; j++){
 			var domainListEntry = domainList[j].toLowerCase();
 			if(addressLowerCase.indexOf(domainListEntry) != -1){
 				yourDomain = true;
@@ -129,13 +138,11 @@ function judge(addressArray, domainList, yourDomainAddress, otherDomainAddress)
 function getDomainList()
 {
 	var domains = PrefUtil.getDomainList();
-	var list = new Array();
-		
-	var domainList = domains.split(",");
-	for(var i=0; i < domainList.length; i++){
-		list.push(domainList[i]);
-	}	
-	return list;
+	if(domains.length == 0){
+		return new Array();
+	}
+	
+	return domains.split(",");
 }
 
 //overlay
