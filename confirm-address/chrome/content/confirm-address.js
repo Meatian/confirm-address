@@ -99,17 +99,20 @@ function collectAddresses(msgCompFields, toList, ccList, bccList){
 function judge(addressArray, domainList, yourDomainAddress, otherDomainAddress)
 {
 	dump("[JUDGE] "+addressArray+"\n");
-
+		
 	for(i = 0; i < addressArray.length; i++){
 		var address = addressArray[i];
 		if(address.length == 0){
 			continue;
 		}
 		
+		var addressLowerCase = address.toLowerCase();
+
 		var yourDomain = false;
 		
 		for(j = 0; j < domainList.length; j++){
-			if(address.indexOf(domainList[j]) != -1){
+			var domainListEntry = domainList[j].toLowerCase();
+			if(addressLowerCase.indexOf(domainListEntry) != -1){
 				yourDomain = true;
 				break;
 			}
