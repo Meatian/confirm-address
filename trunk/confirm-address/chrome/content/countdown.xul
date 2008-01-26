@@ -1,0 +1,25 @@
+<?xml version="1.0"?> 
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://confirm-address/locale/confirm-address.dtd">
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        onload="CountDown.onLoad();"
+        ondialogaccept="CountDown.doSkip();"
+        buttons="accept,cancel"
+        width="300" height="130"
+        title="&countdown.dialog.title;">
+        
+	<script type="application/x-javascript" src="countdown.js"/>
+	
+	<hbox flex="1">
+		<label value="&countdown.dialog.msg1;" style="font-size:20px; padding-top:5px; padding-bottom:5px;"/>
+		<label id="counter" value="" style="font-size:30px;"/>
+		<label value="&countdown.dialog.msg2;" style="font-size:20px; padding-top:5px; padding-bottom:5px;"/>
+	</hbox>
+	
+	<hbox>
+		<spacer flex="1"/>
+		<button label="skip" id="ok" dlgtype="accept"/>
+		<button dlgtype="cancel" />
+	</hbox>
+</dialog>

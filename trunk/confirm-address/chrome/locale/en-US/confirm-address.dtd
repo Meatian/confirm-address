@@ -10,5 +10,11 @@
 <!ENTITY setting.dialog.button.edit.label "edit">
 <!ENTITY setting.dialog.button.remove.label "remove">
 <!ENTITY setting.dialog.checkbox.notdisplay "Not display a message for my domain emails">
+<!ENTITY setting.dialog.checkbox.countdown "Countdown before sending mail">
+<!ENTITY setting.dialog.label.countdown "(s)">
 <!ENTITY setting.sub-dialog.title "Input domain name">
 <!ENTITY setting.sub-dialog.message "Input your group domain name.">
+<!ENTITY countdown.dialog.title "Countdown">
+<!ENTITY countdown.dialog.msg1 "Countdown...">
+<!ENTITY countdown.dialog.msg2 "second">
+<!ENTITY countdown.dialog.skip "Send">
