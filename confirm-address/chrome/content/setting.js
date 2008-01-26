@@ -9,22 +9,13 @@ var CA_CONST = {
 
 function startup(){
 
-	var domains = nsPreferences.copyUnicharPref(CA_CONST.DOMAIN_LIST);
-	var isNotDisplay = nsPreferences.getBoolPref(CA_CONST.IS_NOT_DISPLAY, false);
-	var isCountDown = nsPreferences.getBoolPref(CA_CONST.IS_COUNT_DOWN, false);
-	var countDonwTime = nsPreferences.copyUnicharPref(CA_CONST.COUNT_DOWN_TIME);
-
-alert(domains);
-alert(isNotDisplay);
-alert(isCountDown);
-alert(countDonwTime);
-
 	//init domain list.
 	document.getElementById("add").addEventListener('command', add, true);
 	document.getElementById("edit").addEventListener('command', edit, true);
 	document.getElementById("remove").addEventListener('command', remove, true);
 	var groupList = document.getElementById("group-list");
 
+	var domains = nsPreferences.copyUnicharPref(CA_CONST.DOMAIN_LIST);
 	dump("[registed domains] " + domains + "\n");
 	
 	if(domains == null || domains.length == 0){
@@ -40,6 +31,7 @@ alert(countDonwTime);
 	}
 	
 	//init checkbox [not dispaly when only my domain mail]
+	var isNotDisplay = nsPreferences.getBoolPref(CA_CONST.IS_NOT_DISPLAY, false);
 	var noDisplayBox = document.getElementById("not-display");
 	if(isNotDisplay){
 		noDisplayBox.checked=true;
@@ -56,7 +48,8 @@ alert(countDonwTime);
 			cdTimeBox.disabled = !cdBox.checked;
 		},
 		true);
-	
+
+	var isCountDown = nsPreferences.getBoolPref(CA_CONST.IS_COUNT_DOWN, false);
 	if(isCountDown == null || isCountDown == false){
 		cdBox.checked = false;
 		cdTimeBox.disabled = true;
@@ -64,9 +57,9 @@ alert(countDonwTime);
 		cdBox.checked = true;
 		cdTimeBox.disable = false;
 	}
+
+	var countDonwTime = nsPreferences.copyUnicharPref(CA_CONST.COUNT_DOWN_TIME);
 	cdTimeBox.value = countDonwTime;
-	
-	alert(cdTimeBox.value);
 }
 
 function add(event){
@@ -137,12 +130,11 @@ function doOK(){
 	nsPreferences.setBoolPref(CA_CONST.IS_COUNT_DOWN, isCountdown);
 
 	var cdTime = document.getElementById("countdown-time").value;
+	if(isNaN(Number(cdTime)) && isCountdown ){
+		alert("please input integer");
+		return false;
+	}
 	nsPreferences.setUnicharPref(CA_CONST.COUNT_DOWN_TIME, cdTime);
-
-alert(domainListStr);
-alert(notDisplay);
-alert(isCountdown);
-alert(cdTime);
 
 	return true;
 }

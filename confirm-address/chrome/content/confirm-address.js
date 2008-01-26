@@ -25,7 +25,8 @@ function CheckAddresses()
 	dump("[INTERNAL] "+ internalList + "\n");
 	dump("[EXTERNAL] "+ externalList + "\n");
 
-	if(PrefUtil.isNotDisplay()){
+	var isNotDisplay = nsPreferences.getBoolPref(CA_CONST.IS_NOT_DISPLAY, false);
+	if(isNotDisplay){
 		if(externalList.length == 0){
 			return true;
 		}
@@ -36,7 +37,24 @@ function CheckAddresses()
 		"ConfirmAddressDialog", "resizable,chrome,modal,titlebar,centerscreen", window, internalList, externalList);
 	
 	if(window.confirmOK){
-		return true;
+		var isCountDown = nsPreferences.getBoolPref(CA_CONST.IS_COUNT_DOWN, false);
+		
+		if(isCountDown){
+			var countDonwTime = nsPreferences.copyUnicharPref(CA_CONST.COUNT_DOWN_TIME);
+			
+			window.countDownComplete = false;
+			window.openDialog("chrome://confirm-address/content/countdown.xul", "CountDown Dialog", 
+			"resizable,chrome,modal,titlebar,centerscreen",window, countDonwTime);
+
+			if(window.countDownComplete){
+				return true;
+			}else{
+				dump("cancel");
+				return false;
+			}
+		}else{
+			return true;
+		}
 	}else{
 		return false;
 	}
@@ -137,7 +155,7 @@ function judge(addressArray, domainList, yourDomainAddress, otherDomainAddress)
 
 function getDomainList()
 {
-	var domains = PrefUtil.getDomainList();
+	var domains = nsPreferences.copyUnicharPref(CA_CONST.DOMAIN_LIST);
 	if(domains.length == 0){
 		return new Array();
 	}
