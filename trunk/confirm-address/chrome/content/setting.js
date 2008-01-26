@@ -1,15 +1,30 @@
 var selectedItem;
 
+var CA_CONST = {
+	DOMAIN_LIST : "com.kenmaz.confirm-address.domain-list",
+	IS_NOT_DISPLAY : "com.kenmaz.confirm-address.not-display",
+	IS_COUNT_DOWN : "com.kenmaz.confirm-address.is-countdown",
+	COUNT_DOWN_TIME : "com.kenmaz.confirm-address.cd-time",
+};
+
 function startup(){
 
-	//ドメイン名リスト初期化
+	var domains = nsPreferences.copyUnicharPref(CA_CONST.DOMAIN_LIST);
+	var isNotDisplay = nsPreferences.getBoolPref(CA_CONST.IS_NOT_DISPLAY, false);
+	var isCountDown = nsPreferences.getBoolPref(CA_CONST.IS_COUNT_DOWN, false);
+	var countDonwTime = nsPreferences.copyUnicharPref(CA_CONST.COUNT_DOWN_TIME);
+
+alert(domains);
+alert(isNotDisplay);
+alert(isCountDown);
+alert(countDonwTime);
+
+	//init domain list.
 	document.getElementById("add").addEventListener('command', add, true);
 	document.getElementById("edit").addEventListener('command', edit, true);
 	document.getElementById("remove").addEventListener('command', remove, true);
-	
 	var groupList = document.getElementById("group-list");
-	var domains = PrefUtil.getDomainList();
-	
+
 	dump("[registed domains] " + domains + "\n");
 	
 	if(domains == null || domains.length == 0){
@@ -24,14 +39,34 @@ function startup(){
 		groupList.appendChild(listitem);
 	}
 	
-	//チェックボックス初期化
-	var checkbox = document.getElementById("not-display");
-	var isNotDisplay = PrefUtil.isNotDisplay();
-	if(isNotDisplay == null || isNotDisplay == false){
-		checkbox.checked=false;
+	//init checkbox [not dispaly when only my domain mail]
+	var noDisplayBox = document.getElementById("not-display");
+	if(isNotDisplay){
+		noDisplayBox.checked=true;
 	}else{
-		checkbox.checked=true;
+		noDisplayBox.checked=false;
 	}
+	
+	//init checkbox [countdown]
+	var cdBox = document.getElementById("countdown");
+	var cdTimeBox = document.getElementById("countdown-time");
+
+	cdBox.addEventListener('command',
+		function(event){
+			cdTimeBox.disabled = !cdBox.checked;
+		},
+		true);
+	
+	if(isCountDown == null || isCountDown == false){
+		cdBox.checked = false;
+		cdTimeBox.disabled = true;
+	}else{
+		cdBox.checked = true;
+		cdTimeBox.disable = false;
+	}
+	cdTimeBox.value = countDonwTime;
+	
+	alert(cdTimeBox.value);
 }
 
 function add(event){
@@ -92,12 +127,23 @@ function doOK(){
 		}
 	}
 	var domainListStr = domainList.join(",");
-	PrefUtil.setDomainList(domainListStr);
+	nsPreferences.setUnicharPref(CA_CONST.DOMAIN_LIST, domainListStr);
 
 	//チェックボックス設定保存
-	var checked = document.getElementById("not-display").checked;
-	PrefUtil.setNotDisplay(checked);
-	
+	var notDisplay = document.getElementById("not-display").checked;
+	nsPreferences.setBoolPref(CA_CONST.IS_NOT_DISPLAY, notDisplay);
+
+	var isCountdown = document.getElementById("countdown").checked;
+	nsPreferences.setBoolPref(CA_CONST.IS_COUNT_DOWN, isCountdown);
+
+	var cdTime = document.getElementById("countdown-time").value;
+	nsPreferences.setUnicharPref(CA_CONST.COUNT_DOWN_TIME, cdTime);
+
+alert(domainListStr);
+alert(notDisplay);
+alert(isCountdown);
+alert(cdTime);
+
 	return true;
 }
 

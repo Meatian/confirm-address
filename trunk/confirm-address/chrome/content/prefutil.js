@@ -3,6 +3,7 @@ PrefUtil = {
 	
 	KEY_DOMAIN_LIST : "com.kenmaz.confirm-address.domain-list",
 	KEY_NOT_DISPLAY : "com.kenmaz.confirm-address.not-display",
+	COUNT_DOWN_TIME : "com.kenmaz.confirm-address.countdown-time",
 
 	getDomainList : function() {
 		return this.getPref(PrefUtil.KEY_DOMAIN_LIST);
@@ -16,6 +17,20 @@ PrefUtil = {
 	},
 	setNotDisplay : function(b) {
 		PrefUtil.setPref(PrefUtil.KEY_NOT_DISPLAY, b);
+	},
+	
+	isCountDown : function(){
+		return this.getPref(PrefUtil.IS_COUNT_DOWN);
+	},
+	setCountDown : function(b){
+		PrefUtil.setPref(PrefUtil.IS_COUNT_DOWN, b);
+	},
+
+	getCountDownTime : function(){
+		return this.getPref(PrefUtil.COUNT_DOWN_TIME);
+	},
+	setCountDownTime : function(t){
+		PrefUtil.setPref(PrefUtil.COUNT_DOWN_TIME, t);
 	},
 	
 	getPref : function(key) {

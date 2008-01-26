@@ -9,7 +9,7 @@
 	        ondialogaccept="return doOK();"
 	        ondialogcancel="return doCancel();">
 
-		<script type="application/x-javascript" src="chrome://confirm-address/content/prefutil.js"/>
+		<script type="application/x-javascript" src="chrome://global/content/nsUserSettings.js"/>
 		<script type="application/x-javascript" src="chrome://confirm-address/content/setting.js"/>
 		
 		<label value="&setting.dialog.message;"/>
@@ -21,9 +21,19 @@
 		    <listcol flex="1"/>
 		  </listcols>
 		</listbox>
+
+		<hbox>
+			<button id="add" label="&setting.dialog.button.add.label;" flex="1"/>
+			<button id="edit" label="&setting.dialog.button.edit.label;" flex="1"/>
+			<button id="remove" label="&setting.dialog.button.remove.label;" flex="1"/>
+		</hbox>
 		
-		<button id="add" label="&setting.dialog.button.add.label;"/>
-		<button id="edit" label="&setting.dialog.button.edit.label;"/>
-		<button id="remove" label="&setting.dialog.button.remove.label;"/>
-		<checkbox id="not-display" label="&setting.dialog.checkbox.notdisplay;" checked="false"/>
+		<label style="margin-top: 0.5em; padding-top: 0.5em; border-top: solid thin;" />
+		
+		<checkbox id="not-display" label="&setting.dialog.checkbox.notdisplay;"/>
+		<hbox>
+			<checkbox id="countdown" label="&setting.dialog.checkbox.countdown;"/>
+			<textbox id="countdown-time" maxwidth="50"/>
+			<label value="&setting.dialog.label.countdown;" style="padding-top:5px; padding-bottom:5px;"/>
+		</hbox>
 	</dialog>
