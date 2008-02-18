@@ -28,14 +28,14 @@ function CheckAddresses()
 	var isNotDisplay = nsPreferences.getBoolPref(CA_CONST.IS_NOT_DISPLAY, false);
 	if(isNotDisplay){
 		if(externalList.length == 0){
-			return true;
+			window.confirmOK = true;
 		}
-	}
-	
-	window.confirmOK = false;
-	window.openDialog("chrome://confirm-address/content/confirm-address-dialog.xul",
-		"ConfirmAddressDialog", "resizable,chrome,modal,titlebar,centerscreen", window, internalList, externalList);
-	
+	}else{
+    window.confirmOK = false;
+    window.openDialog("chrome://confirm-address/content/confirm-address-dialog.xul",
+      "ConfirmAddressDialog", "resizable,chrome,modal,titlebar,centerscreen", window, internalList, externalList);
+  }
+  
 	if(window.confirmOK){
 		var isCountDown = nsPreferences.getBoolPref(CA_CONST.IS_COUNT_DOWN, false);
 		
@@ -59,7 +59,8 @@ function CheckAddresses()
 		return false;
 	}
 }
-
+
+
 function collectAddresses(msgCompFields, toList, ccList, bccList){
 
 	if (msgCompFields == null){
@@ -84,7 +85,8 @@ function collectAddresses(msgCompFields, toList, ccList, bccList){
 		if (fieldValue != ""){
 			
 			var recipient = null;
-			try {
+
+			try {
 				recipient = gMimeHeaderParser.reformatUnquotedAddresses(fieldValue);
 			} catch (ex) {
 				recipient = fieldValue;
