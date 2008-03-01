@@ -30,6 +30,9 @@
 		
 		<label style="margin-top: 0.5em; padding-top: 0.5em; border-top: solid thin;" />
 		
+    <!--
+		<checkbox id="tree-style" label="&setting.dialog.checkbox.tree-style;"/>
+      -->
 		<checkbox id="not-display" label="&setting.dialog.checkbox.notdisplay;"/>
 		<hbox>
 			<checkbox id="countdown" label="&setting.dialog.checkbox.countdown;"/>

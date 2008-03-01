@@ -10,6 +10,7 @@
 <!ENTITY setting.dialog.button.edit.label "edit">
 <!ENTITY setting.dialog.button.remove.label "remove">
 <!ENTITY setting.dialog.checkbox.notdisplay "Not display a message for my domain emails">
+<!ENTITY setting.dialog.checkbox.tree-style "Use tree-style Confirmation Dialog">
 <!ENTITY setting.dialog.checkbox.countdown "Countdown before sending mail">
 <!ENTITY setting.dialog.label.countdown "(s)">
 <!ENTITY setting.sub-dialog.title "Input domain name">

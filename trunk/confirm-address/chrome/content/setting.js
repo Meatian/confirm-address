@@ -5,6 +5,7 @@ var CA_CONST = {
 	IS_NOT_DISPLAY : "com.kenmaz.confirm-address.not-display",
 	IS_COUNT_DOWN : "com.kenmaz.confirm-address.is-countdown",
 	COUNT_DOWN_TIME : "com.kenmaz.confirm-address.cd-time",
+  TREE_STYLE : "com.kenmaz.confirm-address.tree-style"
 };
 
 function startup(){
@@ -18,26 +19,28 @@ function startup(){
 	var domains = nsPreferences.copyUnicharPref(CA_CONST.DOMAIN_LIST);
 	dump("[registed domains] " + domains + "\n");
 	
-	if(domains == null || domains.length == 0){
-		return;
-	}
-	var domainList = domains.split(",");
+	if(domains != null){
+  	var domainList = domains.split(",");
 
-	for(var i=0; i < domainList.length; i++){
-		var listitem = document.createElement("listitem");
-		listitem.setAttribute("label", domainList[i]);
-		listitem.setAttribute("id", Math.random());
-		groupList.appendChild(listitem);
+  	for(var i=0; i < domainList.length; i++){
+  		var listitem = document.createElement("listitem");
+  		listitem.setAttribute("label", domainList[i]);
+  		listitem.setAttribute("id", Math.random());
+  		groupList.appendChild(listitem);
+  	}
 	}
 	
+	//tree style---------------------
+  /*
+	var treeStyle = nsPreferences.getBoolPref(CA_CONST.TREE_STYLE, true);
+	var treeStyleBox = document.getElementById("tree-style");
+	treeStyleBox.checked=treeStyle;
+	*/
+  
 	//init checkbox [not dispaly when only my domain mail]
 	var isNotDisplay = nsPreferences.getBoolPref(CA_CONST.IS_NOT_DISPLAY, false);
 	var noDisplayBox = document.getElementById("not-display");
-	if(isNotDisplay){
-		noDisplayBox.checked=true;
-	}else{
-		noDisplayBox.checked=false;
-	}
+	noDisplayBox.checked=isNotDisplay;
 	
 	//init checkbox [countdown]
 	var cdBox = document.getElementById("countdown");
@@ -123,6 +126,11 @@ function doOK(){
 	nsPreferences.setUnicharPref(CA_CONST.DOMAIN_LIST, domainListStr);
 
 	//チェックボックス設定保存
+  /*
+	var treeStyle = document.getElementById("tree-style").checked;
+	nsPreferences.setBoolPref(CA_CONST.TREE_STYLE, treeStyle);
+  */
+  
 	var notDisplay = document.getElementById("not-display").checked;
 	nsPreferences.setBoolPref(CA_CONST.IS_NOT_DISPLAY, notDisplay);
 
