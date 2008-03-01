@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://confirm-address/content/confirm-address-dialog-tree.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://confirm-address/locale/confirm-address.dtd">
+
+<dialog id="donothing" title="&confirm.dialog.title;"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	buttons="accept,cancel"
+	onload="ConfirmAddressTreeDialog.startup();"
+	ondialogaccept="return ConfirmAddressTreeDialog.doOK();"
+	ondialogcancel="return ConfirmAddressTreeDialog.doCancel();"
+	width="500" height="370">
+
+	<script type="application/x-javascript" src="chrome://confirm-address/content/confirm-address-dialog-tree.js"/>
+  
+	<stringbundleset id="strbundles">
+		<stringbundle id="strings" src="chrome://confirm-address/locale/confirm-address.properties"/>
+	</stringbundleset>
+  
+  <label value="&confirm.dialog.message;" style="padding-bottom:3px; font-size:1.3em;"/>
+
+
+  <tree editable="true" id="yourDomains" flex="1" hidecolumnpicker="true" >
+    <treecols>
+      <treecol type="checkbox" editable="true">
+        <checkbox style="margin:0px;" id="check_all"/>
+      </treecol>
+      <treecol label="&confirm.dialog.yourdomain.lable;" primary="true" flex="1"/>
+    </treecols>
+    <treechildren id="internal-tree">
+      
+    </treechildren>
+  </tree>
+
+  <tree editable="true" id="yourDomains" flex="1" hidecolumnpicker="true">
+    <treecols id="1">
+      <treecol type="checkbox" editable="true" id="2">
+        <checkbox style="margin:0px;" id="check_all"/>
+      </treecol>
+      <treecol label="&confirm.dialog.yourdomain.lable;" primary="true" flex="1" id="4"/>
+    </treecols>
+    <treechildren id="external-tree">
+    
+      <treeitem container="true" open="true" id="6">
+        <treerow id="7">
+          <treecell id="rootcell" value="false" />
+          <treecell label=" @kenmaz.co.jp"  id="4"/>
+        </treerow>
+        <treechildren id="8">
+          <treeitem id="9">
+            <treerow>
+              <treecell value="false"/>
+              <treecell label=" hogehoge@kenmaz.co.jp"/>
+            </treerow>
+          </treeitem>
+          <treeitem>
+            <treerow>
+              <treecell value="false"/>
+              <treecell label=" hogehoge@kenmaz.co.jp"/>
+            </treerow>
+          </treeitem>
+        </treechildren>
+      </treeitem>
+      
+    </treechildren>
+  </tree>
+</dialog>
