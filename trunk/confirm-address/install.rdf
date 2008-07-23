@@ -16,7 +16,7 @@
 		<em:name>Confirm-Address</em:name>
 		<em:description>Confirm E-mail addresses before sending mail</em:description>
 		<em:creator>kenmaz</em:creator>
-		<em:homepageURL>http://kenmaz.net/confirm_address</em:homepageURL>
+		<em:homepageURL>http://www.kenmaz.net/confirm_address</em:homepageURL>
 		<em:optionsURL>chrome://confirm-address/content/setting.xul</em:optionsURL>
 	</Description>
 </RDF>
