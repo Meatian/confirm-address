@@ -23,29 +23,14 @@ var ConfirmAddress = {
   	dump("[EXTERNAL] "+ externalList + "\n");
 
   	var isNotDisplay = nsPreferences.getBoolPref(CA_CONST.IS_NOT_DISPLAY, false);
-    
-  	if(isNotDisplay && externalList.length == 0 && internalList.size > 0){
+
+  	if(isNotDisplay && externalList.length == 0 && internalList.length > 0){
   		window.confirmOK = true;
-      
   	}else{
       window.confirmOK = false;
-      /*
-      var treeStyle = nsPreferences.getBoolPref(CA_CONST.TREE_STYLE, true);
-      
-      if(treeStyle){
-        var internalMap = this.getByDomainMap(internalList);
-        var externalMap = this.getByDomainMap(externalList);
-        window.openDialog("chrome://confirm-address/content/confirm-address-dialog-tree.xul",
-          "ConfirmAddressTreeDialog", "resizable,chrome,modal,titlebar,centerscreen", 
-          window, internalMap, externalMap);
-          
-      }else{
-      */
-        window.openDialog("chrome://confirm-address/content/confirm-address-dialog.xul",
-          "ConfirmAddressDialog", "resizable,chrome,modal,titlebar,centerscreen", window, internalList, externalList);
-     /*
-      }
-      */
+      window.openDialog("chrome://confirm-address/content/confirm-address-dialog.xul",
+        "ConfirmAddressDialog", "resizable,chrome,modal,titlebar,centerscreen", 
+        window, internalList, externalList);
     }
     
   	if(window.confirmOK){
