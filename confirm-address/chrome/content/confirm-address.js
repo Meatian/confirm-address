@@ -169,7 +169,7 @@ var ConfirmAddress = {
 
   getDomainList : function(){
   	var domains = nsPreferences.copyUnicharPref(CA_CONST.DOMAIN_LIST);
-  	if(domains.length == 0){
+  	if(domains == null || domains.length == 0){
   		return new Array();
   	}
   	return domains.split(",");
