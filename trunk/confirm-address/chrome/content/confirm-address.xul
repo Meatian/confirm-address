@@ -5,4 +5,5 @@
 	<script type="application/x-javascript" src="chrome://global/content/nsUserSettings.js"/>
 	<script type="application/x-javascript" src="chrome://confirm-address/content/setting.js"/>	
 	<script type="application/x-javascript" src="chrome://confirm-address/content/confirm-address.js"/>
+	<script type="application/x-javascript" src="chrome://confirm-address/content/confirm-address-overlay.js"/>
 </overlay>
