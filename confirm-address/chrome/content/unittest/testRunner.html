@@ -1,0 +1,49 @@
+<html>
+
+<head>
+	<script type="text/javascript" src="../confirm-address.js"></script>
+	<script type="text/javascript" src="confirm-address-test.js"></script>
+
+	<!-- Tests start -->
+	<script type="text/javascript">
+
+		var cnt = 0;
+		var pass = true;
+		var errMsg = null;
+
+		function assertEquals(exp, act){
+			if(exp == act){
+				pass = true;
+				cnt++;
+			}else{
+				pass = false;
+				errMsg = "expect is " + exp + " ,but actual is " + act;
+			}	
+		}
+
+		function dump(msg){
+			if(DUMP){
+				alert("dump:" + msg);
+			}
+		}
+
+		//execute tests!!!!!
+		for(var m in this){
+			if(m.indexOf("test") != -1){
+				this[m]();
+				/*
+				if(!pass){
+					alert(m + " : " + errMsg);
+					return;
+				}
+				*/
+			}
+		}
+		alert(cnt + " tests success!!!");
+
+	</script>
+</head>
+
+<body>
+</body>
+</html>
