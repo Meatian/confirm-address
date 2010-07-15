@@ -2,6 +2,7 @@
 
 [antを使ってビルド]
 -build.propertiesを、リリースバージョンに合わせて書き換える
+-install.rdfを、リリースバージョンに合わせて書き換える
 -antを実行する
 -release以下にリリースパッケージが生成される
 
@@ -14,6 +15,10 @@
 -trunk以下のフォルダのパスを、テキストファイルに書きます。
 -そのテキストファイルを「confirm-address@kenmaz.net」というファイル名で保存します。
 -TBのextensionsフォルダに、上記ファイルをおきます
+-MacOSXの場合は以下のパスにァイルを作ります 
+----
+ ~/Library/Thunderbird/Profiles/snlxbw06.default/extensions/confirm-address@kenmaz.net
+----
 
 ファイルの内容はこんな感じ
 -----

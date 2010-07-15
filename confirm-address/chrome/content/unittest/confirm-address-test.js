@@ -66,6 +66,20 @@ function testJudge_UpperCase() {
 }
 
 /*
+ * 組織外メールアドレスのユーザ名部が、組織内ドメイン名と同様の文字列を含んでいる
+ * 場合に、ただしくそのアドレスを組織外として認識するか 
+ */
+function testJudge_OutSiderNameLooksLikeInSiderDomainName() {
+	addressList = new Array("me.com@outsider.com", "bbb@me.com");
+	domainList = new Array("me.com");
+	insiders = new Array();
+	outsiders = new Array();
+	r = ConfirmAddress.judge(addressList, domainList, insiders, outsiders);
+	assertEquals(1, insiders.length);
+	assertEquals(1, outsiders.length);
+}
+
+/*
  * ドメインリストの取得ができるか
  */
 function testGetDomainList(){

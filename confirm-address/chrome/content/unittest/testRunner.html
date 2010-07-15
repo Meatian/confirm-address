@@ -3,47 +3,71 @@
 <head>
 	<script type="text/javascript" src="../confirm-address.js"></script>
 	<script type="text/javascript" src="confirm-address-test.js"></script>
-
+<!--
+	<script type="text/javascript" src="../countdown.js"></script>
+	<script type="text/javascript" src="countdown-test.js"></script>
+-->
 	<!-- Tests start -->
 	<script type="text/javascript">
+    function TestRunner() {
+			this.pass = 0;
+			this.success = 0;
+			this.fail = 0;
+    }
 
-		var cnt = 0;
-		var pass = true;
-		var errMsg = null;
+    TestRunner.prototype.execute = function(){
+    };
+
+		TestRunner.prototype.assertEquals = function(exp, act){
+			if(exp == act){
+				this.pass++;
+			}else{
+				throw "FAIL exp="+exp+", but act="+act;
+			}	
+		};
+    var runner = new TestRunner();
 
 		function assertEquals(exp, act){
-			if(exp == act){
-				pass = true;
-				cnt++;
-			}else{
-				pass = false;
-				errMsg = "expect is " + exp + " ,but actual is " + act;
-			}	
+			runner.assertEquals(exp, act);
 		}
+		
+		function dump(obj){}
+	
+		function run() {	
+			var successList = new Array();
+			var failList = new Array();
 
-		function dump(msg){
-			if(DUMP){
-				alert("dump:" + msg);
-			}
-		}
-
-		//execute tests!!!!!
-		for(var m in this){
-			if(m.indexOf("test") != -1){
-				this[m]();
-				/*
-				if(!pass){
-					alert(m + " : " + errMsg);
-					return;
+			for(var m in this){
+				if(m.indexOf("test") != -1){
+					try{
+						this[m]();
+						successList.push(m);
+					}catch(e){
+						failList.push(m);
+					}
 				}
-				*/
 			}
+			var result = document.getElementById("result");
+			successList.forEach(function(elm,idx,ary){
+				var div = document.createElement("div");
+				div.innerHTML = "OK .... " + ary[idx];
+				div.setAttribute('style', 'color: green;');
+				result.appendChild(div);	
+			});
+			failList.forEach(function(elm,idx,ary){
+				var div = document.createElement("div");
+				div.innerHTML = "FAIL .. " + ary[idx];
+				div.setAttribute('style', 'color: red;');
+				result.appendChild(div);	
+			});
 		}
-		alert(cnt + " tests success!!!");
-
 	</script>
 </head>
 
-<body>
+<body onload="run();">
+	<h1>Confirm Address Unit Test</h1>
+	<div id="result" color="#FF0000;">
+	</div>
 </body>
+
 </html>
