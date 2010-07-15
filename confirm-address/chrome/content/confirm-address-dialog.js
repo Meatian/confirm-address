@@ -104,7 +104,7 @@ function checkAllChecked(){
 function switchInternalCheckBox(internalList){
 
 	var checkAll = document.getElementById("check_all");
-	var isCheck = !checkAll.checked;
+	var isCheck = checkAll.checked;
 
 	var yourdomains = document.getElementById("yourDomains");
 	var checkboxes = yourdomains.getElementsByTagName("checkbox");
