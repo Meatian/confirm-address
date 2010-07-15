@@ -4,7 +4,7 @@
 
 <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         onload="CountDown.onLoad();"
-        ondialogaccept="CountDown.doSkip();"
+        ondialogaccept="CountDown.complete();"
         buttons="accept,cancel"
         width="300" height="130"
         title="&countdown.dialog.title;">

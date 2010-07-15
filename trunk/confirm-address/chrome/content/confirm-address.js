@@ -130,6 +130,9 @@ var ConfirmAddress = {
   	}
   },
 
+	/**
+   * addressArrayに含まれるアドレスを判定し、組織外、組織内に振り分けます
+	 */
   judge : function(addressArray, domainList, yourDomainAddress, otherDomainAddress){
   	dump("[JUDGE] "+addressArray+"\n");
   	
@@ -147,24 +150,20 @@ var ConfirmAddress = {
   		if(address.length == 0){
   			continue;
   		}
-  		
-  		var addressLowerCase = address.toLowerCase();
+			var domain = address.substring(address.indexOf("@")).toLowerCase();
 
-  		var yourDomain = false;
-  		
+			match = false;
   		for(var j = 0; j < domainList.length; j++){
-  			var domainListEntry = domainList[j].toLowerCase();
-  			if(addressLowerCase.indexOf(domainListEntry) != -1){
-  				yourDomain = true;
-  				break;
+  			var insiderDomain = domainList[j].toLowerCase();
+  			if(domain.indexOf(insiderDomain) != -1){
+					match = true;
   			}
   		}
-
-  		if(yourDomain){
+			if(match){
   			yourDomainAddress.push(address);
-  		}else{
-  			otherDomainAddress.push(address);
-  		}
+			}else{
+ 				otherDomainAddress.push(address);
+			}
   	}
   },
 
