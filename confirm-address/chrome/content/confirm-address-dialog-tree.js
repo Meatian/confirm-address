@@ -6,7 +6,7 @@ var ConfirmAddressTreeDialog = {
   	
   	//ボタン名設定
   	var strbundle = document.getElementById("strings");
-  	var BtnLabel = strbundle.getString("confirm.dialog.acceptbtn.lable");
+  	var BtnLabel = strbundle.getString("confirm.dialog.acceptbtn.label");
   	okBtn.label = BtnLabel;
 
     var rootcell = document.getElementById("rootcell");
