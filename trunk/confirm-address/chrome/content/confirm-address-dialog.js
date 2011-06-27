@@ -5,7 +5,7 @@ function startup(){
 	
 	//ボタン名設定
 	var strbundle = document.getElementById("strings");
-	var BtnLabel = strbundle.getString("confirm.dialog.acceptbtn.lable");
+	var BtnLabel = strbundle.getString("confirm.dialog.acceptbtn.label");
 	okBtn.label = BtnLabel;
 
 	//自ドメインあて先リスト

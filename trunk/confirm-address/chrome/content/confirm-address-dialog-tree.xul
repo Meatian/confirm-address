@@ -25,7 +25,7 @@
       <treecol type="checkbox" editable="true">
         <checkbox style="margin:0px;" id="check_all"/>
       </treecol>
-      <treecol label="&confirm.dialog.yourdomain.lable;" primary="true" flex="1"/>
+      <treecol label="&confirm.dialog.yourdomain.label;" primary="true" flex="1"/>
     </treecols>
     <treechildren id="internal-tree">
       
@@ -37,26 +37,26 @@
       <treecol type="checkbox" editable="true" id="2">
         <checkbox style="margin:0px;" id="check_all"/>
       </treecol>
-      <treecol label="&confirm.dialog.yourdomain.lable;" primary="true" flex="1" id="4"/>
+      <treecol label="&confirm.dialog.yourdomain.label;" primary="true" flex="1" id="4"/>
     </treecols>
     <treechildren id="external-tree">
     
       <treeitem container="true" open="true" id="6">
         <treerow id="7">
           <treecell id="rootcell" value="false" />
-          <treecell label=" @kenmaz.co.jp"  id="4"/>
+          <treecell label=" @confirmaddress.jp"  id="4"/>
         </treerow>
         <treechildren id="8">
           <treeitem id="9">
             <treerow>
               <treecell value="false"/>
-              <treecell label=" hogehoge@kenmaz.co.jp"/>
+              <treecell label=" lorem@confirmaddress.jp"/>
             </treerow>
           </treeitem>
           <treeitem>
             <treerow>
               <treecell value="false"/>
-              <treecell label=" hogehoge@kenmaz.co.jp"/>
+              <treecell label=" ipsum@confirmaddress.jp"/>
             </treerow>
           </treeitem>
         </treechildren>

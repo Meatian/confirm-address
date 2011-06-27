@@ -1,8 +1,8 @@
 <!ENTITY confirm.dialog.title "Confirm E-mail addresses.">
 <!ENTITY confirm.dialog.message "Please confirm the following E-mail Addresses">
-<!ENTITY confirm.dialog.yourdomain.lable "Your domain addresses">
-<!ENTITY confirm.dialog.otherdomain.lable "Other domain addresses">
-<!ENTITY confirm.dialog.check.lable "Check!">
+<!ENTITY confirm.dialog.yourdomain.label "Your domain addresses">
+<!ENTITY confirm.dialog.otherdomain.label "Other domain addresses">
+<!ENTITY confirm.dialog.check.label "Check!">
 <!ENTITY setting.dialog.title "Confirm-Address settings">
 <!ENTITY setting.dialog.message "Add your group domain name.">
 <!ENTITY setting.dialog.list.label "Your group domain">

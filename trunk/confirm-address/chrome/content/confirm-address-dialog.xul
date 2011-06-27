@@ -22,7 +22,7 @@
 			<listheader id="checkbox_header">
 				<checkbox style="margin:0px;" id="check_all"/>
 			</listheader>
-			<listheader label="&confirm.dialog.yourdomain.lable;"/>
+			<listheader label="&confirm.dialog.yourdomain.label;"/>
 		</listhead>
 		<listcols>
 			<listcol/>
@@ -31,9 +31,8 @@
 	</listbox>
 	<listbox id="otherDomains" height="125">
 		<listhead>
-			<!--<listheader label="&confirm.dialog.check.lable;"/>-->
 			<listheader/>
-			<listheader label="&confirm.dialog.otherdomain.lable;"/>
+			<listheader label="&confirm.dialog.otherdomain.label;"/>
 		</listhead>
 		<listcols>
 			<listcol/>
