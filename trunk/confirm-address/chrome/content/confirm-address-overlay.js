@@ -29,11 +29,11 @@ var	SendMessageWithCheck	=	function()
 	if (warn) {
 			var checkValue = {value:false};
 			var bundle = document.getElementById("bundle_composeMsgs");
-			var buttonPressed = gPromptService.confirmEx(window,
+			var buttonPressed = Services.prompt.confirmEx(window,
 						bundle.getString('sendMessageCheckWindowTitle'),
 						bundle.getString('sendMessageCheckLabel'),
-						(gPromptService.BUTTON_TITLE_IS_STRING * gPromptService.BUTTON_POS_0) +
-						(gPromptService.BUTTON_TITLE_CANCEL * gPromptService.BUTTON_POS_1),
+						(Services.prompt.BUTTON_TITLE_IS_STRING * Services.prompt.BUTTON_POS_0) +
+						(Services.prompt.BUTTON_TITLE_CANCEL * Services.prompt.BUTTON_POS_1),
 						bundle.getString('sendMessageCheckSendButtonLabel'),
 						null, null,
 						bundle.getString('CheckMsg'),

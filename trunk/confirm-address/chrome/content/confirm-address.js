@@ -80,7 +80,6 @@ var ConfirmAddress = {
   	if (msgCompFields == null){
   		return;
   	}
-  	var gMimeHeaderParser = Components.classes["@mozilla.org/messenger/headerparser;1"].getService(Components.interfaces.nsIMsgHeaderParser);
   	
   	var row = 1;
   	while(true){
@@ -101,7 +100,7 @@ var ConfirmAddress = {
   			var recipient = null;
 
   			try {
-  				recipient = gMimeHeaderParser.reformatUnquotedAddresses(fieldValue);
+  				recipient = MailServices.headerParser.reformatUnquotedAddresses(fieldValue);
   			} catch (ex) {
   				recipient = fieldValue;
   			}
