@@ -2,60 +2,29 @@
 
 //overlay
 //C:\Program Files\Mozilla Thunderbird\chrome\messenger\content\messenger\messengercompose\MsgComposeCommands.js
-function SendMessage()
+var	ConfirmAddress_org_SendMessage = SendMessage;
+var	SendMessage = function()
 {
+	if( !ConfirmAddress.checkAddress() )	{ return; }
+
 	//add start
 	if(!ConfirmAddress.checkAddress()){
 		return;
 	}
 	//add end
-/*
-  dump("SendMessage from XUL\n");
-  GenericSendMessage(nsIMsgCompDeliverMode.Now);
-*/
-  let sendInBackground =
-		Components.classes["@mozilla.org/preferences-service;1"]
-		.getService(Components.interfaces.nsIPrefBranch)
-		.getBoolPref("mailnews.sendInBackground");
-  GenericSendMessage(sendInBackground ?
-		nsIMsgCompDeliverMode.Background :
-		nsIMsgCompDeliverMode.Now);
+	ConfirmAddress_org_SendMessage();
 }
 
 //overlay
 //C:\Program Files\Mozilla Thunderbird\chrome\messenger\content\messenger\messengercompose\MsgComposeCommands.js
-function SendMessageWithCheck()
+var ConfirmAddress_org_SendMessageWithCheck = SendMessageWithCheck;
+var	SendMessageWithCheck	=	function()
 {
 	//add start
 	if(!ConfirmAddress.checkAddress()){
 		return;
 	}
 	//add end
-/*
-    var warn = sPrefs.getBoolPref("mail.warn_on_send_accel_key");
-
-    if (warn) {
-        var checkValue = {value:false};
-        var buttonPressed = gPromptService.confirmEx(window, 
-              sComposeMsgsBundle.getString('sendMessageCheckWindowTitle'), 
-              sComposeMsgsBundle.getString('sendMessageCheckLabel'),
-              (gPromptService.BUTTON_TITLE_IS_STRING * gPromptService.BUTTON_POS_0) +
-              (gPromptService.BUTTON_TITLE_CANCEL * gPromptService.BUTTON_POS_1),
-              sComposeMsgsBundle.getString('sendMessageCheckSendButtonLabel'),
-              null, null,
-              sComposeMsgsBundle.getString('CheckMsg'), 
-              checkValue);
-        if (buttonPressed != 0) {
-            return;
-        }
-        if (checkValue.value) {
-            sPrefs.setBoolPref("mail.warn_on_send_accel_key", false);
-        }
-    }
-
-  GenericSendMessage(gIsOffline ? nsIMsgCompDeliverMode.Later
-                                 : nsIMsgCompDeliverMode.Now);
-*/
 	var warn = getPref("mail.warn_on_send_accel_key");
 	if (warn) {
 			var checkValue = {value:false};
@@ -79,12 +48,5 @@ function SendMessageWithCheck()
 					branch.setBoolPref("mail.warn_on_send_accel_key", false);
 			}
 	}	
-  let sendInBackground =
-    Components.classes["@mozilla.org/preferences-service;1"]
-              .getService(Components.interfaces.nsIPrefBranch)
-              .getBoolPref("mailnews.sendInBackground");
-  GenericSendMessage(gIsOffline ? nsIMsgCompDeliverMode.Later :
-                     (sendInBackground ?
-                      nsIMsgCompDeliverMode.Background :
-                      nsIMsgCompDeliverMode.Now));
+	ConfirmAddress_org_SendMessageWithCheck();
 }
