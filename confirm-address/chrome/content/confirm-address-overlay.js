@@ -6,18 +6,12 @@ var	ConfirmAddress_org_SendMessage = SendMessage;
 var	SendMessage = function()
 {
 	if( !ConfirmAddress.checkAddress() )	{ return; }
-
-	//add start
-	if(!ConfirmAddress.checkAddress()){
-		return;
-	}
-	//add end
 	ConfirmAddress_org_SendMessage();
 }
 
 //overlay
 //C:\Program Files\Mozilla Thunderbird\chrome\messenger\content\messenger\messengercompose\MsgComposeCommands.js
-var ConfirmAddress_org_SendMessageWithCheck = SendMessageWithCheck;
+//	var ConfirmAddress_org_SendMessageWithCheck = SendMessageWithCheck;
 var	SendMessageWithCheck	=	function()
 {
 	//add start
@@ -48,5 +42,5 @@ var	SendMessageWithCheck	=	function()
 					branch.setBoolPref("mail.warn_on_send_accel_key", false);
 			}
 	}	
-	ConfirmAddress_org_SendMessageWithCheck();
+	ConfirmAddress_org_SendMessage();
 }
