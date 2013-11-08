@@ -44,3 +44,16 @@ var	SendMessageWithCheck	=	function()
 	}	
 	ConfirmAddress_org_SendMessage();
 }
+
+
+
+var	ConfirmAddress_org_SendMessageLater = SendMessageLater;
+var	SendMessageLater = function()
+{
+	//add start
+	if(!ConfirmAddress.checkAddress()){
+		return;
+	}
+	//add end
+	ConfirmAddress_org_SendMessageLater();
+}
