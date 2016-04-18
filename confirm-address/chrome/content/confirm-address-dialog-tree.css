@@ -1,6 +1,0 @@
-treechildren::-moz-tree-checkbox{
-  list-style-image: url("chrome://confirm-address/content/off.png");
-}
-treechildren::-moz-tree-checkbox(checked){
-  list-style-image: url("chrome://confirm-address/content/on.png");
-}

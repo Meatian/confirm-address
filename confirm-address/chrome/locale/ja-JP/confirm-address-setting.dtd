@@ -1,0 +1,14 @@
+<!ENTITY setting.dialog.title "Confirm-Address 設定">
+<!ENTITY setting.dialog.message "あなたの組織のメールアドレスのドメイン名を指定してください。">
+<!ENTITY setting.dialog.list.label "ドメイン名">
+<!ENTITY setting.dialog.button.add.label "追加">
+<!ENTITY setting.dialog.button.add.accesskey "A">
+<!ENTITY setting.dialog.button.edit.label "編集">
+<!ENTITY setting.dialog.button.edit.accesskey "E">
+<!ENTITY setting.dialog.button.remove.label "削除">
+<!ENTITY setting.dialog.button.remove.accesskey "R">
+<!ENTITY setting.dialog.checkbox.notdisplay "自ドメイン宛てのメール送信時は確認ダイアログを表示しない">
+<!ENTITY setting.dialog.checkbox.countdown "[送信]ボタン押下後にカウントダウンを開始する-->">
+<!ENTITY setting.dialog.label.countdown "秒">
+<!ENTITY setting.sub-dialog.title "ドメイン名の入力">
+<!ENTITY setting.sub-dialog.message "ドメイン名を入力してください(例：confirmaddress.jp)">

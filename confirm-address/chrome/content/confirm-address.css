@@ -1,0 +1,11 @@
+#dialog_message {
+  font-size: 1.3em;
+}
+
+listitem {
+  font-weight: bold;
+}
+
+listitem[checked="true"] {
+  font-weight: normal;
+}
