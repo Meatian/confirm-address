@@ -25,18 +25,26 @@ caDialog.startup = function () {
 	}
 
 	//自ドメインあて先リストヘッダ
-	var yourDomainsHeader = document.getElementById("yourDomains_header");
+	var yourDomainsHeader = document.getElementById("yourDomains_allcheck");
 	yourDomainsHeader.onclick = caDialog.switchInternalCheckBox;
 
 	//他ドメインあて先リストヘッダ
-	var otherDomainsHeader = document.getElementById("otherDomains_header");
+	var otherDomainsHeader = document.getElementById("otherDomains_allcheck");
 	otherDomainsHeader.onclick = caDialog.switchInternalCheckBox;
 };
 
-caDialog.createListItem = function (address) {
+caDialog.createListItem = function (item) {
 	var listitem = document.createElement("listitem");
 	listitem.setAttribute("type", "checkbox");
-	listitem.setAttribute("label", address);
+	var chkCell = document.createElement("listcell");
+	chkCell.setAttribute("lebel", "");
+	listitem.appendChild(chkCell);
+	var typeCell = document.createElement("listcell");
+	typeCell.setAttribute("label", item.type);
+	listitem.appendChild(typeCell);
+	var labelCell = document.createElement("listcell");
+	labelCell.setAttribute("label", item.address);
+	listitem.appendChild(labelCell);
 	//listitem.setAttribute("checked", "true");
 
 	listitem.onclick = caDialog.checkAllChecked;
@@ -52,9 +60,12 @@ caDialog.checkAllChecked = function () {
 	var yourdomains = document.getElementById("yourDomains"),
 	    yd_checkboxes = yourdomains.getElementsByTagName("listitem");
 	for (var i = 0, ylen = yd_checkboxes.length; i < ylen; i++) {
+		var yd_chkCell = yd_checkboxes[i].getElementsByTagName("listcell")[0];
 		if (!yd_checkboxes[i].hasAttribute("checked")) {
 			internalComplete = false;
-			break;
+			yd_chkCell.setAttribute("label", "");
+		} else {
+			yd_chkCell.setAttribute("label", "✓");
 		}
 	}
 	//[すべて確認]チェックの設定
@@ -64,9 +75,12 @@ caDialog.checkAllChecked = function () {
 	var otherdomains = document.getElementById("otherDomains"),
 	    od_checkboxes = otherdomains.getElementsByTagName("listitem");
 	for (var j = 0, len = od_checkboxes.length; j < len; j++){
+		var od_chkCell = od_checkboxes[j].getElementsByTagName("listcell")[0];
 		if (!od_checkboxes[j].hasAttribute("checked")) {
 			externalComplete = false;
-			break;
+			od_chkCell.setAttribute("label", "");
+		} else {
+			od_chkCell.setAttribute("label", "✓");
 		}
 	}
 	otherdomains.setAttribute("check_all", externalComplete);
@@ -81,10 +95,10 @@ caDialog.checkAllChecked = function () {
 caDialog.switchInternalCheckBox = function (event) {
 	var targetdomains;
 	switch (event.target.id) {
-	  case "yourDomains_header":
+	  case "yourDomains_allcheck":
 	    targetdomains = document.getElementById("yourDomains");
 	    break;
-	  case "otherDomains_header":
+	  case "otherDomains_allcheck":
 	    targetdomains = document.getElementById("otherDomains");
 	    break;
 	  default:

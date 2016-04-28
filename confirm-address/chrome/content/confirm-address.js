@@ -2,15 +2,16 @@ var ConfirmAddress = {
 
   checkAddress: function(){
   	var msgCompFields = gMsgCompose.compFields;
-  	
+
   	var toList = [];
   	var ccList = [];
   	var bccList = [];
-  	this.collectAddress(msgCompFields, toList, ccList, bccList)
+    var otherList = [];
+  	this.collectAddress(msgCompFields, toList, ccList, bccList, otherList);
   	dump("[TO] "+ toList + "\n");
   	dump("[CC] "+ ccList + "\n");
   	dump("[BCC] "+ bccList + "\n");
-  
+
     var domainList = this.getDomainList();
   	dump("[DOMAINLIST] "+ domainList + "\n");
 
@@ -19,6 +20,7 @@ var ConfirmAddress = {
   	this.judge(toList, domainList, internalList, externalList);
   	this.judge(ccList, domainList, internalList, externalList);
   	this.judge(bccList, domainList, internalList, externalList);
+  	this.judge(otherList, domainList, internalList, externalList);
   	dump("[INTERNAL] "+ internalList + "\n");
   	dump("[EXTERNAL] "+ externalList + "\n");
 
@@ -29,18 +31,18 @@ var ConfirmAddress = {
   	}else{
       window.confirmOK = false;
       window.openDialog("chrome://confirm-address/content/confirm-address-dialog.xul",
-        "ConfirmAddressDialog", "resizable,chrome,modal,titlebar,centerscreen", 
+        "ConfirmAddressDialog", "resizable,chrome,modal,titlebar,centerscreen",
         window, internalList, externalList);
     }
-    
+
   	if(window.confirmOK){
   		var isCountDown = nsPreferences.getBoolPref(CA_CONST.IS_COUNT_DOWN, false);
-  		
+
   		if(isCountDown){
   			var countDonwTime = nsPreferences.copyUnicharPref(CA_CONST.COUNT_DOWN_TIME);
-  			
+
   			window.countDownComplete = false;
-  			window.openDialog("chrome://confirm-address/content/countdown.xul", "CountDown Dialog", 
+  			window.openDialog("chrome://confirm-address/content/countdown.xul", "CountDown Dialog",
   			"resizable,chrome,modal,titlebar,centerscreen",window, countDonwTime);
 
   			if(window.countDownComplete){
@@ -59,7 +61,7 @@ var ConfirmAddress = {
 
   getByDomainMap : function(list){
     var resultMap = new Array();
-    
+
     for(var i=0; i<list.length; i++){
       var adrs = list[i];
       dump(adrs);
@@ -74,29 +76,29 @@ var ConfirmAddress = {
 		dump(resultMap);
     return resultMap;
   },
-  
-  collectAddress : function(msgCompFields, toList, ccList, bccList){
+
+  collectAddress : function(msgCompFields, toList, ccList, bccList, otherList){
 
   	if (msgCompFields == null){
   		return;
   	}
-  	
-  	var row = 1;
+
+  	var row = 0;
   	while(true){
+      row++;
   		var inputField = document.getElementById("addressCol2#" + row);
-  		
+
   		if(inputField == null){
   			break;
-  		}else{
-  			row++;
   		}
+
   		var fieldValue = inputField.value;
   		if (fieldValue == null){
   			fieldValue = inputField.getAttribute("value");
   		}
-  		
+
   		if (fieldValue != ""){
-  			
+
   			var recipient = null;
 
   			try {
@@ -113,16 +115,19 @@ var ConfirmAddress = {
 
   			switch (recipientType){
   			case "addr_to":
-  				toList.push(recipient);
+  				toList.push({type: "To", address: recipient});
   				break;
   			case "addr_cc":
-  				ccList.push(recipient);
+  				ccList.push({type: "Cc", address: recipient});
   				break;
   			case "addr_bcc":
-  				bccList.push(recipient);
+  				bccList.push({type: "Bcc", address: recipient});
   				break;
+        case "addr_reply":
+          otherList.push({type: "Reply-To", address: recipient});
+          break;
   			default:
-  				toList.push(recipient);
+  				otherList.push({type: "", address: recipient});
   				break;
   			}
   		}
@@ -134,7 +139,7 @@ var ConfirmAddress = {
 	 */
   judge : function(addressArray, domainList, yourDomainAddress, otherDomainAddress){
   	dump("[JUDGE] "+addressArray+"\n");
-  	
+
   	//if domainList is empty, all addresses are external.
   	if(domainList.length == 0){
   		for(var i = 0; i < addressArray.length; i++){
@@ -142,10 +147,11 @@ var ConfirmAddress = {
   		}
   		return;
   	}
-  	
+
   	//compare addresses with registered domain lists.
   	for(var i = 0; i < addressArray.length; i++){
-  		var address = addressArray[i];
+  		var target = addressArray[i];
+      var address = target.address;
   		if(address.length == 0){
   			continue;
   		}
@@ -159,9 +165,9 @@ var ConfirmAddress = {
   			}
   		}
 			if(match){
-  			yourDomainAddress.push(address);
+  			yourDomainAddress.push(target);
 			}else{
- 				otherDomainAddress.push(address);
+ 				otherDomainAddress.push(target);
 			}
   	}
   },
@@ -174,4 +180,3 @@ var ConfirmAddress = {
   	return domains.split(",");
   }
 }
-
