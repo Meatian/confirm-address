@@ -83,6 +83,7 @@ var ConfirmAddress = {
   		return;
   	}
 
+    var includeReplyTo = nsPreferences.getBoolPref(CA_CONST.IS_CONFIRM_REPLY_TO, false);
   	var row = 0;
   	while(true){
       row++;
@@ -115,16 +116,18 @@ var ConfirmAddress = {
 
   			switch (recipientType){
   			case "addr_to":
-  				toList.push({type: "To", address: recipient});
+  				toList.push({type: "To: ", address: recipient});
   				break;
   			case "addr_cc":
-  				ccList.push({type: "Cc", address: recipient});
+  				ccList.push({type: "Cc: ", address: recipient});
   				break;
   			case "addr_bcc":
-  				bccList.push({type: "Bcc", address: recipient});
+  				bccList.push({type: "Bcc: ", address: recipient});
   				break;
         case "addr_reply":
-          otherList.push({type: "Reply-To", address: recipient});
+          if (includeReplyTo) {
+            bccList.push({type: "Reply-To: ", address: recipient});
+          }
           break;
   			default:
   				otherList.push({type: "", address: recipient});

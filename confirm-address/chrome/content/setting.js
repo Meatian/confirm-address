@@ -3,7 +3,8 @@ var CA_CONST = {
 	IS_NOT_DISPLAY : "com.kenmaz.confirm-address.not-display",
 	IS_COUNT_DOWN : "com.kenmaz.confirm-address.is-countdown",
 	COUNT_DOWN_TIME : "com.kenmaz.confirm-address.cd-time",
-  TREE_STYLE : "com.kenmaz.confirm-address.tree-style"
+  TREE_STYLE : "com.kenmaz.confirm-address.tree-style",
+	IS_CONFIRM_REPLY_TO : "com.kenmaz.confirm-address.is-confirm-reply-to"
 };
 
 function startup(){
@@ -24,7 +25,7 @@ function startup(){
 	var isNotDisplay = nsPreferences.getBoolPref(CA_CONST.IS_NOT_DISPLAY, false);
 	var noDisplayBox = document.getElementById("not-display");
 	noDisplayBox.checked = isNotDisplay;
-	
+
 	//init checkbox [countdown]
 	var cdBox = document.getElementById("countdown");
 	var cdTimeBox = document.getElementById("countdown-time");
@@ -43,6 +44,11 @@ function startup(){
 
 	var countDonwTime = nsPreferences.copyUnicharPref(CA_CONST.COUNT_DOWN_TIME);
 	cdTimeBox.value = countDonwTime;
+
+  // init checkbox [confrim Reply-To address before sending]
+	var isConfirmReplyTo = nsPreferences.getBoolPref(CA_CONST.IS_CONFIRM_REPLY_TO);
+  var replyBox = document.getElementById("confirm-reply-to");
+	replyBox.checked = isConfirmReplyTo;
 }
 
 function addItem() {
@@ -69,7 +75,7 @@ function editItem() {
 	window.domainName = selectedItem.label;
 	window.openDialog("chrome://confirm-address/content/setting-add-domain.xul",
 		"ConfirmAddressDialog", "chrome,modal,titlebar,centerscreen", window);
-		
+
 	if (window.confirmOK) {
 		var domainName = window.domainName;
 		if (domainName.length > 0) {
@@ -115,6 +121,8 @@ function doOK() {
 	}
 	nsPreferences.setUnicharPref(CA_CONST.COUNT_DOWN_TIME, cdTime);
 
+	var replyTo = document.getElementById("confirm-reply-to").checked;
+	nsPreferences.setBoolPref(CA_CONST.IS_CONFIRM_REPLY_TO, replyTo);
 	return true;
 }
 

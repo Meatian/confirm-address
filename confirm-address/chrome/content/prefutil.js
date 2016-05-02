@@ -1,6 +1,6 @@
 PrefUtil = {
 	PREF : Components.classes['@mozilla.org/preferences;1'].getService(Components.interfaces.nsIPrefBranch),
-	
+
 	KEY_DOMAIN_LIST : "com.kenmaz.confirm-address.domain-list",
 	KEY_NOT_DISPLAY : "com.kenmaz.confirm-address.not-display",
 	COUNT_DOWN_TIME : "com.kenmaz.confirm-address.countdown-time",
@@ -11,14 +11,14 @@ PrefUtil = {
 	setDomainList : function(listStr) {
 		PrefUtil.setPref(PrefUtil.KEY_DOMAIN_LIST, listStr);
 	},
-	
+
 	isNotDisplay : function() {
 		return this.getPref(PrefUtil.KEY_NOT_DISPLAY);
 	},
 	setNotDisplay : function(b) {
 		PrefUtil.setPref(PrefUtil.KEY_NOT_DISPLAY, b);
 	},
-	
+
 	isCountDown : function(){
 		return this.getPref(PrefUtil.IS_COUNT_DOWN);
 	},
@@ -32,7 +32,14 @@ PrefUtil = {
 	setCountDownTime : function(t){
 		PrefUtil.setPref(PrefUtil.COUNT_DOWN_TIME, t);
 	},
-	
+
+	isConfirmReplyTo : function() {
+		return PrefUtil.getPref(PrefUtil.IS_CONFIRM_REPLY_TO);
+	},
+	setConfirmReplyTo : function(b) {
+		PrefUtil.setPref(PrefUtil.IS_CONFIRM_REPLY_TO, b);
+	},
+
 	getPref : function(key) {
 		try{
 			const nsIPrefBranch = Components.interfaces.nsIPrefBranch;
@@ -43,11 +50,11 @@ PrefUtil = {
 			case nsIPrefBranch.PREF_STRING:
 				value = this.PREF.getCharPref(key);
 				break;
-				
+
 			case nsIPrefBranch.PREF_INT:
 				value = this.PREF.getIntPref(key);
 				break;
-				
+
 		    case nsIPrefBranch.PREF_BOOL:
 			default:
 				value = this.PREF.getBoolPref(key);
@@ -55,7 +62,7 @@ PrefUtil = {
 			}
 			dump("[GET PREF] key="+ key + ", value=" + value + "\n");
 			return value;
-			
+
 		}catch(e){
 			dump("[GET PREF ERROR] key="+ key + "\n");
 			return null;

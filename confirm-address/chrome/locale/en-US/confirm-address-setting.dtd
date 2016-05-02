@@ -12,3 +12,4 @@
 <!ENTITY setting.dialog.label.countdown "(s)">
 <!ENTITY setting.sub-dialog.title "Input domain name">
 <!ENTITY setting.sub-dialog.message "Input your group domain name.">
+<!ENTITY setting.dialog.checkbox.confirmreplyto "Confirm Reply-To addresses before sending">
