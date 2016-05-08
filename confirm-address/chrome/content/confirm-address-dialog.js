@@ -67,25 +67,25 @@ caDialog.checkAllChecked = function () {
 	//自ドメインのチェック状況を確認
 	var yourdomains = document.getElementById("yourDomains"),
 	    yd_checkboxes = yourdomains.getElementsByClassName("confirmed");
-	for (var i = 0, ylen = yd_checkboxes.length; i < ylen; i++) {
-		if (!yd_checkboxes[i].checked) {
-			internalComplete = false;
+	if (0 < yd_checkboxes.length) {
+		for (var i = 0, ylen = yd_checkboxes.length; i < ylen; i++) {
+			if (!yd_checkboxes[i].checked) {
+				internalComplete = false;
+			}
 		}
-	}
-	// 全て選択チェックもつけておく
-	if (0 < i) {
+		// 全て選択チェックもつけておく
 		yourdomains.getElementsByClassName("all_check")[0].checked = internalComplete;
 	}
 
 	//他ドメインのチェック状況を確認
 	var otherdomains = document.getElementById("otherDomains"),
 	    od_checkboxes = otherdomains.getElementsByClassName("confirmed");
-	for (var j = 0, len = od_checkboxes.length; j < len; j++){
-		if (!od_checkboxes[j].checked) {
-			externalComplete = false;
+	if (0 < od_checkboxes.length) {
+		for (var j = 0, len = od_checkboxes.length; j < len; j++){
+			if (!od_checkboxes[j].checked) {
+				externalComplete = false;
+			}
 		}
-	}
-	if (0 < j) {
 		otherdomains.getElementsByClassName("all_check")[0].checked = externalComplete;
 	}
 
@@ -98,11 +98,13 @@ caDialog.checkAllChecked = function () {
 //呼び出しドメインのアドレスのすべての確認ボックスをONまたはOFFにする。
 caDialog.switchInternalCheckBox = function (targetdomains) {
 	var allCheck = targetdomains.getElementsByClassName("all_check")[0],
-	    items = targetdomains.getElementsByClassName("confirmed");
+	    items = targetdomains.getElementsByTagName("listitem");
 
 	var isCheck = allCheck.checked;
 	for (var i = 0, len = items.length; i < len; i++) {
-		items[i].checked = isCheck;
+		var listitem = items[i];
+		listitem.checkbox.checked = isCheck;
+		listitem.className = isCheck ? 'confirmed-item' : '';
 	}
 
 	caDialog.checkAllChecked();
