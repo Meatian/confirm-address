@@ -42,4 +42,5 @@
 		<textbox id="countdown-time" maxwidth="50"/>
 		<label value="&setting.dialog.label.countdown;"/>
 	</hbox>
+  <checkbox id="confirm-reply-to" label="&setting.dialog.checkbox.confirmreplyto;"/>
 </dialog>

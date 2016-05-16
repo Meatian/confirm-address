@@ -16,21 +16,31 @@
 	<script type="application/x-javascript" src="chrome://confirm-address/content/confirm-address-dialog.js"/>
 
 	<label id="dialog_message" value="&confirm.dialog.message;"/>
-	<listbox id="yourDomains" rows="4" check_all="false">
+	<listbox id="yourDomains" rows="4">
 	  <listhead>
-	    <listheader id="yourDomains_header" label="&confirm.dialog.yourdomain.label;"
-	      tooltiptext="&confirm.dialog.yourdomain.tooltip;"/>
+			<listheader id="yourDomains_allcheck" tooltiptext="&confirm.dialog.yourdomain.tooltip;">
+				<checkbox class="all_check"/>
+			</listheader>
+			<listheader />
+	    <listheader id="yourDomains_header" label="&confirm.dialog.yourdomain.label;"/>
 	  </listhead>
 	  <listcols>
+	    <listcol/>
+	    <listcol/>
 	    <listcol flex="1"/>
 	  </listcols>
 	</listbox>
-	<listbox id="otherDomains" rows="5" check_all="false">
+	<listbox id="otherDomains" rows="5">
 	  <listhead>
-	    <listheader id="otherDomains_header" label="&confirm.dialog.otherdomain.label;"
-	      tooltiptext="&confirm.dialog.otherdomain.tooltip;"/>
+			<listheader id="otherDomains_allcheck" tooltiptext="&confirm.dialog.otherdomain.tooltip;">
+				<checkbox class="all_check"/>
+			</listheader>
+			<listheader />
+	    <listheader id="otherDomains_header" label="&confirm.dialog.otherdomain.label;"/>
 	  </listhead>
 	  <listcols>
+	    <listcol/>
+	    <listcol/>
 	    <listcol flex="1"/>
 	  </listcols>
 	</listbox>

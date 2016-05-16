@@ -6,6 +6,13 @@ listitem {
   font-weight: bold;
 }
 
-listitem[checked="true"] {
+listitem.confirmed-item {
   font-weight: normal;
+}
+
+.all_check {
+  margin-left: 3px;
+}
+.confirmed {
+  margin-left: 7px;
 }

@@ -12,3 +12,4 @@
 <!ENTITY setting.dialog.label.countdown "秒">
 <!ENTITY setting.sub-dialog.title "ドメイン名の入力">
 <!ENTITY setting.sub-dialog.message "ドメイン名を入力してください(例：confirmaddress.jp)">
+<!ENTITY setting.dialog.checkbox.confirmreplyto "Reply-To アドレスを確認ダイアログに表示する">
