@@ -1,126 +1,123 @@
-function startup(){
+var caDialog = {};
 
-	var okBtn = document.documentElement.getButton("accept");
-	okBtn.disabled = true;
-	
-	//ボタン名設定
-	var strbundle = document.getElementById("strings");
-	var BtnLabel = strbundle.getString("confirm.dialog.acceptbtn.label");
-	okBtn.label = BtnLabel;
+caDialog.startup = function () {
+	var listitem;
 
 	//自ドメインあて先リスト
 	var internals = window.arguments[1];
 	var internalList = document.getElementById("yourDomains");
-	for(i = 0; i < internals.length; i++){
-		var address = internals[i];
-		var listitem = createListItem(address);
+	for (var i = 0, ilen = internals.length; i < ilen; i++) {
+		listitem = caDialog.createListItem(internals[i]);
 		internalList.appendChild(listitem);
 	}
-	//自ドメインあて先リストヘッダ
-	var checkboxHeader = document.getElementById("checkbox_header");
-	checkboxHeader.onclick = function(event){
-		if(internals.length==0) return;
-		switchInternalCheckBox(internalList);
-		checkAllChecked();
-	};
-	
+
 	//他ドメインあて先リスト
 	var externals = window.arguments[2];
 	var externalList = document.getElementById("otherDomains");
-	if(externals.length > 0){
-		externalList.setAttribute("style","font-weight: bold;");
-	}
-	for(i = 0; i < externals.length; i++){
-		var address = externals[i];
-		var listitem = createListItem(address);
+	for (var j = 0, elen = externals.length; j < elen; j++) {
+		listitem = caDialog.createListItem(externals[j]);
 		externalList.appendChild(listitem);
-	}	
-}
+	}
 
-function createListItem(address){
-
-	var listitem = document.createElement("listitem");
-	
-	var cell1 = document.createElement("listcell");
-	var checkbox = document.createElement("checkbox");
-	checkbox.setAttribute("style", "margin-left:7px;");
-	cell1.appendChild(checkbox);
-	listitem.appendChild(cell1);
-	
-	listitem.checkbox = checkbox;
-	listitem.onclick = function(event){
-		var chekced = this.checkbox.checked;
-		this.checkbox.setAttribute("checked", !chekced);
-		checkAllChecked();
+	//自ドメインあて先リストヘッダ
+	var yourDomainsHeader = document.getElementById("yourDomains_allcheck");
+	yourDomainsHeader.onclick = function(e) {
+		caDialog.switchInternalCheckBox(internalList);
 	};
-	
-	var cell2 = document.createElement("listcell");
-	cell2.setAttribute("label", address);
-	listitem.appendChild(cell2);
-	
-	return listitem;
-}
 
-function checkAllChecked(){
+	//他ドメインあて先リストヘッダ
+	var otherDomainsHeader = document.getElementById("otherDomains_allcheck");
+	otherDomainsHeader.onclick = function(e) {
+		caDialog.switchInternalCheckBox(externalList);
+	};
+};
+
+caDialog.createListItem = function (item) {
+	var listitem = document.createElement("listitem");
+
+	var checkCell = document.createElement("listcell");
+	var checkbox = document.createElement("checkbox");
+	checkbox.setAttribute("class", "confirmed");
+	checkCell.appendChild(checkbox);
+	listitem.appendChild(checkCell);
+
+	var typeCell = document.createElement("listcell");
+	typeCell.setAttribute("label", item.type);
+	listitem.appendChild(typeCell);
+
+	var labelCell = document.createElement("listcell");
+	labelCell.setAttribute("label", item.address);
+	listitem.appendChild(labelCell);
+
+	listitem.checkbox = checkbox;
+	listitem.onclick = function(e) {
+		var checked = this.checkbox.checked;
+		this.checkbox.checked = !checked;
+		this.className = !checked ? 'confirmed-item' : '';
+		caDialog.checkAllChecked();
+	};
+	return listitem;
+};
+
+
+caDialog.checkAllChecked = function () {
+	var internalComplete = true,
+	    externalComplete = true;
 
 	//自ドメインのチェック状況を確認
-	var yourdomains = document.getElementById("yourDomains");
-	var checkboxes = yourdomains.getElementsByTagName("checkbox");
-	var isAllcheckON = checkboxes[0].checked; //[すべて確認]チェックボックスの状況
-	var internalComplete = true;
-	for(var i=1; i<checkboxes.length; i++){
-		var chk = checkboxes[i].checked
-		if(!chk){
-			internalComplete = false;
-			break;
+	var yourdomains = document.getElementById("yourDomains"),
+	    yd_checkboxes = yourdomains.getElementsByClassName("confirmed");
+	if (0 < yd_checkboxes.length) {
+		for (var i = 0, ylen = yd_checkboxes.length; i < ylen; i++) {
+			if (!yd_checkboxes[i].checked) {
+				internalComplete = false;
+			}
 		}
+		// 全て選択チェックもつけておく
+		yourdomains.getElementsByClassName("all_check")[0].checked = internalComplete;
 	}
-	checkboxes[0].checked = internalComplete;
-	
-	//すべてのチェックボックスの状況確認
-	var complete = true;
-	var checkboxes = document.getElementsByTagName("checkbox");
-	for(var i = 0; i < checkboxes.length; i++){
-		var cb = checkboxes[i];
-		
-		if(cb.id == "check_all") continue;
-		
-		if(!cb.checked){
-			complete = false;
-			break;
+
+	//他ドメインのチェック状況を確認
+	var otherdomains = document.getElementById("otherDomains"),
+	    od_checkboxes = otherdomains.getElementsByClassName("confirmed");
+	if (0 < od_checkboxes.length) {
+		for (var j = 0, len = od_checkboxes.length; j < len; j++){
+			if (!od_checkboxes[j].checked) {
+				externalComplete = false;
+			}
 		}
+		otherdomains.getElementsByClassName("all_check")[0].checked = externalComplete;
 	}
-	
+
 	//送信ボタンのdisable切り替え
 	var okBtn = document.documentElement.getButton("accept");
-	if(complete){
-		okBtn.disabled = false;
-	}else{
-		okBtn.disabled = true;
+	okBtn.disabled = !(internalComplete && externalComplete);
+};
+
+
+//呼び出しドメインのアドレスのすべての確認ボックスをONまたはOFFにする。
+caDialog.switchInternalCheckBox = function (targetdomains) {
+	var allCheck = targetdomains.getElementsByClassName("all_check")[0],
+	    items = targetdomains.getElementsByTagName("listitem");
+
+	var isCheck = allCheck.checked;
+	for (var i = 0, len = items.length; i < len; i++) {
+		var listitem = items[i];
+		listitem.checkbox.checked = isCheck;
+		listitem.className = isCheck ? 'confirmed-item' : '';
 	}
-}
 
-//[すべて確認]チェックボックスがONなら、すべての自ドメインアドレスの確認ボックスをONにする。
-function switchInternalCheckBox(internalList){
+	caDialog.checkAllChecked();
+};
 
-	var checkAll = document.getElementById("check_all");
-	var isCheck = checkAll.checked;
 
-	var yourdomains = document.getElementById("yourDomains");
-	var checkboxes = yourdomains.getElementsByTagName("checkbox");
-	for(var i=0; i<checkboxes.length; i++){
-		checkboxes[i].checked = isCheck;
-	}
-}
-
-function doOK(){
-	var parentWindow = window.arguments[0];
-	parentWindow.confirmOK = true;
+caDialog.doOK = function () {
+	window.arguments[0].confirmOK = true;
 	return true;
-}
+};
 
-function doCancel(){
-	var parentWindow = window.arguments[0];
-	parentWindow.confirmOK = false;
+
+caDialog.doCancel = function () {
+	window.arguments[0].confirmOK = false;
 	return true;
-}
+};

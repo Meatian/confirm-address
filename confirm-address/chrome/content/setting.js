@@ -1,123 +1,105 @@
-var selectedItem;
-
 var CA_CONST = {
 	DOMAIN_LIST : "com.kenmaz.confirm-address.domain-list",
 	IS_NOT_DISPLAY : "com.kenmaz.confirm-address.not-display",
 	IS_COUNT_DOWN : "com.kenmaz.confirm-address.is-countdown",
 	COUNT_DOWN_TIME : "com.kenmaz.confirm-address.cd-time",
-  TREE_STYLE : "com.kenmaz.confirm-address.tree-style"
+  TREE_STYLE : "com.kenmaz.confirm-address.tree-style",
+	IS_CONFIRM_REPLY_TO : "com.kenmaz.confirm-address.is-confirm-reply-to"
 };
 
 function startup(){
-
 	//init domain list.
-	document.getElementById("add").addEventListener('command', add, true);
-	document.getElementById("edit").addEventListener('command', edit, true);
-	document.getElementById("remove").addEventListener('command', remove, true);
-	var groupList = document.getElementById("group-list");
-
 	var domains = nsPreferences.copyUnicharPref(CA_CONST.DOMAIN_LIST);
 	dump("[registed domains] " + domains + "\n");
-	
-	if(domains != null){
-  	var domainList = domains.split(",");
 
-  	for(var i=0; i < domainList.length; i++){
-  		var listitem = document.createElement("listitem");
-  		listitem.setAttribute("label", domainList[i]);
-  		listitem.setAttribute("id", Math.random());
-  		groupList.appendChild(listitem);
-  	}
+	if(domains != null) {
+	  var domainList = domains.split(","),
+	      groupList = document.getElementById("group-list");
+	  for (var i = 0, len = domainList.length; i < len; i++){
+	    var item = groupList.appendItem(domainList[i]);
+	    item.setAttribute("id", Math.random());
+	  }
 	}
-	
-	//tree style---------------------
-  /*
-	var treeStyle = nsPreferences.getBoolPref(CA_CONST.TREE_STYLE, true);
-	var treeStyleBox = document.getElementById("tree-style");
-	treeStyleBox.checked=treeStyle;
-	*/
-  
+
 	//init checkbox [not dispaly when only my domain mail]
 	var isNotDisplay = nsPreferences.getBoolPref(CA_CONST.IS_NOT_DISPLAY, false);
 	var noDisplayBox = document.getElementById("not-display");
-	noDisplayBox.checked=isNotDisplay;
-	
+	noDisplayBox.checked = isNotDisplay;
+
 	//init checkbox [countdown]
 	var cdBox = document.getElementById("countdown");
 	var cdTimeBox = document.getElementById("countdown-time");
-
-	cdBox.addEventListener('command',
-		function(event){
-			cdTimeBox.disabled = !cdBox.checked;
-		},
-		true);
+	cdBox.addEventListener('command', function(event){
+		cdTimeBox.disabled = !cdBox.checked;
+	}, true);
 
 	var isCountDown = nsPreferences.getBoolPref(CA_CONST.IS_COUNT_DOWN, false);
-	if(isCountDown == null || isCountDown == false){
+	if (isCountDown == null || isCountDown == false) {
 		cdBox.checked = false;
 		cdTimeBox.disabled = true;
-	}else{
+	} else {
 		cdBox.checked = true;
 		cdTimeBox.disable = false;
 	}
 
 	var countDonwTime = nsPreferences.copyUnicharPref(CA_CONST.COUNT_DOWN_TIME);
 	cdTimeBox.value = countDonwTime;
+
+  // init checkbox [confrim Reply-To address before sending]
+	var isConfirmReplyTo = nsPreferences.getBoolPref(CA_CONST.IS_CONFIRM_REPLY_TO);
+  var replyBox = document.getElementById("confirm-reply-to");
+	replyBox.checked = isConfirmReplyTo;
 }
 
-function add(event){
+function addItem() {
 	window.confirmOK = false;
 	window.domainName = null;
 	window.openDialog("chrome://confirm-address/content/setting-add-domain.xul",
 		"ConfirmAddressDialog", "chrome,modal,titlebar,centerscreen", window);
 
 	if(window.confirmOK){
-		var domainName = window.domainName;
-		
-		if(domainName.length > 0){
-			dump("[add!] " + domainName + "\n");
-			var groupList = document.getElementById("group-list");
-			var listitem = document.createElement("listitem");
-			listitem.setAttribute("label", domainName);
-			listitem.setAttribute("id", Math.random());
-			groupList.appendChild(listitem);
-		}
+	  var domainName = window.domainName;
+	  if(domainName.length > 0){
+	    dump("[add!] " + domainName + "\n");
+	    var groupList = document.getElementById("group-list");
+	    var item = groupList.appendItem(domainName);
+	    item.setAttribute("id", Math.random());
+	  }
 	}
 }
-function edit(event){
+function editItem() {
+	var groupList = document.getElementById("group-list"),
+	    selectedItem = groupList.selectedItem;
+
 	window.confirmOK = false;
 	window.domainName = selectedItem.label;
 	window.openDialog("chrome://confirm-address/content/setting-add-domain.xul",
 		"ConfirmAddressDialog", "chrome,modal,titlebar,centerscreen", window);
-		
-	if(window.confirmOK){
+
+	if (window.confirmOK) {
 		var domainName = window.domainName;
-		
-		if(domainName.length > 0){
+		if (domainName.length > 0) {
 			dump("[edit!] " + domainName + "\n");
 			selectedItem.setAttribute("label", domainName);
 		}
 	}
 }
-function remove(event){
-	var groupList = document.getElementById("group-list");
+function removeItem() {
+	var groupList = document.getElementById("group-list"),
+	    selectedItem = groupList.selectedItem;
 	dump("[remove] "+selectedItem + "\n");
 	groupList.removeChild(selectedItem);
 }
 
-function selectList(item){
-	selectedItem = item;
-}
-
-function doOK(){
+function doOK() {
 	dump("[OK]\n");
 
 	//ドメイン設定保存
-	var domainList = new Array();
-	
+	var domainList = [];
+
 	var groupList = document.getElementById("group-list");
 	var nodes = groupList.childNodes;
-	for(i = 0; i < nodes.length; i++){
+	for (var i = 0, len = nodes.length; i < len; i++){
 		if(nodes[i].nodeName == "listitem"){
 			domainList.push(nodes[i].label);
 		}
@@ -126,11 +108,6 @@ function doOK(){
 	nsPreferences.setUnicharPref(CA_CONST.DOMAIN_LIST, domainListStr);
 
 	//チェックボックス設定保存
-  /*
-	var treeStyle = document.getElementById("tree-style").checked;
-	nsPreferences.setBoolPref(CA_CONST.TREE_STYLE, treeStyle);
-  */
-  
 	var notDisplay = document.getElementById("not-display").checked;
 	nsPreferences.setBoolPref(CA_CONST.IS_NOT_DISPLAY, notDisplay);
 
@@ -144,11 +121,12 @@ function doOK(){
 	}
 	nsPreferences.setUnicharPref(CA_CONST.COUNT_DOWN_TIME, cdTime);
 
+	var replyTo = document.getElementById("confirm-reply-to").checked;
+	nsPreferences.setBoolPref(CA_CONST.IS_CONFIRM_REPLY_TO, replyTo);
 	return true;
 }
 
-function doCancel(){
+function doCancel() {
 	dump("[cancel]\n");
 	return true;
 }
-

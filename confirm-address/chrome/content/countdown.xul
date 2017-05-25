@@ -1,5 +1,6 @@
 <?xml version="1.0"?> 
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://confirm-address/content/countdown.css" type="text/css"?>
 <!DOCTYPE window SYSTEM "chrome://confirm-address/locale/confirm-address.dtd">
 
 <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
@@ -12,14 +13,14 @@
 	<script type="application/x-javascript" src="countdown.js"/>
 	
 	<hbox flex="1">
-		<label value="&countdown.dialog.msg1;" style="font-size:20px; padding-top:5px; padding-bottom:5px;"/>
-		<label id="counter" value="" style="font-size:30px;"/>
-		<label value="&countdown.dialog.msg2;" style="font-size:20px; padding-top:5px; padding-bottom:5px;"/>
+		<label class="msg" value="&countdown.dialog.msg1;"/>
+		<label id="counter" value=""/>
+		<label class="msg" value="&countdown.dialog.msg2;"/>
 	</hbox>
 	
 	<hbox>
 		<spacer flex="1"/>
-		<button label="skip" id="ok" dlgtype="accept"/>
+		<button label="&countdown.dialog.skip;" id="ok" dlgtype="accept"/>
 		<button dlgtype="cancel" />
 	</hbox>
 </dialog>
