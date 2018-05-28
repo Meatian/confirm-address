@@ -1,10 +1,10 @@
 var CA_CONST = {
-	DOMAIN_LIST : "com.kenmaz.confirm-address.domain-list",
-	IS_NOT_DISPLAY : "com.kenmaz.confirm-address.not-display",
-	IS_COUNT_DOWN : "com.kenmaz.confirm-address.is-countdown",
-	COUNT_DOWN_TIME : "com.kenmaz.confirm-address.cd-time",
-  TREE_STYLE : "com.kenmaz.confirm-address.tree-style",
-	IS_CONFIRM_REPLY_TO : "com.kenmaz.confirm-address.is-confirm-reply-to"
+	DOMAIN_LIST : "domain-list",
+	IS_NOT_DISPLAY : "not-display",
+	IS_COUNT_DOWN : "is-countdown",
+	COUNT_DOWN_TIME : "cd-time",
+  TREE_STYLE : "tree-style",
+	IS_CONFIRM_REPLY_TO : "is-confirm-reply-to"
 };
 
 function startup(){
