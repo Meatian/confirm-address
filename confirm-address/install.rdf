@@ -27,6 +27,6 @@
 		<em:contributor>mar (modified 1.2.9)</em:contributor>
 		<em:homepageURL>https://github.com/Meatian/confirm-address/</em:homepageURL>
 		<em:optionsURL>chrome://confirm-address/content/setting.xul</em:optionsURL>
-		<!-- em:optionsType>3</em:optionsType -->
+		<em:optionsType>3</em:optionsType>
 	</Description>
 </RDF>

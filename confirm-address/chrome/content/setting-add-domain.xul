@@ -6,8 +6,8 @@
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	buttons="accept,cancel"
 	onload="startup()"
-	ondialogaccept="return doOK();"
-	ondialogcancel="return doCancel();">
+	ondialogaccept="doOK();"
+	ondialogcancel="doCancel();">
 
 	<script type="application/javascript" src="setting-add-domain.js"/>
 
