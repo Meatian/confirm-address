@@ -9,8 +9,8 @@
         ondialogaccept="return doOK();"
         ondialogcancel="return doCancel();">
 
-	<script type="application/x-javascript" src="chrome://global/content/nsUserSettings.js"/>
-	<script type="application/x-javascript" src="chrome://confirm-address/content/setting.js"/>
+	<script type="application/javascript" src="nsUserSettings.js"/>
+	<script type="application/javascript" src="setting.js"/>
 
 	<label value="&setting.dialog.message;"/>
 	<listbox id="group-list" rows="6">

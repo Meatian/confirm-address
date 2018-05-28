@@ -9,7 +9,7 @@
 	ondialogaccept="return doOK();"
 	ondialogcancel="return doCancel();">
 
-	<script type="application/x-javascript" src="chrome://confirm-address/content/setting-add-domain.js"/>
+	<script type="application/javascript" src="setting-add-domain.js"/>
 
 	<label value="&setting.sub-dialog.message;"/>
 	<textbox id="textbox"/>
