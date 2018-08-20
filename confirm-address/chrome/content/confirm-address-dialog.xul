@@ -32,9 +32,7 @@
 	</listbox>
 	<listbox id="otherDomains" rows="5">
 	  <listhead>
-			<listheader id="otherDomains_allcheck" tooltiptext="&confirm.dialog.otherdomain.tooltip;">
-				<checkbox class="all_check"/>
-			</listheader>
+			<listheader />
 			<listheader />
 	    <listheader id="otherDomains_header" label="&confirm.dialog.otherdomain.label;"/>
 	  </listhead>

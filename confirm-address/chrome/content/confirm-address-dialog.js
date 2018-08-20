@@ -24,12 +24,6 @@ caDialog.startup = function () {
 	yourDomainsHeader.onclick = function(e) {
 		caDialog.switchInternalCheckBox(internalList);
 	};
-
-	//他ドメインあて先リストヘッダ
-	var otherDomainsHeader = document.getElementById("otherDomains_allcheck");
-	otherDomainsHeader.onclick = function(e) {
-		caDialog.switchInternalCheckBox(externalList);
-	};
 };
 
 caDialog.createListItem = function (item) {
@@ -86,7 +80,6 @@ caDialog.checkAllChecked = function () {
 				externalComplete = false;
 			}
 		}
-		otherdomains.getElementsByClassName("all_check")[0].checked = externalComplete;
 	}
 
 	//送信ボタンのdisable切り替え
