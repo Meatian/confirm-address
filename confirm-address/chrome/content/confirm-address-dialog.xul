@@ -13,7 +13,7 @@
 	buttondisabledaccept="true"
 	width="500" height="385">
 
-	<script type="application/x-javascript" src="chrome://confirm-address/content/confirm-address-dialog.js"/>
+	<script type="application/javascript" src="confirm-address-dialog.js"/>
 
 	<label id="dialog_message" value="&confirm.dialog.message;"/>
 	<listbox id="yourDomains" rows="4">

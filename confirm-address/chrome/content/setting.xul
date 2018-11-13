@@ -6,14 +6,14 @@
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         buttons="accept,cancel"
         onload="startup()"
-        ondialogaccept="return doOK();"
-        ondialogcancel="return doCancel();">
+        ondialogaccept="doOK();"
+        ondialogcancel="doCancel();">
 
-	<script type="application/x-javascript" src="chrome://global/content/nsUserSettings.js"/>
-	<script type="application/x-javascript" src="chrome://confirm-address/content/setting.js"/>
+	<script type="application/javascript" src="nsUserSettings.js"/>
+	<script type="application/javascript" src="setting.js"/>
 
 	<label value="&setting.dialog.message;"/>
-	<listbox id="group-list" rows="6">
+	<listbox id="group-list" rows="5">
 	  <listhead>
 	    <listheader label="&setting.dialog.list.label;"/>
 	  </listhead>
@@ -38,9 +38,9 @@
 
 	<checkbox id="not-display" label="&setting.dialog.checkbox.notdisplay;"/>
 	<hbox>
-		<checkbox id="countdown" label="&setting.dialog.checkbox.countdown;"/>
-		<textbox id="countdown-time" maxwidth="50"/>
-		<label value="&setting.dialog.label.countdown;"/>
+	  <checkbox id="countdown" label="&setting.dialog.checkbox.countdown;"/>
+	  <textbox id="countdown-time" maxwidth="35"/>
+	  <label value="&setting.dialog.label.countdown;"/>
 	</hbox>
   <checkbox id="confirm-reply-to" label="&setting.dialog.checkbox.confirmreplyto;"/>
 </dialog>

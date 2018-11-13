@@ -4,7 +4,7 @@ function startup(){
 	dump("[setting start]\n");
 	parentWindow = window.arguments[0];
 	
-	if(parentWindow.domainName != null){
+	if(parentWindow.domainName !== null){
 		document.getElementById("textbox").value = parentWindow.domainName;
 	}
 }
@@ -12,12 +12,10 @@ function startup(){
 function doOK(){
 	parentWindow.domainName = document.getElementById("textbox").value;
 	dump("[input] " + parentWindow.domainName + "\n");
-	parentWindow.confirmOK = true;	
-	return true;
+	parentWindow.confirmOK = true;
 }
 
 function doCancel(){
 	dump("[cancel]\n");
 	parentWindow.confirmOK = false;	
-	return true;
 }
