@@ -102,10 +102,12 @@ caDialog.switchInternalCheckBox = function (targetdomains) {
 
 	var isCheck = allCheck.checked;
 	for (var i = 0, len = items.length; i < len; i++) {
+		targetdomains.ensureIndexIsVisible( i );
 		var listitem = items[i];
 		listitem.checkbox.checked = isCheck;
 		listitem.className = isCheck ? 'confirmed-item' : '';
 	}
+	targetdomains.ensureIndexIsVisible( 0 );
 
 	caDialog.checkAllChecked();
 };
