@@ -13,13 +13,15 @@
 	buttondisabledaccept="true"
 	width="500" height="385">
 
+	<script type="application/javascript" src="nsUserSettings.js"/>
+	<script type="application/javascript" src="setting.js"/>
 	<script type="application/javascript" src="confirm-address-dialog.js"/>
 
 	<label id="dialog_message" value="&confirm.dialog.message;"/>
 	<listbox id="yourDomains" rows="4">
 	  <listhead>
 			<listheader id="yourDomains_allcheck" tooltiptext="&confirm.dialog.yourdomain.tooltip;">
-				<checkbox class="all_check"/>
+				<checkbox class="all_check" disabled="true"/>
 			</listheader>
 			<listheader />
 	    <listheader id="yourDomains_header" label="&confirm.dialog.yourdomain.label;"/>
@@ -33,7 +35,7 @@
 	<listbox id="otherDomains" rows="5">
 	  <listhead>
 			<listheader id="otherDomains_allcheck" tooltiptext="&confirm.dialog.otherdomain.tooltip;">
-				<checkbox class="all_check"/>
+				<checkbox class="all_check" disabled="true"/>
 			</listheader>
 			<listheader />
 	    <listheader id="otherDomains_header" label="&confirm.dialog.otherdomain.label;"/>

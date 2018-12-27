@@ -43,4 +43,7 @@
 	  <label value="&setting.dialog.label.countdown;"/>
 	</hbox>
   <checkbox id="confirm-reply-to" label="&setting.dialog.checkbox.confirmreplyto;"/>
+  <checkbox id="batchcheck-mydomain" label="&setting.dialog.checkbox.mydomain;"/>
+  <checkbox id="batchcheck-otherdomain" label="&setting.dialog.checkbox.otherdomain;"/>
+
 </dialog>

@@ -7,9 +7,11 @@
 <!ENTITY setting.dialog.button.edit.accesskey "E">
 <!ENTITY setting.dialog.button.remove.label "remove">
 <!ENTITY setting.dialog.button.remove.accesskey "R">
-<!ENTITY setting.dialog.checkbox.notdisplay "Not display a message for my domain emails">
+<!ENTITY setting.dialog.checkbox.notdisplay "Suppress to show dialog when all the recipient is within my domain.">
 <!ENTITY setting.dialog.checkbox.countdown "Countdown before sending mail">
 <!ENTITY setting.dialog.label.countdown "(s)">
 <!ENTITY setting.sub-dialog.title "Input domain name">
 <!ENTITY setting.sub-dialog.message "Input your group domain name.">
 <!ENTITY setting.dialog.checkbox.confirmreplyto "Confirm Reply-To addresses before sending">
+<!ENTITY setting.dialog.checkbox.mydomain "Enable all check button for your domain">
+<!ENTITY setting.dialog.checkbox.otherdomain "Enable all check button for other domain">

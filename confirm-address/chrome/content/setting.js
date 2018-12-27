@@ -3,8 +3,10 @@ var CA_CONST = {
 	IS_NOT_DISPLAY : "not-display",
 	IS_COUNT_DOWN : "is-countdown",
 	COUNT_DOWN_TIME : "cd-time",
-  TREE_STYLE : "tree-style",
-	IS_CONFIRM_REPLY_TO : "is-confirm-reply-to"
+	TREE_STYLE : "tree-style",
+	IS_CONFIRM_REPLY_TO : "is-confirm-reply-to",
+	IS_BATCH_CHECK_MYDOMAIN : "batchCheck-mydomain",
+	IS_BATCH_CHECK_OTHERDOMAIN : "batchCheck-othderdomain"
 };
 
 function startup(){
@@ -49,6 +51,16 @@ function startup(){
 	var isConfirmReplyTo = nsPreferences.getBoolPref(CA_CONST.IS_CONFIRM_REPLY_TO);
 	var replyBox = document.getElementById("confirm-reply-to");
 	replyBox.checked = isConfirmReplyTo;
+
+	// init checkbox [confirm batch-check my domain]
+	var isBatchCheckmy = nsPreferences.getBoolPref(CA_CONST.IS_BATCH_CHECK_MYDOMAIN);
+	var batchCheckBoxmy = document.getElementById("batchcheck-mydomain");
+	batchCheckBoxmy.checked = isBatchCheckmy;
+
+	// init checkbox [confirm batch-check other domain]
+	var isBatchCheckother = nsPreferences.getBoolPref(CA_CONST.IS_BATCH_CHECK_OTHERDOMAIN);
+	var batchCheckBoxother = document.getElementById("batchcheck-otherdomain");
+	batchCheckBoxother.checked = isBatchCheckother;
 }
 
 function addItem() {
@@ -129,6 +141,15 @@ function doOK() {
 
 	var replyTo = document.getElementById("confirm-reply-to").checked;
 	nsPreferences.setBoolPref(CA_CONST.IS_CONFIRM_REPLY_TO, replyTo);
+	
+	var batchCheck_my = document.getElementById("batchcheck-mydomain").checked;
+	nsPreferences.setBoolPref(CA_CONST.IS_BATCH_CHECK_MYDOMAIN, batchCheck_my);
+	dump(batchCheck_my);
+
+	var batchCheck_other = document.getElementById("batchcheck-otherdomain").checked;
+	nsPreferences.setBoolPref(CA_CONST.IS_BATCH_CHECK_OTHERDOMAIN, batchCheck_other);
+	dump(batchCheck_other);
+	
 }
 
 function doCancel() {

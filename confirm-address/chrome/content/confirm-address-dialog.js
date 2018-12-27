@@ -19,17 +19,25 @@ caDialog.startup = function () {
 		externalList.appendChild(listitem);
 	}
 
-	//自ドメインあて先リストヘッダ
+	//自ドメインあて先リストヘッダ イベント設定
 	var yourDomainsHeader = document.getElementById("yourDomains_allcheck");
+	var isBatchCheckYour = nsPreferences.getBoolPref(CA_CONST.IS_BATCH_CHECK_MYDOMAIN);
 	yourDomainsHeader.onclick = function(e) {
 		caDialog.switchInternalCheckBox(internalList);
 	};
-
-	//他ドメインあて先リストヘッダ
+	if (isBatchCheckYour){
+		document.getElementById("yourDomains").getElementsByClassName("all_check")[0].removeAttribute("disabled");
+	}
+		
+	//他ドメインあて先リストヘッダ イベント設定
 	var otherDomainsHeader = document.getElementById("otherDomains_allcheck");
+	var isBatchCheckOther = nsPreferences.getBoolPref(CA_CONST.IS_BATCH_CHECK_OTHERDOMAIN);
 	otherDomainsHeader.onclick = function(e) {
 		caDialog.switchInternalCheckBox(externalList);
 	};
+	if (isBatchCheckOther){
+		document.getElementById("otherDomains").getElementsByClassName("all_check")[0].removeAttribute("disabled");
+	}
 };
 
 caDialog.createListItem = function (item) {

@@ -1,0 +1,17 @@
+<!ENTITY setting.dialog.title "Confirme os ajustes de endere�o">
+<!ENTITY setting.dialog.message "Adicione seu nome de grupo de dom�nio.">
+<!ENTITY setting.dialog.list.label "Seu grupo de dom�nio">
+<!ENTITY setting.dialog.button.add.label "adicione">
+<!ENTITY setting.dialog.button.add.accesskey "A">
+<!ENTITY setting.dialog.button.edit.label "editar">
+<!ENTITY setting.dialog.button.edit.accesskey "E">
+<!ENTITY setting.dialog.button.remove.label "remover">
+<!ENTITY setting.dialog.button.remove.accesskey "R">
+<!ENTITY setting.dialog.checkbox.notdisplay "Suprima mostrar di�logo quando todo o conte�do estiver em seu dom�nio.">
+<!ENTITY setting.dialog.checkbox.countdown "Contagem regressiva antes de enviar mensagem">
+<!ENTITY setting.dialog.label.countdown "(s)">
+<!ENTITY setting.sub-dialog.title "Insira o nome de dom�nio">
+<!ENTITY setting.sub-dialog.message "Insira o nome de seu grupo de dom�nio.">
+<!ENTITY setting.dialog.checkbox.confirmreplyto "Confirme os endere�os de resposta antes de enviar">
+<!ENTITY setting.dialog.checkbox.mydomain "Ativar o botao Todos os Cheques do seu dominio">
+<!ENTITY setting.dialog.checkbox.otherdomain "Ativar o botao Todos os Cheques para outros dominios">

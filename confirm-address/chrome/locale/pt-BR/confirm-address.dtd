@@ -1,0 +1,12 @@
+<!ENTITY confirm.dialog.title "Confirme o endereço de email.">
+<!ENTITY confirm.dialog.message "Por favor, confirme os seguintes endereços de email">
+<!ENTITY confirm.dialog.yourdomain.label "Seus endereços de domínio">
+<!ENTITY confirm.dialog.yourdomain.tooltip "Clique para selecionar/desselecionar todos os seus endereços de domínio">
+<!ENTITY confirm.dialog.otherdomain.label "Outros endereços de domínio">
+<!ENTITY confirm.dialog.otherdomain.tooltip " Clique para selecionar/desselecionar outros endereços de domínio">
+<!ENTITY confirm.dialog.check.label "Confirme!">
+<!ENTITY confirm.dialog.acceptbtn.label "Enviar">
+<!ENTITY countdown.dialog.title "Contagem Regressiva">
+<!ENTITY countdown.dialog.msg1 "Contagem Regressiva...">
+<!ENTITY countdown.dialog.msg2 "segundo">
+<!ENTITY countdown.dialog.skip "Enviar">
