@@ -3,6 +3,7 @@
 
 <overlay id="confirm-address_overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	<script type="application/javascript" src="nsUserSettings.js"/>
+	<script type="application/javascript" src="constant.js"/>
 	<script type="application/javascript" src="setting.js"/>	
 	<script type="application/javascript" src="confirm-address.js"/>
 	<script type="application/javascript" src="confirm-address-overlay.js"/>

@@ -1,21 +1,21 @@
-var parentWindow;
+"use strict";
 
-function startup(){
-	dump("[setting start]\n");
-	parentWindow = window.arguments[0];
-	
-	if(parentWindow.domainName !== null){
-		document.getElementById("textbox").value = parentWindow.domainName;
-	}
-}
+var add_domain = {
+    onload: function(){
+    	dump("[SETTING]\n");
+    	if(window.arguments[0].inn.domainName !== null){
+    		document.getElementById("textbox").value = window.arguments[0].inn.domainName;
+    	}
+        document.addEventListener("dialogaccept",  add_domain.accept.bind(this));
+        window.addEventListener("unload", add_domain.cancel.bind(this));
+    },
 
-function doOK(){
-	parentWindow.domainName = document.getElementById("textbox").value;
-	dump("[input] " + parentWindow.domainName + "\n");
-	parentWindow.confirmOK = true;
-}
+    accept: function(event) {
+    	window.arguments[0].out = {
+    	    domainName:document.getElementById("textbox").value};
+    },
 
-function doCancel(){
-	dump("[cancel]\n");
-	parentWindow.confirmOK = false;	
+    cancel: function(event) {
+        return;
+    }
 }

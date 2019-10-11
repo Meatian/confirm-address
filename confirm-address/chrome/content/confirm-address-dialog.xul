@@ -4,46 +4,30 @@
 <!DOCTYPE window SYSTEM "chrome://confirm-address/locale/confirm-address.dtd">
 
 <dialog id="donothing" title="&confirm.dialog.title;"
-	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	buttons="accept,cancel"
-	onload="caDialog.startup()"
-	ondialogaccept="return caDialog.doOK();"
-	ondialogcancel="return caDialog.doCancel();"
-	buttonlabelaccept="&confirm.dialog.acceptbtn.label;"
-	buttondisabledaccept="true"
-	width="500" height="385">
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    buttons="accept,cancel"
+    onload="caDialog.startup()"
+    buttonlabelaccept="&confirm.dialog.acceptbtn.label;"
+    buttondisabledaccept="true"
+    width="500" height="385">
 
-	<script type="application/javascript" src="nsUserSettings.js"/>
-	<script type="application/javascript" src="setting.js"/>
-	<script type="application/javascript" src="confirm-address-dialog.js"/>
+    <script type="application/javascript" src="constant.js"/>
+  	<script type="application/javascript" src="nsUserSettings.js"/>
+    <script type="application/javascript" src="confirm-address-dialog.js"/>
 
-	<label id="dialog_message" value="&confirm.dialog.message;"/>
-	<listbox id="yourDomains" rows="4">
-	  <listhead>
-			<listheader id="yourDomains_allcheck" tooltiptext="&confirm.dialog.yourdomain.tooltip;">
-				<checkbox class="all_check" disabled="true"/>
-			</listheader>
-			<listheader />
-	    <listheader id="yourDomains_header" label="&confirm.dialog.yourdomain.label;"/>
-	  </listhead>
-	  <listcols>
-	    <listcol/>
-	    <listcol/>
-	    <listcol flex="1"/>
-	  </listcols>
-	</listbox>
-	<listbox id="otherDomains" rows="5">
-	  <listhead>
-			<listheader id="otherDomains_allcheck" tooltiptext="&confirm.dialog.otherdomain.tooltip;">
-				<checkbox class="all_check" disabled="true"/>
-			</listheader>
-			<listheader />
-	    <listheader id="otherDomains_header" label="&confirm.dialog.otherdomain.label;"/>
-	  </listhead>
-	  <listcols>
-	    <listcol/>
-	    <listcol/>
-	    <listcol flex="1"/>
-	  </listcols>
-	</listbox>
+    <label id="dialog_message" value="&confirm.dialog.message;"/>
+    <richlistbox id="yourDomains" rows="4" flex="1">
+      <listhead>
+        <checkbox class="all_check" id="yourDomains_allcheck" tooltiptext="&confirm.dialog.yourdomain.tooltip;" disabled="true"/>
+        <label class="header"/>        
+        <label class="header" id="yourDomains_header" value="&confirm.dialog.yourdomain.label;" flex="1"/>
+      </listhead>
+    </richlistbox>
+    <richlistbox id="otherDomains" rows="5" flex="1">
+      <listhead>
+        <checkbox class="all_check" id="otherDomains_allcheck" tooltiptext="&confirm.dialog.otherdomain.tooltip;" disabled="true"/>
+        <label class="header"/> 
+        <label class="header" id="otherDomains_header" value="&confirm.dialog.otherdomain.label;" felx="1" />
+      </listhead>
+    </richlistbox>
 </dialog>

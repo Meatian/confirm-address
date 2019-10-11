@@ -1,3 +1,5 @@
+"use strict";
+
 var caDialog = {};
 
 caDialog.startup = function () {
@@ -38,35 +40,35 @@ caDialog.startup = function () {
 	if (isBatchCheckOther){
 		document.getElementById("otherDomains").getElementsByClassName("all_check")[0].removeAttribute("disabled");
 	}
+
+	document.addEventListener("dialogaccept", caDialog.doOK.bind(this));
+	document.addEventListener("dialogcancel", caDialog.doCancel.bind(this));
 };
 
 caDialog.createListItem = function (item) {
-	var listitem = document.createElement("listitem");
+	var listitem = document.createElement("richlistitem");
 
-	var checkCell = document.createElement("listcell");
 	var checkbox = document.createElement("checkbox");
 	checkbox.setAttribute("class", "confirmed");
-	checkCell.appendChild(checkbox);
-	listitem.appendChild(checkCell);
+	listitem.appendChild(checkbox);
 
-	var typeCell = document.createElement("listcell");
-	typeCell.setAttribute("label", item.type);
+	var typeCell = document.createElement("label");
+	typeCell.setAttribute("value", item.type);
 	listitem.appendChild(typeCell);
 
-	var labelCell = document.createElement("listcell");
-	labelCell.setAttribute("label", item.address);
+	var labelCell = document.createElement("label");
+	labelCell.setAttribute("value", item.address);
 	listitem.appendChild(labelCell);
 
-	listitem.checkbox = checkbox;
+	listitem.checked = false;
 	listitem.onclick = function(e) {
-		var checked = this.checkbox.checked;
-		this.checkbox.checked = !checked;
+		var checked = this.checked;
+		this.checked = !this.checked;
 		this.className = !checked ? 'confirmed-item' : '';
 		caDialog.checkAllChecked();
 	};
 	return listitem;
 };
-
 
 caDialog.checkAllChecked = function () {
 	var internalComplete = true,
@@ -96,7 +98,6 @@ caDialog.checkAllChecked = function () {
 		}
 		otherdomains.getElementsByClassName("all_check")[0].checked = externalComplete;
 	}
-
 	//送信ボタンのdisable切り替え
 	var okBtn = document.documentElement.getButton("accept");
 	okBtn.disabled = !(internalComplete && externalComplete);
@@ -106,28 +107,25 @@ caDialog.checkAllChecked = function () {
 //呼び出しドメインのアドレスのすべての確認ボックスをONまたはOFFにする。
 caDialog.switchInternalCheckBox = function (targetdomains) {
 	var allCheck = targetdomains.getElementsByClassName("all_check")[0],
-	    items = targetdomains.getElementsByTagName("listitem");
-
+	    items = targetdomains.getElementsByTagName("richlistitem");
 	var isCheck = allCheck.checked;
 	for (var i = 0, len = items.length; i < len; i++) {
 		targetdomains.ensureIndexIsVisible( i );
 		var listitem = items[i];
-		listitem.checkbox.checked = isCheck;
-		listitem.className = isCheck ? 'confirmed-item' : '';
+		items[i].childNodes[0].checked = isCheck;
+		items[i].className = isCheck ? 'confirmed-item' : '';
 	}
 	targetdomains.ensureIndexIsVisible( 0 );
-
 	caDialog.checkAllChecked();
 };
 
-
-caDialog.doOK = function () {
+caDialog.doOK = function (event) {
 	window.arguments[0].confirmOK = true;
-	return true;
+	dump("[OK] \n");
 };
 
 
-caDialog.doCancel = function () {
+caDialog.doCancel = function (event) {
 	window.arguments[0].confirmOK = false;
-	return true;
+	dump("[CANCEL] \n");
 };
