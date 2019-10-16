@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "Confirm-Address",
+  "description": "Confirm E-mail addresses before sending mail",
+  "version": "1.3.3",
+  "author": "Meatian",
+  "homepage_url": "https://github.com/Meatian/confirm-address/",
+  "legacy": {
+    "type" : "xul",
+    "options": {
+      "page": "chrome://confirm-address/content/setting.xul",
+      "open_in_tab": true
+    }
+  },
+  "applications": {
+    "gecko": {
+      "id": "confirm-address@kenmaz.net",
+      "strict_min_version": "68.0"
+    }
+  },
+  "icons": {
+    "32": "chrome/skin/global/ConfirmAddress-32x32.png",
+    "64": "chrome/skin/global/ConfirmAddress-64x64.png"
+  }
+}

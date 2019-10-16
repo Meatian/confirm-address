@@ -1,4 +1,19 @@
 var ConfirmAddress = {
+  strList: function(address_list){
+    var txt = "";
+    for (var i=0; i<address_list.length; i++)
+    {
+        if (txt == "")
+        {
+            txt = address_list[i]["address"];
+        }
+        else
+        {
+            txt = txt + "," +  address_list[i]["address"];
+        }
+    }
+    return txt;
+  },
 
   checkAddress: function(){
   	var msgCompFields = gMsgCompose.compFields;
@@ -8,12 +23,12 @@ var ConfirmAddress = {
   	var bccList = [];
     var otherList = [];
   	this.collectAddress(msgCompFields, toList, ccList, bccList, otherList);
-  	dump("[TO] "+ toList + "\n");
-  	dump("[CC] "+ ccList + "\n");
-  	dump("[BCC] "+ bccList + "\n");
+  	dump("[TO] "+ this.strList(toList) + "\n");
+  	dump("[CC] "+ this.strList(ccList) + "\n");
+  	dump("[BCC] "+ this.strList(bccList) + "\n");
 
     var domainList = this.getDomainList();
-  	dump("[DOMAINLIST] "+ domainList + "\n");
+	dump("[DOMAINLIST] "+ domainList + "\n");
 
   	var internalList = [];
   	var externalList = [];
@@ -21,13 +36,12 @@ var ConfirmAddress = {
   	this.judge(ccList, domainList, internalList, externalList);
   	this.judge(bccList, domainList, internalList, externalList);
   	this.judge(otherList, domainList, internalList, externalList);
-  	dump("[INTERNAL] "+ internalList + "\n");
-  	dump("[EXTERNAL] "+ externalList + "\n");
+  	dump("[INTERNAL] "+ this.strList(internalList) + "\n");
+  	dump("[EXTERNAL] "+ this.strList(externalList) + "\n");
 
   	var isNotDisplay = nsPreferences.getBoolPref(CA_CONST.IS_NOT_DISPLAY, false);
-
   	if(isNotDisplay && externalList.length == 0 && internalList.length > 0){
-  		window.confirmOK = true;
+		  window.confirmOK = true;
   	}else{
       window.confirmOK = false;
       window.openDialog("chrome://confirm-address/content/confirm-address-dialog.xul",
@@ -44,11 +58,9 @@ var ConfirmAddress = {
   			window.countDownComplete = false;
   			window.openDialog("chrome://confirm-address/content/countdown.xul", "CountDown Dialog",
   			"resizable,chrome,modal,titlebar,centerscreen",window, countDonwTime);
-
   			if(window.countDownComplete){
   				return true;
   			}else{
-  				dump("cancel");
   				return false;
   			}
   		}else{
@@ -141,7 +153,7 @@ var ConfirmAddress = {
    * addressArrayに含まれるアドレスを判定し、組織外、組織内に振り分けます
 	 */
   judge : function(addressArray, domainList, yourDomainAddress, otherDomainAddress){
-  	dump("[JUDGE] "+addressArray+"\n");
+  	dump("[JUDGE] "+ this.strList(addressArray)+"\n");
 
   	//if domainList is empty, all addresses are external.
   	if(domainList.length == 0){
@@ -160,7 +172,7 @@ var ConfirmAddress = {
   		}
 			var domain = address.substring(address.indexOf("@")).toLowerCase();
 
-			match = false;
+			var match = false;
   		for(var j = 0; j < domainList.length; j++){
   			var insiderDomain = domainList[j].toLowerCase();
   			if(domain.indexOf(insiderDomain) != -1){

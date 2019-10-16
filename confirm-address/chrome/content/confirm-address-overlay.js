@@ -19,10 +19,9 @@ var SendMessage = function() {
     if (count == 1)
       sendInBackground = false;
   }
-
   GenericSendMessage(sendInBackground ?
-                     nsIMsgCompDeliverMode.Background :
-                     nsIMsgCompDeliverMode.Now);
+                     Components.interfaces.nsIMsgCompDeliverMode.Background :
+                     Components.interfaces.nsIMsgCompDeliverMode.Now);
   ExitFullscreenMode();
 }
 
@@ -58,10 +57,10 @@ var SendMessageWithCheck = function() {
     }
   }
   var sendInBackground = Services.prefs.getBoolPref("mailnews.sendInBackground");
-  GenericSendMessage(Services.io.offline ? nsIMsgCompDeliverMode.Later :
+  GenericSendMessage(Services.io.offline ? Components.interfaces.nsIMsgCompDeliverMode.Later :
                      (sendInBackground ?
-                      nsIMsgCompDeliverMode.Background :
-                      nsIMsgCompDeliverMode.Now));
+                      Components.interfaces.nsIMsgCompDeliverMode.Background :
+                      Components.interfaces.nsIMsgCompDeliverMode.Now));
   ExitFullscreenMode();
 }
 
@@ -74,6 +73,6 @@ var SendMessageLater = function() {
   //add end
 
   // Copied from MsgComposeCommands.js.
-  GenericSendMessage(nsIMsgCompDeliverMode.Later);
+  GenericSendMessage(Components.interfaces.nsIMsgCompDeliverMode.Later);
   ExitFullscreenMode();
 }

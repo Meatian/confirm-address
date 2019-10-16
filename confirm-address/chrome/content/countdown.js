@@ -17,6 +17,8 @@ var CountDown = {
 				label.value = limit;
 			}
 		},1000);
+		document.addEventListener("dialogaccept",  CountDown.doOK.bind(this));
+		document.addEventListener("dialogcancel",  CountDown.doCancel.bind(this));	
 	},
 
 	/**
@@ -26,5 +28,18 @@ var CountDown = {
 		var parentWindow = window.arguments[0];
 		parentWindow.countDownComplete = true;
 		return true;
-	}	
+	},	
+
+	doOK : function(){
+		var parentWindow = window.arguments[0];
+		parentWindow.countDownComplete = true;
+		return true;
+	},
+
+	doCancel : function(){
+		var parentWindow = window.arguments[0];
+		parentWindow.countDownComplete = false;
+		return true;
+	}
+
 }

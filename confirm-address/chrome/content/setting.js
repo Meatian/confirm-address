@@ -1,25 +1,18 @@
-var CA_CONST = {
-	DOMAIN_LIST : "domain-list",
-	IS_NOT_DISPLAY : "not-display",
-	IS_COUNT_DOWN : "is-countdown",
-	COUNT_DOWN_TIME : "cd-time",
-	TREE_STYLE : "tree-style",
-	IS_CONFIRM_REPLY_TO : "is-confirm-reply-to",
-	IS_BATCH_CHECK_MYDOMAIN : "batchCheck-mydomain",
-	IS_BATCH_CHECK_OTHERDOMAIN : "batchCheck-othderdomain"
-};
-
 function startup(){
 	//init domain list.
 	var domains = nsPreferences.copyUnicharPref(CA_CONST.DOMAIN_LIST);
-	dump("[registed domains] " + domains + "\n");
 
-	if(domains !== "") {
+	if(domains && domains !== "") {
+		dump("[REGISTERED DOMAINS] " + domains + "\n");
 	  var domainList = domains.split(","),
-	      groupList = document.getElementById("group-list");
+      groupList = document.getElementById("group-list");
 	  for (var i = 0, len = domainList.length; i < len; i++){
-	    var item = groupList.appendItem(domainList[i]);
-	    item.setAttribute("id", Math.random());
+	    var listItem = document.createElement("richlistitem");
+      var labelCell = document.createElement("label");
+	    labelCell.setAttribute("value", domainList[i]);
+	    listItem.appendChild(labelCell);
+	    listItem.setAttribute("id", Math.random());
+      groupList.appendChild(listItem);
 	  }
 	}
 
@@ -61,55 +54,62 @@ function startup(){
 	var isBatchCheckother = nsPreferences.getBoolPref(CA_CONST.IS_BATCH_CHECK_OTHERDOMAIN);
 	var batchCheckBoxother = document.getElementById("batchcheck-otherdomain");
 	batchCheckBoxother.checked = isBatchCheckother;
+
+	document.addEventListener("dialogaccept", doOK.bind(this));
+	document.addEventListener("dialogcancel", doCancel.bind(this));
 }
 
 function addItem() {
-	window.confirmOK = false;
-	window.domainName = null;
+	var params = {inn:{domainName:null}, out:null};
 	window.openDialog("chrome://confirm-address/content/setting-add-domain.xul",
-		"ConfirmAddressDialog", "chrome,modal,titlebar,centerscreen", window);
-
-	if(window.confirmOK){
-	  var domainName = window.domainName;
+	    "ConfirmAddressDialog", "chrome,modal,titlebar,centerscreen", params).focus();
+	if(params.out){
+	  var domainName = params.out.domainName;
 	  if(domainName.length > 0){
-	    dump("[add!] " + domainName + "\n");
+	    dump("[ADD] " + domainName + "\n");
 	    var groupList = document.getElementById("group-list");
-	    var item = groupList.appendItem(domainName);
-	    item.setAttribute("id", Math.random());
+        var listItem = document.createElement("richlistitem");
+	    var labelCell = document.createElement("label");
+	    labelCell.setAttribute("value", domainName);
+	    listItem.appendChild(labelCell);
+        listItem.setAttribute("id", Math.random());
+        groupList.appendChild(listItem);
 	  }
 	}
 }
+
 function editItem() {
 	var groupList = document.getElementById("group-list"),
 	    selectedItem = groupList.selectedItem;
-
 	if (selectedItem === null) {
 		return;
 	}
-	window.confirmOK = false;
-	window.domainName = selectedItem.label;
-	window.openDialog("chrome://confirm-address/content/setting-add-domain.xul",
-		"ConfirmAddressDialog", "chrome,modal,titlebar,centerscreen", window);
 
-	if (window.confirmOK) {
-		var domainName = window.domainName;
+	var params = {inn:{domainName:selectedItem.label}, out:null};
+	window.openDialog("chrome://confirm-address/content/setting-add-domain.xul",
+		"ConfirmAddressDialog", "chrome,modal,titlebar,centerscreen", params).focus();
+
+	if (params.out) {
+		var domainName = params.out.domainName;
 		if (domainName.length > 0) {
-			dump("[edit!] " + domainName + "\n");
-			selectedItem.setAttribute("label", domainName);
+			dump("[edit] " + domainName + "\n");
+			var selectedId = selectedItem.getAttribute("id");
+			document.getElementById(selectedId).childNodes[0].setAttribute("value", domainName);
 		}
 	}
 }
+
 function removeItem() {
 	var groupList = document.getElementById("group-list"),
 	    selectedItem = groupList.selectedItem;
 	if (selectedItem === null) {
 		return;
 	}
-	dump("[remove] "+selectedItem + "\n");
+	dump("[REMOVE] "+selectedItem + "\n");
 	groupList.removeChild(selectedItem);
 }
 
-function doOK() {
+function doOK(event) {
 	dump("[OK]\n");
 
 	//ドメイン設定保存
@@ -118,7 +118,7 @@ function doOK() {
 	var groupList = document.getElementById("group-list");
 	var nodes = groupList.childNodes;
 	for (var i = 0, len = nodes.length; i < len; i++){
-		if(nodes[i].nodeName == "listitem"){
+		if(nodes[i].nodeName == "richlistitem"){
 			domainList.push(nodes[i].label);
 		}
 	}
@@ -144,14 +144,11 @@ function doOK() {
 	
 	var batchCheck_my = document.getElementById("batchcheck-mydomain").checked;
 	nsPreferences.setBoolPref(CA_CONST.IS_BATCH_CHECK_MYDOMAIN, batchCheck_my);
-	dump(batchCheck_my);
 
 	var batchCheck_other = document.getElementById("batchcheck-otherdomain").checked;
 	nsPreferences.setBoolPref(CA_CONST.IS_BATCH_CHECK_OTHERDOMAIN, batchCheck_other);
-	dump(batchCheck_other);
-	
 }
 
-function doCancel() {
-	dump("[cancel]\n");
+function doCancel(event) {
+	dump("[CANCEL]\n");
 }

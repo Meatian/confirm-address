@@ -5,22 +5,18 @@
 <dialog id="setting" title="&setting.dialog.title;"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         buttons="accept,cancel"
-        onload="startup()"
-        ondialogaccept="doOK();"
-        ondialogcancel="doCancel();">
+        onload="startup()">
 
 	<script type="application/javascript" src="nsUserSettings.js"/>
+	<script type="application/javascript" src="constant.js"/>
 	<script type="application/javascript" src="setting.js"/>
 
 	<label value="&setting.dialog.message;"/>
-	<listbox id="group-list" rows="5">
+	<richlistbox id="group-list" rows="5" flex="1">
 	  <listhead>
-	    <listheader label="&setting.dialog.list.label;"/>
+	    <label class="header" value="&setting.dialog.list.label;"/>
 	  </listhead>
-	  <listcols>
-	    <listcol flex="1"/>
-	  </listcols>
-	</listbox>
+	</richlistbox>
 
 	<hbox>
 	  <button id="add" oncommand="addItem();" flex="1"
