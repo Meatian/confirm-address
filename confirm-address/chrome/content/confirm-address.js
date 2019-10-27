@@ -192,6 +192,13 @@ var ConfirmAddress = {
   	if(domains == null || domains.length == 0){
   		return new Array();
   	}
-  	return domains.split(",");
+  	var domainList = domains.split(",");
+	for(var j = (domainList.length - 1); 0 <= j  ; j--){
+	    if (domainList[j].length == 0)
+	    {
+	        domainList.splice(j, 1);
+	    }
+	}
+  	return domainList;
   }
 }
