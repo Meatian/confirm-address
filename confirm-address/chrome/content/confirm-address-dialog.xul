@@ -17,17 +17,17 @@
 
     <label id="dialog_message" value="&confirm.dialog.message;"/>
     <richlistbox id="yourDomains" rows="4" flex="1">
-      <listhead>
+      <listheader>
         <checkbox class="all_check" id="yourDomains_allcheck" tooltiptext="&confirm.dialog.yourdomain.tooltip;" disabled="true"/>
-        <label class="header"/>        
+        <label class="header"  id="type_cell" />
         <label class="header" id="yourDomains_header" value="&confirm.dialog.yourdomain.label;" flex="1"/>
-      </listhead>
+      </listheader>
     </richlistbox>
     <richlistbox id="otherDomains" rows="5" flex="1">
-      <listhead>
+      <listheader>
         <checkbox class="all_check" id="otherDomains_allcheck" tooltiptext="&confirm.dialog.otherdomain.tooltip;" disabled="true"/>
-        <label class="header"/> 
+        <label class="header" id="type_cell" /> 
         <label class="header" id="otherDomains_header" value="&confirm.dialog.otherdomain.label;" felx="1" />
-      </listhead>
+      </listheader>
     </richlistbox>
 </dialog>

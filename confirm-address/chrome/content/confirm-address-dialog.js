@@ -3,13 +3,11 @@
 var caDialog = {};
 
 caDialog.startup = function () {
-	var listitem;
-
 	//自ドメインあて先リスト
 	var internals = window.arguments[1];
 	var internalList = document.getElementById("yourDomains");
 	for (var i = 0, ilen = internals.length; i < ilen; i++) {
-		listitem = caDialog.createListItem(internals[i]);
+		var listitem = caDialog.createListItem(internals[i]);
 		internalList.appendChild(listitem);
 	}
 
@@ -17,7 +15,7 @@ caDialog.startup = function () {
 	var externals = window.arguments[2];
 	var externalList = document.getElementById("otherDomains");
 	for (var j = 0, elen = externals.length; j < elen; j++) {
-		listitem = caDialog.createListItem(externals[j]);
+		var listitem = caDialog.createListItem(externals[j]);
 		externalList.appendChild(listitem);
 	}
 
@@ -46,17 +44,17 @@ caDialog.startup = function () {
 };
 
 caDialog.createListItem = function (item) {
-	var listitem = document.createElement("richlistitem");
+	var listitem = document.createXULElement("richlistitem");
 
-	var checkbox = document.createElement("checkbox");
+	var checkbox = document.createXULElement("checkbox");
 	checkbox.setAttribute("class", "confirmed");
 	listitem.appendChild(checkbox);
 
-	var typeCell = document.createElement("label");
+	var typeCell = document.createXULElement("label");
 	typeCell.setAttribute("value", item.type);
 	listitem.appendChild(typeCell);
 
-	var labelCell = document.createElement("label");
+	var labelCell = document.createXULElement("label");
 	labelCell.setAttribute("value", item.address);
 	listitem.appendChild(labelCell);
 

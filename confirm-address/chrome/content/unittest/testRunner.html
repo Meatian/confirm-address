@@ -49,13 +49,13 @@
 			}
 			var result = document.getElementById("result");
 			successList.forEach(function(elm,idx,ary){
-				var div = document.createElement("div");
+				var div = document.createXULElement("div");
 				div.innerHTML = "OK .... " + ary[idx];
 				div.setAttribute('style', 'color: green;');
 				result.appendChild(div);	
 			});
 			failList.forEach(function(elm,idx,ary){
-				var div = document.createElement("div");
+				var div = document.createXULElement("div");
 				div.innerHTML = "FAIL .. " + ary[idx];
 				div.setAttribute('style', 'color: red;');
 				result.appendChild(div);	
