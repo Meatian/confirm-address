@@ -16,7 +16,7 @@
     "gecko": {
       "id": "confirm-address@kenmaz.net",
       "strict_min_version": "68.0",
-      "strict_max_version": "69.*"
+      "strict_max_version": "68.*"
     }
   },
   "icons": {
