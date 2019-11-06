@@ -7,8 +7,8 @@ function startup(){
 	  var domainList = domains.split(","),
       groupList = document.getElementById("group-list");
 	  for (var i = 0, len = domainList.length; i < len; i++){
-	    var listItem = document.createElement("richlistitem");
-      var labelCell = document.createElement("label");
+	    var listItem = document.createXULElement("richlistitem");
+      var labelCell = document.createXULElement("label");
 	    labelCell.setAttribute("value", domainList[i]);
 	    listItem.appendChild(labelCell);
 	    listItem.setAttribute("id", Math.random());
@@ -68,8 +68,8 @@ function addItem() {
 	  if(domainName.length > 0){
 	    dump("[ADD] " + domainName + "\n");
 	    var groupList = document.getElementById("group-list");
-        var listItem = document.createElement("richlistitem");
-	    var labelCell = document.createElement("label");
+        var listItem = document.createXULElement("richlistitem");
+	    var labelCell = document.createXULElement("label");
 	    labelCell.setAttribute("value", domainName);
 	    listItem.appendChild(labelCell);
         listItem.setAttribute("id", Math.random());
