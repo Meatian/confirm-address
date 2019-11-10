@@ -34,7 +34,12 @@ var SendMessageWithCheck = function() {
   }
   //add end
   // Copied and modified from MsgComposeCommands.js.
-  var warn = getPref("mail.warn_on_send_accel_key");
+  var warn = false;
+  try {
+    warn = getPref("mail.warn_on_send_accel_key");
+  } catch( e ) {
+  	warn = false;
+  }
   if (warn) {
     var checkValue = {value:false};
     var bundle = document.getElementById("bundle_composeMsgs");
