@@ -1,5 +1,5 @@
-<!ENTITY confirm.dialog.title "Confirm E-mail addresses.">
-<!ENTITY confirm.dialog.message "Please confirm the following E-mail Addresses">
+<!ENTITY confirm.dialog.title "Confirm e-mail addresses">
+<!ENTITY confirm.dialog.message "Please confirm the following e-mail addresses:">
 <!ENTITY confirm.dialog.yourdomain.label "Your domain addresses">
 <!ENTITY confirm.dialog.yourdomain.tooltip "Click to select/deselect all your domain addresses">
 <!ENTITY confirm.dialog.otherdomain.label "Other domain addresses">
@@ -8,5 +8,5 @@
 <!ENTITY confirm.dialog.acceptbtn.label "Send">
 <!ENTITY countdown.dialog.title "Countdown">
 <!ENTITY countdown.dialog.msg1 "Countdown...">
-<!ENTITY countdown.dialog.msg2 "second">
+<!ENTITY countdown.dialog.msg2 "second(s)">
 <!ENTITY countdown.dialog.skip "Send">
