@@ -8,7 +8,7 @@
 <!ENTITY setting.dialog.button.remove.label "Remove">
 <!ENTITY setting.dialog.button.remove.accesskey "R">
 <!ENTITY setting.dialog.checkbox.notdisplay "Don't show confirmation dialog when all recipients are within my domains">
-<!ENTITY setting.dialog.checkbox.countdown "Countdown before sending mail">
+<!ENTITY setting.dialog.checkbox.countdown "Countdown before sending mail:">
 <!ENTITY setting.dialog.label.countdown "second(s)">
 <!ENTITY setting.sub-dialog.title "Input domain name">
 <!ENTITY setting.sub-dialog.message "Input your group domain name:">
