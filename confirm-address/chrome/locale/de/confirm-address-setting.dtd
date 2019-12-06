@@ -7,11 +7,11 @@
 <!ENTITY setting.dialog.button.edit.accesskey "E">
 <!ENTITY setting.dialog.button.remove.label "Entfernen">
 <!ENTITY setting.dialog.button.remove.accesskey "R">
-<!ENTITY setting.dialog.checkbox.notdisplay "Dialogfenster unterdrücken, wenn alle Empfänger innerhalb meiner Domain sind">
+<!ENTITY setting.dialog.checkbox.notdisplay "Dialogfenster unterdrücken, wenn alle Empfänger aus meinen Domains sind">
 <!ENTITY setting.dialog.checkbox.countdown "Countdown vor Senden der E-Mail">
 <!ENTITY setting.dialog.label.countdown "Sekunde(n)">
 <!ENTITY setting.sub-dialog.title "Geben Sie Ihren Domainnamen ein">
 <!ENTITY setting.sub-dialog.message "Geben Sie Ihren Gruppendomainnamen ein:">
-<!ENTITY setting.dialog.checkbox.confirmreplyto "Bestätigen Sie Ihre 'Antwort an' Adressen vor dem Senden">
-<!ENTITY setting.dialog.checkbox.mydomain "Aktiviere Schaltfläche zum Abhaken aller Adressen meiner Domain">
+<!ENTITY setting.dialog.checkbox.confirmreplyto "'Antwort an' Adressen vor dem Senden bestätigen">
+<!ENTITY setting.dialog.checkbox.mydomain "Aktiviere Schaltfläche zum Abhaken aller Adressen meiner Domains">
 <!ENTITY setting.dialog.checkbox.otherdomain "Aktiviere Schaltfläche zum Abhaken aller Adressen anderer Domains">
