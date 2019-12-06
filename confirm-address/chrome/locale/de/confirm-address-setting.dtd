@@ -8,7 +8,7 @@
 <!ENTITY setting.dialog.button.remove.label "Entfernen">
 <!ENTITY setting.dialog.button.remove.accesskey "R">
 <!ENTITY setting.dialog.checkbox.notdisplay "Dialogfenster unterdrücken, wenn alle Empfänger aus meinen Domains sind">
-<!ENTITY setting.dialog.checkbox.countdown "Countdown vor Senden der E-Mail">
+<!ENTITY setting.dialog.checkbox.countdown "Countdown vor Versenden der E-Mail:">
 <!ENTITY setting.dialog.label.countdown "Sekunde(n)">
 <!ENTITY setting.sub-dialog.title "Geben Sie Ihren Domainnamen ein">
 <!ENTITY setting.sub-dialog.message "Geben Sie Ihren Gruppendomainnamen ein:">
