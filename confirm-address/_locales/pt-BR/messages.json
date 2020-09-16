@@ -1,0 +1,95 @@
+{
+    // manifest.json
+    "extensionName": {
+        "message": "Confirm-Address"
+    },
+    "extensionDescription": {
+        "message": "Confirm E-mail addresses before sending mail"
+    },
+    "extensionHopepage_url": {
+        "message": "https://github.com/Meatian/confirm-address/"
+    },
+    "extensionDefault_title": {
+        "message": "DomainCheck"
+    },
+    // confirm-address-dialog
+    "caDialogTitle": {
+        "message": "Confirme o endereço de email."
+    },
+    "caDialogMessage": {
+        "message": "Por favor, confirme os seguintes endereços de email"
+    },
+    "caDialogYourdomain": {
+        "message": "Seus endereços de domínio"
+    },
+    "caDialogYourdomainTooltip": {
+        "message": "Clique para selecionar/desselecionar todos os seus endereços de domínio"
+    },
+    "caDialogOtherdomain": {
+        "message": "Outros endereços de domínio"
+    },
+    "caDialogOtherdomainTooltip": {
+        "message": "Clique para selecionar/desselecionar outros endereços de domínio"
+    },
+    "caDialogCheck": {
+        "message": "Confirme!"
+    },
+    "caDialogAcceptbtn": {
+        "message": "Enviar"
+    },
+    "caCountdownTitle": {
+        "message": "Contagem Regressiva"
+    },
+    "caCountdownMsg1": {
+        "message": "Contagem Regressiva..."
+    },
+    "caCountdownMsg2": {
+        "message": "segundo"
+    },
+    "caCountdownSkip": {
+        "message": "Enviar"
+    },
+    // settings
+    "caSettingTitle": {
+        "message": "Confirme os ajustes de endereço"
+    },
+    "caSettingMessage": {
+        "message": "Adicione seu nome de grupo de domínio."
+    },
+    "caSettingYourDomain": {
+        "message": "Seu grupo de domínio"
+    },
+    "caSettingAdd": {
+        "message": "adicione"
+    },
+    "caSettingEdit": {
+        "message": "editar"
+    },
+    "caSettingRemove": {
+        "message": "remover"
+    },
+    "caSettingChkNotdisplay": {
+        "message": "Suprima mostrar diálogo quando todo o conteúdo estiver em seu domínio."
+    },
+    "caSettingChkCountdown": {
+        "message": "Contagem regressiva antes de enviar mensagem"
+    },
+    "caSettingCountdownSec": {
+        "message": "(s)"
+    },
+    "caSettingDomainTitle": {
+        "message": "Insira o nome de domínio"
+    },
+    "caSettingDomainMessage": {
+        "message": "Insira o nome de seu grupo de domínio."
+    },
+    "caSettingChkConfirmreplyto": {
+        "message": "Confirme os endereços de resposta antes de enviar"
+    },
+    "caSettingChkMydomain": {
+        "message": "Ativar o botao Todos os Cheques do seu dominio"
+    },
+    "caSettingChkOtherdomain": {
+        "message": "Ativar o botao Todos os Cheques para outros dominios"
+    }
+}

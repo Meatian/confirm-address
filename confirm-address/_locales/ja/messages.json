@@ -1,0 +1,95 @@
+{
+    // manifest.json
+    "extensionName": {
+        "message": "Confirm-Address"
+    },
+    "extensionDescription": {
+        "message": "Confirm E-mail addresses before sending mail"
+    },
+    "extensionHopepage_url": {
+        "message": "https://github.com/Meatian/confirm-address/"
+    },
+    "extensionDefault_title": {
+        "message": "ドメイン確認"
+    },
+    // confirm-address-dialog
+    "caDialogTitle": {
+        "message": "あて先メールアドレスの確認"
+    },
+    "caDialogMessage": {
+        "message": "あて先メールアドレスを確認してください。"
+    },
+    "caDialogYourdomain": {
+        "message": "組織内へのメール"
+    },
+    "caDialogYourdomainTooltip": {
+        "message": "クリックすると組織内へのメールをすべて選択または選択解除します"
+    },
+    "caDialogOtherdomain": {
+        "message": "組織外へのメール"
+    },
+    "caDialogOtherdomainTooltip": {
+        "message": "クリックすると組織外へのメールをすべて選択または選択解除します"
+    },
+    "caDialogCheck": {
+        "message": "確認！"
+    },
+    "caDialogAcceptbtn": {
+        "message": "送信"
+    },
+    "caCountdownTitle": {
+        "message": "カウントダウン"
+    },
+    "caCountdownMsg1": {
+        "message": "あと"
+    },
+    "caCountdownMsg2": {
+        "message": "秒で送信します。"
+    },
+    "caCountdownSkip": {
+        "message": "送信"
+    },
+    // settings
+    "caSettingTitle": {
+        "message": "Confirm-Address 設定"
+    },
+    "caSettingMessage": {
+        "message": "あなたの組織のメールアドレスのドメイン名を指定してください。"
+    },
+    "caSettingYourDomain": {
+        "message": "ドメイン名"
+    },
+    "caSettingAdd": {
+        "message": "追加"
+    },
+    "caSettingEdit": {
+        "message": "編集"
+    },
+    "caSettingRemove": {
+        "message": "削除"
+    },
+    "caSettingChkNotdisplay": {
+        "message": "自ドメイン宛てのメール送信時は確認ダイアログを表示しない"
+    },
+    "caSettingChkCountdown": {
+        "message": "[送信]ボタン押下後にカウントダウンを開始する-->"
+    },
+    "caSettingCountdownSec": {
+        "message": "秒"
+    },
+    "caSettingDomainTitle": {
+        "message": "ドメイン名の入力"
+    },
+    "caSettingDomainMessage": {
+        "message": "ドメイン名を入力してください(例：confirmaddress.jp)"
+    },
+    "caSettingChkConfirmreplyto": {
+        "message": "Reply-To アドレスを確認ダイアログに表示する"
+    },
+    "caSettingChkMydomain": {
+        "message": "自ドメインの一括チェックボタンを有効にする"
+    },
+    "caSettingChkOtherdomain": {
+        "message": "他ドメインの一括チェックボタンを有効にする"
+    }
+}

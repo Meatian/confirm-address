@@ -1,0 +1,95 @@
+{
+    // manifest.json
+    "extensionName": {
+        "message": "Confirm-Address"
+    },
+    "extensionDescription": {
+        "message": "Confirm E-mail addresses before sending mail"
+    },
+    "extensionHopepage_url": {
+        "message": "https://github.com/Meatian/confirm-address/"
+    },
+    "extensionDefault_title": {
+        "message": "DomainCheck"
+    },
+    // confirm-address-dialog
+    "caDialogTitle": {
+        "message": "Confirm E-mail addresses."
+    },
+    "caDialogMessage": {
+        "message": "Please confirm the following E-mail Addresses"
+    },
+    "caDialogYourdomain": {
+        "message": "Your domain addresses"
+    },
+    "caDialogYourdomainTooltip": {
+        "message": "Click to select/deselect all your domain addresses"
+    },
+    "caDialogOtherdomain": {
+        "message": "Other domain addresses"
+    },
+    "caDialogOtherdomainTooltip": {
+        "message": "Click to select/deselect all other domain addresses"
+    },
+    "caDialogCheck": {
+        "message": "Check!"
+    },
+    "caDialogAcceptbtn": {
+        "message": "Send"
+    },
+    "caCountdownTitle": {
+        "message": "Countdown"
+    },
+    "caCountdownMsg1": {
+        "message": "Countdown..."
+    },
+    "caCountdownMsg2": {
+        "message": "second(s)"
+    },
+    "caCountdownSkip": {
+        "message": "Send"
+    },
+    // settings
+    "caSettingTitle": {
+        "message": "Confirm-Address settings"
+    },
+    "caSettingMessage": {
+        "message": "Add your group domain name."
+    },
+    "caSettingYourDomain": {
+        "message": "Your group domain"
+    },
+    "caSettingAdd": {
+        "message": "add"
+    },
+    "caSettingEdit": {
+        "message": "edit"
+    },
+    "caSettingRemove": {
+        "message": "remove"
+    },
+    "caSettingChkNotdisplay": {
+        "message": "Suppress to show dialog when all the recipient is within my domain."
+    },
+    "caSettingChkCountdown": {
+        "message": "Countdown before sending mail"
+    },
+    "caSettingCountdownSec": {
+        "message": "(s)"
+    },
+    "caSettingDomainTitle": {
+        "message": "Input domain name"
+    },
+    "caSettingDomainMessage": {
+        "message": "Input your group domain name."
+    },
+    "caSettingChkConfirmreplyto": {
+        "message": "Confirm Reply-To addresses before sending"
+    },
+    "caSettingChkMydomain": {
+        "message": "Enable all check button for your domain"
+    },
+    "caSettingChkOtherdomain": {
+        "message": "Enable all check button for other domain"
+    }
+}

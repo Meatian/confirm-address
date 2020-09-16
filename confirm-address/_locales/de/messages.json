@@ -1,0 +1,95 @@
+{
+    // manifest.json
+    "extensionName": {
+        "message": "Confirm-Address"
+    },
+    "extensionDescription": {
+        "message": "Confirm E-mail addresses before sending mail"
+    },
+    "extensionHopepage_url": {
+        "message": "https://github.com/Meatian/confirm-address/"
+    },
+    "extensionDefault_title": {
+        "message": "DomainCheck"
+    },
+    // confirm-address-dialog
+    "caDialogTitle": {
+        "message": "E-Mail Adressen bestätigen."
+    },
+    "caDialogMessage": {
+        "message": "Bitte bestätigen Sie die folgenden E-Mail Adressen"
+    },
+    "caDialogYourdomain": {
+        "message": "Ihre Domain-Adressen"
+    },
+    "caDialogYourdomainTooltip": {
+        "message": "Klicken, um alle Ihre Domain-Adressen zu wählen/abzuwählen"
+    },
+    "caDialogOtherdomain": {
+        "message": "Andere Domain-Adressen"
+    },
+    "caDialogOtherdomainTooltip": {
+        "message": "Klicken, um alle anderen Domain-Adressen zu wählen/abzuwählen"
+    },
+    "caDialogCheck": {
+        "message": "Prüfen!"
+    },
+    "caDialogAcceptbtn": {
+        "message": "Senden"
+    },
+    "caCountdownTitle": {
+        "message": "Countdown"
+    },
+    "caCountdownMsg1": {
+        "message": "Countdown..."
+    },
+    "caCountdownMsg2": {
+        "message": "Sekunden"
+    },
+    "caCountdownSkip": {
+        "message": "Senden"
+    },
+    // settings
+    "caSettingTitle": {
+        "message": "Confirm-Address Einstellungen"
+    },
+    "caSettingMessage": {
+        "message": "Fügen Sie Ihren Gruppendomainnamen hinzu."
+    },
+    "caSettingYourDomain": {
+        "message": "Ihre Gruppendomain"
+    },
+    "caSettingAdd": {
+        "message": "hinzufügen"
+    },
+    "caSettingEdit": {
+        "message": "bearbeiten"
+    },
+    "caSettingRemove": {
+        "message": "entfernen"
+    },
+    "caSettingChkNotdisplay": {
+        "message": "Dialogfenster unterdrücken, wenn alle Empfänger innerhalb meiner Domain sind"
+    },
+    "caSettingChkCountdown": {
+        "message": "Countdown vor Senden der E-Mail"
+    },
+    "caSettingCountdownSec": {
+        "message": "(s)"
+    },
+    "caSettingDomainTitle": {
+        "message": "Geben Sie Ihren Domainnamen ein"
+    },
+    "caSettingDomainMessage": {
+        "message": "Geben Sie Ihren Gruppendomainnamen ein."
+    },
+    "caSettingChkConfirmreplyto": {
+        "message": "Bestätigen Sie Ihre Reply-To Adressen vor dem Senden"
+    },
+    "caSettingChkMydomain": {
+        "message": "Aktiviere alle Schaltflächen zum Abhaken für meine Domain"
+    },
+    "caSettingChkOtherdomain": {
+        "message": "Aktiviere alle Schaltflächen zum Abhaken für andere Domains"
+    }
+}
