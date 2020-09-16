@@ -1,0 +1,12 @@
+<!ENTITY confirm.dialog.title "あて先メールアドレスの確認">
+<!ENTITY confirm.dialog.message "あて先メールアドレスを確認してください。">
+<!ENTITY confirm.dialog.yourdomain.label "組織内へのメール">
+<!ENTITY confirm.dialog.yourdomain.tooltip "クリックすると組織内へのメールをすべて選択または選択解除します">
+<!ENTITY confirm.dialog.otherdomain.label "組織外へのメール">
+<!ENTITY confirm.dialog.otherdomain.tooltip "クリックすると組織外へのメールをすべて選択または選択解除します">
+<!ENTITY confirm.dialog.check.label "確認！">
+<!ENTITY confirm.dialog.acceptbtn.label "送信">
+<!ENTITY countdown.dialog.title "カウントダウン">
+<!ENTITY countdown.dialog.msg1 "あと">
+<!ENTITY countdown.dialog.msg2 "秒で送信します。">
+<!ENTITY countdown.dialog.skip "送信">
