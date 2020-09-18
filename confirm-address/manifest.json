@@ -13,12 +13,14 @@
   },
   "icons": {
     "32": "images/ConfirmAddress-32x32.png",
-    "64": "images/ConfirmAddress-64x64.png"
+    "48": "images/ConfirmAddress-48x48.png",
+    "64": "images/ConfirmAddress-64x64.png",
+    "96": "images/ConfirmAddress-96x96.png"
   },
-  "compose_action:": {
-    "default_popup": "html/confirm-address-dialog.html",
+  "compose_action": {
+    "default_popup": "html/confirm-address-popup.html",
     "default_title": "__MSG_extensionDefault_title__",
-    "default_icon": "images/ConfirmAddress-32x32.png"
+    "default_icon": "images/ConfirmAddress-48x48.png"
   },
   "permissions": [
     "addressBooks",
@@ -29,12 +31,12 @@
     "storage"
   ],
   "background": {
-    "sctipts": [
-      "scripts/confirm-address-background.js"
+    "scripts": [
+      "scripts/background.js"
     ]
   },
   "options_ui": {
-    "page": "html/settings.html",
+    "page": "html/setting.html",
     "open_in_tab": false
   },
   "default_locale": "en"

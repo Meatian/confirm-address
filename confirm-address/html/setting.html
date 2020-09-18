@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Confirm-Address Settings</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="setting.css">
+    <script src="../scripts/l10n.js" defer></script>
+    <script src="../scripts/setting.js" defer></script>
+</head>
+
+<body class="option-page">
+    <form name="ca_form">
+        <!--Domain Section-->
+        <div>
+            <span l10n-tag="caSettingMessage"></span>
+
+            <div>
+                <label l10n-tag="caSettingYourDomain" for="domain_list"></label><br />
+                <select size="5" style="width: 420px" class="indent" id="group-list"></select>
+            </div>
+            <div>
+                <input type="button" style="width: 120px" l10n-val-tag="caSettingAdd" id="add">
+                <input type="button" style="width: 120px" l10n-val-tag="caSettingEdit" id="edit">
+                <input type="button" style="width: 120px" l10n-val-tag="caSettingRemove" id="remove">
+            </div>
+        </div>
+
+        <!--CheckBox Section-->
+        <div>
+            <input type="checkbox" id="not-display">
+            <label l10n-tag="caSettingChkNotdisplay" for="not-display"></label>
+
+            <div>
+                <input type="checkbox" id="countdown">
+                <label l10n-tag="caSettingChkCountdown" for="countdown"></label>
+                <input type="text" id="countdown-time">
+                <label l10n-tag="caSettingCountdownSec" for="countdown-time"></label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="confirm-reply-to">
+                <label l10n-tag="caSettingChkConfirmreplyto" for="confirm-reply-to"></label>
+            </div>
+            <div>
+                <input type="checkbox" id="batchcheck-mydomain">
+                <label l10n-tag="caSettingChkMydomain" for="batchcheck-mydomain"></label>
+
+            </div>
+            <div>
+                <input type="checkbox" id="batchcheck-otherdomain">
+                <label l10n-tag="caSettingChkOtherdomain" for="batchcheck-otherdomain"></label>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

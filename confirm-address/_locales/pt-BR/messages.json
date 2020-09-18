@@ -1,18 +1,18 @@
 {
-    // manifest.json
+    //"manifest.json": "*** L10n message ***",
     "extensionName": {
         "message": "Confirm-Address"
     },
     "extensionDescription": {
         "message": "Confirm E-mail addresses before sending mail"
     },
-    "extensionHopepage_url": {
+    "extensionHomepage_url": {
         "message": "https://github.com/Meatian/confirm-address/"
     },
     "extensionDefault_title": {
         "message": "DomainCheck"
     },
-    // confirm-address-dialog
+    //"confirm-address-dialog.html": "*** L10n message ***",
     "caDialogTitle": {
         "message": "Confirme o endereço de email."
     },
@@ -49,7 +49,7 @@
     "caCountdownSkip": {
         "message": "Enviar"
     },
-    // settings
+    //"setting.html": "*** L10n message ***",
     "caSettingTitle": {
         "message": "Confirme os ajustes de endereço"
     },
