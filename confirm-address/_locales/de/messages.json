@@ -77,6 +77,9 @@
     "caSettingCountdownSec": {
         "message": "(s)"
     },
+    "caSettingWarnInteger": {
+        "message": "Please input integer."
+    },
     "caSettingDomainTitle": {
         "message": "Geben Sie Ihren Domainnamen ein"
     },

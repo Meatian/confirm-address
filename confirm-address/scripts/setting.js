@@ -126,9 +126,33 @@ function removeItem() {
 }
 
 async function autoSave() {
-	console.log("autoSave() fired.\n");
+	var domainListStr = await fetchDomainListString();
 
-	//ドメイン設定保存
+	var chk = await fetchCheckboxStates();
+
+	// Input validate for countdown time
+	if ((isNaN(Number(chk['cdTime'])) || chk['cdTime'] === "") && chk['isCountdown']) {
+		var alertMessage = browser.i18n.getMessage("caSettingWarnInteger");
+		alert(alertMessage);
+		return false;
+	}
+
+	// Save to local storage
+	await browser.storage.local.set({
+		CA_DOMAIN_LIST: domainListStr,
+		CA_IS_NOT_DISPLAY: chk['notDisplay'],
+		CA_IS_COUNT_DOWN: chk['isCountdown'],
+		CA_COUNT_DOWN_TIME: chk['cdTime'],
+		CA_IS_CONFIRM_REPLY_TO: chk['replyTo'],
+		CA_IS_BATCH_CHECK_MYDOMAIN: chk['batchCheck_my'],
+		CA_IS_BATCH_CHECK_OTHERDOMAIN: chk['batchCheck_other']
+	});
+
+	console.log("autoSave() done.\n");
+	dumpPrefs();
+}
+
+async function fetchDomainListString() {
 	var domainList = [];
 
 	var groupList = document.getElementById("group-list");
@@ -136,33 +160,22 @@ async function autoSave() {
 	for (var i = 0, len = options.length; i < len; i++) {
 		domainList.push(options[i].textContent);
 	}
-	var domainListStr = domainList.join(",");
-	await browser.storage.local.set({ CA_DOMAIN_LIST: domainListStr });
+	var domainListString = domainList.join(",");
 
-	//チェックボックス設定保存
-	var notDisplay = document.getElementById("not-display").checked;
-	await browser.storage.local.set({ CA_IS_NOT_DISPLAY: notDisplay });
+	return domainListString;
+}
 
-	var isCountdown = document.getElementById("countdown").checked;
-	await browser.storage.local.set({ CA_IS_COUNT_DOWN: isCountdown });
+async function fetchCheckboxStates() {
+	let CheckboxStates = {
+		notDisplay: document.getElementById("not-display").checked,
+		isCountdown: document.getElementById("countdown").checked,
+		cdTime: document.getElementById("countdown-time").value,
+		replyTo: document.getElementById("confirm-reply-to").checked,
+		batchCheck_my: document.getElementById("batchcheck-mydomain").checked,
+		batchCheck_other: document.getElementById("batchcheck-otherdomain").checked
+	};
 
-	var cdTime = document.getElementById("countdown-time").value;
-	if ((isNaN(Number(cdTime)) || cdTime === "") && isCountdown) {
-		alert("please input integer");
-		return false;
-	}
-	await browser.storage.local.set({ CA_COUNT_DOWN_TIME: cdTime });
-
-	var replyTo = document.getElementById("confirm-reply-to").checked;
-	await browser.storage.local.set({ CA_IS_CONFIRM_REPLY_TO: replyTo });
-
-	var batchCheck_my = document.getElementById("batchcheck-mydomain").checked;
-	await browser.storage.local.set({ CA_IS_BATCH_CHECK_MYDOMAIN: batchCheck_my });
-
-	var batchCheck_other = document.getElementById("batchcheck-otherdomain").checked;
-	await browser.storage.local.set({ CA_IS_BATCH_CHECK_OTHERDOMAIN: batchCheck_other });
-
-	//dumpPrefs();
+	return CheckboxStates;
 }
 
 async function dumpPrefs() {
@@ -175,7 +188,7 @@ async function dumpPrefs() {
 
 async function startup() {
 	translate(); //from L10n.js
-	//dumpPrefs();
+	dumpPrefs();
 	loadPrefs();
 	setEventListener();
 }

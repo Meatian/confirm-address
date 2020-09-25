@@ -77,6 +77,9 @@
     "caSettingCountdownSec": {
         "message": "秒"
     },
+    "caSettingWarnInteger": {
+        "message": "整数を入力してください"
+    },
     "caSettingDomainTitle": {
         "message": "ドメイン名の入力"
     },
