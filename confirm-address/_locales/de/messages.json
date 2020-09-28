@@ -50,6 +50,9 @@
         "message": "Senden"
     },
     //"setting.html": "*** L10n message ***",
+    "caPrefUnsetWarning": {
+        "message": "[!]Confirm-Address preferences appear to be unset.[!]"
+    },
     "caSettingTitle": {
         "message": "Confirm-Address Einstellungen"
     },

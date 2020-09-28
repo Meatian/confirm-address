@@ -13,6 +13,9 @@
         "message": "ドメイン確認"
     },
     //"confirm-address-dialog.html": "*** L10n message ***",
+    "caPrefUnsetWarning": {
+        "message": "[!]Confirm-Addressの設定が未設定のようです。[!]"
+    },
     "caDialogTitle": {
         "message": "あて先メールアドレスの確認"
     },

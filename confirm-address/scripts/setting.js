@@ -1,12 +1,12 @@
 async function loadPrefs() {
 	//init domain list.
 	var prop = "CA_DOMAIN_LIST";
-	var result = await browser.storage.local.get(prop);
+	var prefs = await browser.storage.local.get();
 
-	if (result[prop]) {
-		console.log("[REGISTERED DOMAINS] " + result[prop] + "\n");
-		console.dir(result[prop]);
-		var domainList = result[prop].split(","),
+	if (prefs[prop]) {
+		console.log("[REGISTERED DOMAINS] " + prefs[prop] + "\n");
+		console.dir(prefs[prop]);
+		var domainList = prefs[prop].split(","),
 			groupList = document.getElementById("group-list");
 		for (var i = 0, len = domainList.length; i < len; i++) {
 			var option = document.createElement("option");
@@ -18,9 +18,8 @@ async function loadPrefs() {
 
 	//init checkbox [not dispaly when only my domain mail]
 	prop = "CA_IS_NOT_DISPLAY";
-	var iND = await browser.storage.local.get(prop);
 	var noDisplayBox = document.getElementById("not-display");
-	noDisplayBox.checked = iND ? iND[prop] : false;
+	noDisplayBox.checked = prefs[prop] ? prefs[prop] : false;
 
 	//init checkbox [countdown]
 	var cdBox = document.getElementById("countdown");
@@ -30,8 +29,7 @@ async function loadPrefs() {
 	});
 
 	prop = "CA_IS_COUNT_DOWN";
-	var iCD = await browser.storage.local.get(prop);
-	if (iCD[prop] === undefined || iCD[prop] === false) {
+	if (prefs[prop] === undefined || prefs[prop] === false) {
 		cdBox.checked = false;
 		cdTimeBox.disabled = true;
 	} else {
@@ -40,26 +38,22 @@ async function loadPrefs() {
 	}
 
 	prop = "CA_COUNT_DOWN_TIME";
-	var cDT = await browser.storage.local.get(prop);
-	cdTimeBox.value = cDT[prop] ? cDT[prop] : "";
+	cdTimeBox.value = prefs[prop] ? prefs[prop] : "";
 
 	// init checkbox [confrim Reply-To address before sending]
 	prop = "CA_IS_CONFIRM_REPLY_TO";
-	var iCRT = await browser.storage.local.get(prop);
 	var replyBox = document.getElementById("confirm-reply-to");
-	replyBox.checked = iCRT ? iCRT[prop] : false;
+	replyBox.checked = prefs[prop] ? prefs[prop] : false;
 
 	// init checkbox [confirm batch-check my domain]
 	prop = "CA_IS_BATCH_CHECK_MYDOMAIN";
-	var iBCM = await browser.storage.local.get(prop);
 	var batchCheckBoxmy = document.getElementById("batchcheck-mydomain");
-	batchCheckBoxmy.checked = iBCM ? iBCM[prop] : false;
+	batchCheckBoxmy.checked = prefs[prop] ? prefs[prop] : false;
 
 	// init checkbox [confirm batch-check other domain]
 	prop = "CA_IS_BATCH_CHECK_OTHERDOMAIN";
-	var iBCO = await browser.storage.local.get(prop);
 	var batchCheckBoxother = document.getElementById("batchcheck-otherdomain");
-	batchCheckBoxother.checked = iBCO ? iBCO[prop] : false;
+	batchCheckBoxother.checked = prefs[prop] ? prefs[prop] : false;
 }
 
 function setEventListener() {

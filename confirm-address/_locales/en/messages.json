@@ -13,6 +13,9 @@
         "message": "DomainCheck"
     },
     //"confirm-address-dialog.html": "*** L10n message ***",
+    "caPrefUnsetWarning": {
+        "message": "[!]Confirm-Address preferences appear to be unset.[!]"
+    },
     "caDialogTitle": {
         "message": "Confirm E-mail addresses."
     },

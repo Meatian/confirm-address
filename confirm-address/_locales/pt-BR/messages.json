@@ -50,6 +50,9 @@
         "message": "Enviar"
     },
     //"setting.html": "*** L10n message ***",
+    "caPrefUnsetWarning": {
+        "message": "[!]Confirm-Address preferences appear to be unset.[!]"
+    },
     "caSettingTitle": {
         "message": "Confirme os ajustes de endereço"
     },
