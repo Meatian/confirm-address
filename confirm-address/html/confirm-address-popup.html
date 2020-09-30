@@ -32,40 +32,40 @@
 
 <body>
     <form name="caPopup">
-        <h3 l10n-tag="caDialogMessage"></h3>
+        <h3 l10n-tag="caDialogMessage" id="DialogMessage" style="display:none;"></h3>
         <small l10n-tag="caDialogCancelBtnToEdit"></small>
-        <p id="yourDomains">
-        <div class="box_title">
-            <input type="checkbox" id="batchCheck_yourDomains" disabled="true">
-            <label for="batchCheck_yourDomains" l10n-tag="caDialogYourdomain"></label>
-        </div>
+        <div id="yourDomains" style="display:none;">
+            <div class="box_title">
+                <input type="checkbox" name="batchCheck_yourDomains" disabled="true">
+                <label for="batchCheck_yourDomains" l10n-tag="caDialogYourdomain"></label>
+            </div>
 
-        <!-- <small l10n-tag="caDialogYourdomainTooltip"></small> -->
-        <!-- Insider Domain addresses locate here -->
-        <div id="yourDomainsAddresses" class="box_scrollbar">
+            <!-- <small l10n-tag="caDialogYourdomainTooltip"></small> -->
+            <!-- Insider Domain addresses locate here -->
+            <div id="yourDomainAddresses" class="box_scrollbar">
+            </div>
         </div>
-        </p>
-        <p id="otherDomains">
-        <div class="box_title">
-            <input type="checkbox" id="batchCheck_otherDomains" disabled="true">
-            <label for="batchCheck_otherDomains" l10n-tag="caDialogOtherdomain"></label>
-        </div>
+        <div id="otherDomains" style="display:none;">
+            <div class="box_title">
+                <input type="checkbox" name="batchCheck_otherDomains" disabled="true">
+                <label for="batchCheck_otherDomains" l10n-tag="caDialogOtherdomain"></label>
+            </div>
 
-        <!--<small l10n-tag="caDialogOtherdomainTooltip"></small>-->
-        <!-- Outsider Domain addresses locate here -->
-        <div id="otherDomainsAddresses" class="box_scrollbar">
+            <!--<small l10n-tag="caDialogOtherdomainTooltip"></small>-->
+            <!-- Outsider Domain addresses locate here -->
+            <div id="otherDomainAddresses" class="box_scrollbar">
+            </div>
         </div>
-        </p>
         <div id="countdownArea" style="display:none;">
             <span id="countdown1" l10n-tag="caCountdownMsg1"></span>
-            <span id="countdownsec"></span>&nbsp;
+            <span id="counter"></span>&nbsp;
             <span id="countdown2" l10n-tag="caCountdownMsg2"></span>
         </div>
-        <p>
+        <div>
             <input type="button" name="btn_send" l10n-val-tag="caDialogAcceptbtn" disabled="true">
             &nbsp;
             <input type="button" name="btn_cancel" l10n-val-tag="caDialogCancelbtn">
-        </p>
+        </div>
 
     </form>
 </body>

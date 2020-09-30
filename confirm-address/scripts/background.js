@@ -2,7 +2,7 @@ var prefs = null;
 var default_prefs = {
     CA_DOMAIN_LIST: "",
     CA_IS_NOT_DISPLAY: false,
-    CA_IS_COUNTDOWN: false,
+    CA_IS_COUNT_DOWN: false,
     CA_COUNT_DOWN_TIME: 5,
     CA_IS_CONFIRM_REPLY_TO: false,
     CA_IS_BATCH_CHECK_MYDOMAIN: false,
@@ -29,18 +29,8 @@ browser.compose.onBeforeSend.addListener((tab, details) => {
     let tabId = tab.id;
     let id = details.identityId;
 
-    let iND = prefs["CA_IS_NOT_DISPLAY"];
-    if (!iND) {
-        browser.composeAction.enable(tabId);
-        browser.composeAction.openPopup();
-    } else {
-        setTimeout(() => {
-            let resolve = promiseMap.get(tabId);
-            if (resolve) {
-                resolve();
-            }
-        }, 100);
-    }
+    browser.composeAction.enable(tabId);
+    browser.composeAction.openPopup();
 
     // Do NOT lose this Promise. Most of the compose window UI will be locked
     // until it is resolved. That's a very good way to annoy users.
@@ -52,6 +42,7 @@ browser.compose.onBeforeSend.addListener((tab, details) => {
 browser.runtime.onMessage.addListener(async message => {
     switch (message.message) {
         case "GET_RECIPIENTS":
+            await loadPrefs();
             var recipients = [];
             await collectAddress(message.tabId, recipients);
             let inSendSession = promiseMap.get(message.tabId) ? true : false;
@@ -71,13 +62,15 @@ browser.runtime.onMessage.addListener(async message => {
 
             if (message.confirmed) {
                 browser.composeAction.disable(message.tabId);
+                resolve({
+                    cancel: false
+                });
             } else {
                 browser.composeAction.enable(message.tabId);
                 resolve({
                     cancel: true
                 });
             }
-
             break;
         default:
             break;

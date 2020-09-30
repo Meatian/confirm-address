@@ -5,7 +5,7 @@ async function loadPrefs() {
 
 	if (prefs[prop]) {
 		console.log("[REGISTERED DOMAINS] " + prefs[prop] + "\n");
-		console.dir(prefs[prop]);
+		//console.dir(prefs[prop]);
 		var domainList = prefs[prop].split(","),
 			groupList = document.getElementById("group-list");
 		for (var i = 0, len = domainList.length; i < len; i++) {
@@ -76,7 +76,7 @@ function addItem() {
 	if (param) {
 		var domainName = param;
 		if (domainName.length > 0) {
-			console.log("[ADD] " + domainName + "\n");
+			//console.log("[ADD] " + domainName + "\n");
 			var groupList = document.getElementById("group-list");
 			var option = document.createElement("option");
 			option.textContent = domainName;
@@ -114,7 +114,7 @@ function removeItem() {
 	if (selectedIndex === -1) {
 		return;
 	}
-	console.log("[REMOVE] " + groupList.options[selectedIndex].textContent + "\n");
+	//console.log("[REMOVE] " + groupList.options[selectedIndex].textContent + "\n");
 	groupList.remove(selectedIndex);
 	autoSave();
 }
@@ -142,8 +142,8 @@ async function autoSave() {
 		CA_IS_BATCH_CHECK_OTHERDOMAIN: chk['batchCheck_other']
 	});
 
-	console.log("autoSave() done.\n");
-	dumpPrefs();
+	//console.log("autoSave() done.\n");
+	//dumpPrefs();
 }
 
 async function fetchDomainListString() {
@@ -182,7 +182,7 @@ async function dumpPrefs() {
 
 async function startup() {
 	translate(); //from L10n.js
-	dumpPrefs();
+	//dumpPrefs();
 	loadPrefs();
 	setEventListener();
 }
