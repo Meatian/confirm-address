@@ -1,6 +1,0 @@
-content confirm-address chrome/content/
-skin	confirm-address	global	chrome/skin/global/
-
-locale confirm-address ja chrome/locale/ja-JP/
-locale confirm-address en-US chrome/locale/en-US/
-overlay chrome://messenger/content/messengercompose/messengercompose.xul	chrome://confirm-address/content/confirm-address.xul
