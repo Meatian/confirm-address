@@ -49,15 +49,18 @@
     "caCountdownSkip": {
         "message": "Senden"
     },
-    //"setting.html": "*** L10n message ***",
-    "caPrefUnsetWarning": {
-        "message": "[!]Confirm-Address preferences appear to be unset.[!]"
+    "caDialogCancelbtn": {
+        "message": "Cancel"
     },
+    //"setting.html": "*** L10n message ***",
     "caSettingTitle": {
         "message": "Confirm-Address Einstellungen"
     },
     "caSettingMessage": {
         "message": "Fügen Sie Ihren Gruppendomainnamen hinzu."
+    },
+    "caDialogCancelBtnToEdit": {
+        "message": "* Click Cancel button to Edit. *"
     },
     "caSettingYourDomain": {
         "message": "Ihre Gruppendomain"

@@ -13,14 +13,14 @@
         "message": "ドメイン確認"
     },
     //"confirm-address-dialog.html": "*** L10n message ***",
-    "caPrefUnsetWarning": {
-        "message": "[!]Confirm-Addressの設定が未設定のようです。[!]"
-    },
     "caDialogTitle": {
         "message": "あて先メールアドレスの確認"
     },
     "caDialogMessage": {
         "message": "あて先メールアドレスを確認してください。"
+    },
+    "caDialogCancelBtnToEdit": {
+        "message": "※編集に戻るにはキャンセルボタンをクリックします。"
     },
     "caDialogYourdomain": {
         "message": "組織内へのメール"
@@ -39,6 +39,9 @@
     },
     "caDialogAcceptbtn": {
         "message": "送信"
+    },
+    "caDialogCancelbtn": {
+        "message": "キャンセル"
     },
     "caCountdownTitle": {
         "message": "カウントダウン"

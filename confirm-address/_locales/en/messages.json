@@ -13,14 +13,14 @@
         "message": "DomainCheck"
     },
     //"confirm-address-dialog.html": "*** L10n message ***",
-    "caPrefUnsetWarning": {
-        "message": "[!]Confirm-Address preferences appear to be unset.[!]"
-    },
     "caDialogTitle": {
         "message": "Confirm E-mail addresses."
     },
     "caDialogMessage": {
         "message": "Please confirm the following E-mail Addresses"
+    },
+    "caDialogCancelBtnToEdit": {
+        "message": "* Click Cancel button to Edit. *"
     },
     "caDialogYourdomain": {
         "message": "Your domain addresses"
@@ -39,6 +39,9 @@
     },
     "caDialogAcceptbtn": {
         "message": "Send"
+    },
+    "caDialogCancelbtn": {
+        "message": "Cancel"
     },
     "caCountdownTitle": {
         "message": "Countdown"

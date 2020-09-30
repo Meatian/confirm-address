@@ -19,6 +19,9 @@
     "caDialogMessage": {
         "message": "Por favor, confirme os seguintes endereços de email"
     },
+    "caDialogCancelBtnToEdit": {
+        "message": "* Click Cancel button to Edit. *"
+    },
     "caDialogYourdomain": {
         "message": "Seus endereços de domínio"
     },
@@ -37,6 +40,9 @@
     "caDialogAcceptbtn": {
         "message": "Enviar"
     },
+    "caDialogCancelbtn": {
+        "message": "Cancel"
+    },
     "caCountdownTitle": {
         "message": "Contagem Regressiva"
     },
@@ -50,9 +56,6 @@
         "message": "Enviar"
     },
     //"setting.html": "*** L10n message ***",
-    "caPrefUnsetWarning": {
-        "message": "[!]Confirm-Address preferences appear to be unset.[!]"
-    },
     "caSettingTitle": {
         "message": "Confirme os ajustes de endereço"
     },
