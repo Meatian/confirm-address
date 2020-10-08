@@ -14,22 +14,22 @@
     },
     //"confirm-address-dialog.html": "*** L10n message ***",
     "caDialogTitle": {
-        "message": "E-Mail Adressen bestätigen."
+        "message": "E-Mail Adressen bestätigen"
     },
     "caDialogMessage": {
-        "message": "Bitte bestätigen Sie die folgenden E-Mail Adressen"
+        "message": "Bitte bestätigen Sie die folgenden E-Mail Adressen:"
     },
     "caDialogYourdomain": {
         "message": "Ihre Domain-Adressen"
     },
     "caDialogYourdomainTooltip": {
-        "message": "Klicken, um alle Ihre Domain-Adressen zu wählen/abzuwählen"
+        "message": "Klicken, um alle Ihre Domain-Adressen auszuwählen/abzuwählen"
     },
     "caDialogOtherdomain": {
         "message": "Andere Domain-Adressen"
     },
     "caDialogOtherdomainTooltip": {
-        "message": "Klicken, um alle anderen Domain-Adressen zu wählen/abzuwählen"
+        "message": "Klicken, um alle anderen Domain-Adressen auszuwählen/abzuwählen"
     },
     "caDialogCheck": {
         "message": "Prüfen!"
@@ -57,7 +57,7 @@
         "message": "Confirm-Address Einstellungen"
     },
     "caSettingMessage": {
-        "message": "Fügen Sie Ihren Gruppendomainnamen hinzu."
+        "message": "Fügen Sie Ihren Gruppendomainnamen hinzu"
     },
     "caDialogCancelBtnToEdit": {
         "message": "* Click Cancel button to Edit. *"
@@ -66,22 +66,22 @@
         "message": "Ihre Gruppendomain"
     },
     "caSettingAdd": {
-        "message": "hinzufügen"
+        "message": "Hinzufügen"
     },
     "caSettingEdit": {
-        "message": "bearbeiten"
+        "message": "Bearbeiten"
     },
     "caSettingRemove": {
-        "message": "entfernen"
+        "message": "Entfernen"
     },
     "caSettingChkNotdisplay": {
-        "message": "Dialogfenster unterdrücken, wenn alle Empfänger innerhalb meiner Domain sind"
+        "message": "Dialogfenster unterdrücken, wenn alle Empfänger aus meinen Domains sind"
     },
     "caSettingChkCountdown": {
-        "message": "Countdown vor Senden der E-Mail"
+        "message": "Countdown vor Versenden der E-Mail:"
     },
     "caSettingCountdownSec": {
-        "message": "(s)"
+        "message": "Sekunde(n)"
     },
     "caSettingWarnInteger": {
         "message": "Please input integer."
@@ -90,15 +90,15 @@
         "message": "Geben Sie Ihren Domainnamen ein"
     },
     "caSettingDomainMessage": {
-        "message": "Geben Sie Ihren Gruppendomainnamen ein."
+        "message": "Geben Sie Ihren Gruppendomainnamen ein:"
     },
     "caSettingChkConfirmreplyto": {
-        "message": "Bestätigen Sie Ihre Reply-To Adressen vor dem Senden"
+        "message": "'Antwort an' Adressen vor dem Senden bestätigen"
     },
     "caSettingChkMydomain": {
-        "message": "Aktiviere alle Schaltflächen zum Abhaken für meine Domain"
+        "message": "Aktiviere Schaltfläche zum Abhaken aller Adressen meiner Domains"
     },
     "caSettingChkOtherdomain": {
-        "message": "Aktiviere alle Schaltflächen zum Abhaken für andere Domains"
+        "message": "Aktiviere Schaltfläche zum Abhaken aller Adressen anderer Domains"
     }
 }

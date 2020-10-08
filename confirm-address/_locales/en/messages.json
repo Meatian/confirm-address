@@ -14,10 +14,10 @@
     },
     //"confirm-address-dialog.html": "*** L10n message ***",
     "caDialogTitle": {
-        "message": "Confirm E-mail addresses."
+        "message": "Confirm e-mail addresses"
     },
     "caDialogMessage": {
-        "message": "Please confirm the following E-mail Addresses"
+        "message": "Please confirm the following e-mail addresses:"
     },
     "caDialogCancelBtnToEdit": {
         "message": "* Click Cancel button to Edit. *"
@@ -26,13 +26,13 @@
         "message": "Your domain addresses"
     },
     "caDialogYourdomainTooltip": {
-        "message": "Click to select/deselect all your domain addresses"
+        "message": "Click to select/deselect all addresses from your domains"
     },
     "caDialogOtherdomain": {
         "message": "Other domain addresses"
     },
     "caDialogOtherdomainTooltip": {
-        "message": "Click to select/deselect all other domain addresses"
+        "message": "Click to select/deselect all addresses from other domains"
     },
     "caDialogCheck": {
         "message": "Check!"
@@ -60,45 +60,45 @@
         "message": "Confirm-Address settings"
     },
     "caSettingMessage": {
-        "message": "Add your group domain name."
+        "message": "Add your group domain name"
     },
     "caSettingYourDomain": {
         "message": "Your group domain"
     },
     "caSettingAdd": {
-        "message": "add"
+        "message": "Add"
     },
     "caSettingEdit": {
-        "message": "edit"
+        "message": "Edit"
     },
     "caSettingRemove": {
-        "message": "remove"
+        "message": "Remove"
     },
     "caSettingChkNotdisplay": {
-        "message": "Suppress to show dialog when all the recipient is within my domain."
+        "message": "Don't show confirmation dialog when all recipients are within my domains"
     },
     "caSettingChkCountdown": {
-        "message": "Countdown before sending mail"
+        "message": "Countdown before sending mail:"
     },
     "caSettingCountdownSec": {
-        "message": "(s)"
+        "message": "second(s)"
     },
     "caSettingWarnInteger": {
-        "message": "Please input integer."
+        "message": "Please input integer"
     },
     "caSettingDomainTitle": {
         "message": "Input domain name"
     },
     "caSettingDomainMessage": {
-        "message": "Input your group domain name."
+        "message": "Input your group domain name:"
     },
     "caSettingChkConfirmreplyto": {
-        "message": "Confirm Reply-To addresses before sending"
+        "message": "Confirm 'Reply-To' addresses before sending"
     },
     "caSettingChkMydomain": {
-        "message": "Enable all check button for your domain"
+        "message": "Enable 'Check all' button for your domains"
     },
     "caSettingChkOtherdomain": {
-        "message": "Enable all check button for other domain"
+        "message": "Enable 'Check all' button for other domains"
     }
 }
