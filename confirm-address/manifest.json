@@ -1,26 +1,43 @@
 {
   "manifest_version": 2,
-  "name": "Confirm-Address",
-  "description": "Confirm E-mail addresses before sending mail",
-  "version": "1.3.5",
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "1.3.6b1",
   "author": "Meatian",
-  "homepage_url": "https://github.com/Meatian/confirm-address/",
-  "legacy": {
-    "type" : "xul",
-    "options": {
-      "page": "chrome://confirm-address/content/setting.xul",
-      "open_in_tab": true
-    }
-  },
+  "homepage_url": "__MSG_extensionHomepage_url__",
   "applications": {
     "gecko": {
       "id": "confirm-address@kenmaz.net",
-      "strict_min_version": "68.0",
-      "strict_max_version": "68.*"
+      "strict_min_version": "78.3.1"
     }
   },
   "icons": {
-    "32": "chrome/skin/global/ConfirmAddress-32x32.png",
-    "64": "chrome/skin/global/ConfirmAddress-64x64.png"
-  }
+    "32": "images/ConfirmAddress-32x32.png",
+    "48": "images/ConfirmAddress-48x48.png",
+    "64": "images/ConfirmAddress-64x64.png",
+    "96": "images/ConfirmAddress-96x96.png"
+  },
+  "compose_action": {
+    "default_popup": "html/confirm-address-popup.html",
+    "default_title": "__MSG_extensionDefault_title__",
+    "default_icon": "images/ConfirmAddress-48x48.png"
+  },
+  "permissions": [
+    "addressBooks",
+    "accountsRead",
+    "compose",
+    "tabs",
+    "activeTab",
+    "storage"
+  ],
+  "background": {
+    "scripts": [
+      "scripts/background.js"
+    ]
+  },
+  "options_ui": {
+    "page": "html/setting.html",
+    "open_in_tab": false
+  },
+  "default_locale": "en"
 }
