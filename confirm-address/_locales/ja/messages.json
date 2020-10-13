@@ -20,7 +20,7 @@
         "message": "あて先メールアドレスを確認してください。"
     },
     "caDialogCancelBtnToEdit": {
-        "message": "※編集に戻るにはキャンセルボタンをクリックします。"
+        "message": "※宛先の編集に戻るにはキャンセルボタンをクリックします。"
     },
     "caDialogYourdomain": {
         "message": "組織内へのメール"
