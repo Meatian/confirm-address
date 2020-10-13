@@ -20,7 +20,7 @@
         "message": "Please confirm the following e-mail addresses:"
     },
     "caDialogCancelBtnToEdit": {
-        "message": "* Click Cancel button to Edit. *"
+        "message": "Click cancel button to edit recipients."
     },
     "caDialogYourdomain": {
         "message": "Your domain addresses"
