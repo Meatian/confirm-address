@@ -60,7 +60,7 @@
         "message": "Fügen Sie Ihren Gruppendomainnamen hinzu"
     },
     "caDialogCancelBtnToEdit": {
-        "message": "* Click Cancel button to Edit. *"
+        "message": "Klicken Sie auf die Schaltfläche Abbrechen, um die Empfänger zu bearbeiten."
     },
     "caSettingYourDomain": {
         "message": "Ihre Gruppendomain"
@@ -84,7 +84,7 @@
         "message": "Sekunde(n)"
     },
     "caSettingWarnInteger": {
-        "message": "Please input integer."
+        "message": "Bitte geben Sie eine Ganzzahl ein."
     },
     "caSettingDomainTitle": {
         "message": "Geben Sie Ihren Domainnamen ein"
