@@ -4,11 +4,11 @@ DUMP = false;
  * ドメインリストが空なら全員部外者
  */
 function testJudge_domainListIsNull() {
-	addressList = new Array({address: "aaa@me.com"}, {address: "bbb@me.com"});
+	addressList = new Array({ address: "aaa@me.com" }, { address: "bbb@me.com" });
 	domainList = new Array();
 	insiders = new Array();
 	outsiders = new Array();
-	r = ConfirmAddress.judge(addressList, domainList, insiders, outsiders);
+	r = judge(addressList, domainList, insiders, outsiders);
 	assertEquals(0, insiders.length);
 	assertEquals(2, outsiders.length);
 }
@@ -17,11 +17,11 @@ function testJudge_domainListIsNull() {
  * 同僚だけ
  */
 function testJudge_onlyInSiders() {
-	addressList = new Array({address: "aaa@me.com"}, {address: "bbb@me.com"});
+	addressList = new Array({ address: "aaa@me.com" }, { address: "bbb@me.com" });
 	domainList = new Array("me.com");
 	insiders = new Array();
 	outsiders = new Array();
-	r = ConfirmAddress.judge(addressList, domainList, insiders, outsiders);
+	r = judge(addressList, domainList, insiders, outsiders);
 	assertEquals(2, insiders.length);
 	assertEquals(0, outsiders.length);
 }
@@ -30,11 +30,11 @@ function testJudge_onlyInSiders() {
  * 部外者だけ
  */
 function testJudge_onlyOutSiders() {
-	addressList = new Array({address: "aaa@out.com"}, {address: "bbb@out.com"});
+	addressList = new Array({ address: "aaa@out.com" }, { address: "bbb@out.com" });
 	domainList = new Array("me.com");
 	insiders = new Array();
 	outsiders = new Array();
-	r = ConfirmAddress.judge(addressList, domainList, insiders, outsiders);
+	r = judge(addressList, domainList, insiders, outsiders);
 	assertEquals(0, insiders.length);
 	assertEquals(2, outsiders.length);
 }
@@ -43,11 +43,11 @@ function testJudge_onlyOutSiders() {
  * 部外者、同僚いりまじり
  */
 function testJudge_InOutSiders() {
-	addressList = new Array({address: "zzz@me.com"}, {address: "aaa@out.com"}, {address: "bbb@out.com"}, {address: "ccc@me.com"});
+	addressList = new Array({ address: "zzz@me.com" }, { address: "aaa@out.com" }, { address: "bbb@out.com" }, { address: "ccc@me.com" });
 	domainList = new Array("me.com");
 	insiders = new Array();
 	outsiders = new Array();
-	r = ConfirmAddress.judge(addressList, domainList, insiders, outsiders);
+	r = judge(addressList, domainList, insiders, outsiders);
 	assertEquals(2, insiders.length);
 	assertEquals(2, outsiders.length);
 }
@@ -56,11 +56,11 @@ function testJudge_InOutSiders() {
  * 大文字でもOK
  */
 function testJudge_UpperCase() {
-	addressList = new Array({address: "TARO@ME.COM"});
+	addressList = new Array({ address: "TARO@ME.COM" });
 	domainList = new Array("me.com");
 	insiders = new Array();
 	outsiders = new Array();
-	r = ConfirmAddress.judge(addressList, domainList, insiders, outsiders);
+	r = judge(addressList, domainList, insiders, outsiders);
 	assertEquals(1, insiders.length);
 	assertEquals(0, outsiders.length);
 }
@@ -70,11 +70,11 @@ function testJudge_UpperCase() {
  * 場合に、ただしくそのアドレスを組織外として認識するか
  */
 function testJudge_OutSiderNameLooksLikeInSiderDomainName() {
-	addressList = new Array({address: "me.com@outsider.com"}, {address: "bbb@me.com"});
+	addressList = new Array({ address: "me.com@outsider.com" }, { address: "bbb@me.com" });
 	domainList = new Array("me.com");
 	insiders = new Array();
 	outsiders = new Array();
-	r = ConfirmAddress.judge(addressList, domainList, insiders, outsiders);
+	r = judge(addressList, domainList, insiders, outsiders);
 	assertEquals(1, insiders.length);
 	assertEquals(1, outsiders.length);
 }
@@ -82,16 +82,11 @@ function testJudge_OutSiderNameLooksLikeInSiderDomainName() {
 /*
  * ドメインリストの取得ができるか
  */
-function testGetDomainList(){
-	CA_CONST = {
-		DOMAIN_LIST : 0
-	};
-	nsPreferences = {
-		copyUnicharPref : function(arg){
-			return "gmail.com,me.com";
-		}
-	};
-	list = ConfirmAddress.getDomainList();
+function testGetDomainList() {
+	var prefs = {
+		CA_DOMAIN_LIST: "gmail.com,me.com"
+	}
+	list = prefs["CA_DOMAIN_LIST"].split(",");
 	assertEquals(2, list.length);
 }
 
@@ -99,17 +94,12 @@ function testGetDomainList(){
  * ドメインリストが空文字のときに、
  * 空の配列を取得できるか
  */
-function testGetDomainList_listInEmpty(){
-	CA_CONST = {
-		DOMAIN_LIST : 0
-	};
-	nsPreferences = {
-		copyUnicharPref : function(arg){
-			return "";
-		}
-	};
+function testGetDomainList_listInEmpty() {
+	var prefs = {
+		CA_DOMAIN_LIST: ""
+	}
 
-	list = ConfirmAddress.getDomainList();
+	list = getDomainList(prefs["CA_DOMAIN_LIST"]);
 	assertEquals(0, list.length);
 }
 
@@ -117,16 +107,11 @@ function testGetDomainList_listInEmpty(){
  * ドメインリストがnullのときに、
  * 空の配列を取得できるか
  */
-function testGetDomainList_listInNull(){
-	CA_CONST = {
-		DOMAIN_LIST : 0
-	};
-	nsPreferences = {
-		copyUnicharPref : function(arg){
-			return null;
-		}
-	};
+function testGetDomainList_listInNull() {
+	var prefs = {
+		CA_DOMAIN_LIST: null
+	}
 
-	list = ConfirmAddress.getDomainList();
+	list = getDomainList(prefs["CA_DOMAIN_LIST"]);
 	assertEquals(0, list.length);
 }

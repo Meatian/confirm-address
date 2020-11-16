@@ -130,7 +130,7 @@ browser.runtime.onMessage.addListener(async (message) => {
             recipients = message.recipients;
             prefs = message.prefs;
 
-            var domainList = prefs["CA_DOMAIN_LIST"].split(",");
+            var domainList = getDomainList(prefs["CA_DOMAIN_LIST"]);
 
             var internalList = [];
             var externalList = [];
@@ -157,6 +157,15 @@ browser.runtime.onMessage.addListener(async (message) => {
             break;
     }
 });
+
+function getDomainList(domains) {
+    if (domains == null || domains.length == 0) {
+        return new Array();
+    } else {
+        var domainList = domains.split(",");
+        return domainList;
+    }
+}
 
 async function judge(addressArray, domainList, yourDomainAddress, otherDomainAddress) {
     //console.dir(recipients);
