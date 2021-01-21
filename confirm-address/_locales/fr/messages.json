@@ -1,0 +1,104 @@
+{
+    //"manifest.json": "*** L10n message ***",
+    "extensionName": {
+        "message": "Confirm-Address"
+    },
+    "extensionDescription": {
+        "message": "Confirmez les adresses mail avant d'envoyer le mail"
+    },
+    "extensionHomepage_url": {
+        "message": "https://github.com/Meatian/confirm-address/"
+    },
+    "extensionDefault_title": {
+        "message": "Vérification du domaine"
+    },
+    //"confirm-address-dialog.html": "*** L10n message ***",
+    "caDialogTitle": {
+        "message": "Confirmez les adresses mail"
+    },
+    "caDialogMessage": {
+        "message": "Veuillez confirmer les adresses mail suivantes:"
+    },
+    "caDialogCancelBtnToEdit": {
+        "message": "Cliquer sur le bouton annuler pour modifier les destinataires."
+    },
+    "caDialogYourdomain": {
+        "message": "Votre domaine d'adresses"
+    },
+    "caDialogYourdomainTooltip": {
+        "message": "Cliquez pour (dé)sélectionner toutes les adresses de votre domaine"
+    },
+    "caDialogOtherdomain": {
+        "message": "D'autres adresses de domaine"
+    },
+    "caDialogOtherdomainTooltip": {
+        "message": "Cliquez pour (dé)sélectionner toutes les adresses d'autres domaines"
+    },
+    "caDialogCheck": {
+        "message": "Vérfifier!"
+    },
+    "caDialogAcceptbtn": {
+        "message": "Emvoyer"
+    },
+    "caDialogCancelbtn": {
+        "message": "Annuler"
+    },
+    "caCountdownTitle": {
+        "message": "Compte à rebours"
+    },
+    "caCountdownMsg1": {
+        "message": "Compte à rebours..."
+    },
+    "caCountdownMsg2": {
+        "message": "seconde(s)"
+    },
+    "caCountdownSkip": {
+        "message": "Envoyer"
+    },
+    //"setting.html": "*** L10n message ***",
+    "caSettingTitle": {
+        "message": "Paramètres de Confirm-Address"
+    },
+    "caSettingMessage": {
+        "message": "Ajoutez le nom de votre groupe de domaine"
+    },
+    "caSettingYourDomain": {
+        "message": "Votre groupe de domaine"
+    },
+    "caSettingAdd": {
+        "message": "Ajouter"
+    },
+    "caSettingEdit": {
+        "message": "Modifier"
+    },
+    "caSettingRemove": {
+        "message": "Supprimer"
+    },
+    "caSettingChkNotdisplay": {
+        "message": "Ne pas montrer de fenêtre de confirmation quand tous les destinataires sont dans mes domaines"
+    },
+    "caSettingChkCountdown": {
+        "message": "Compte à rebours avant d'envoyer le mail:"
+    },
+    "caSettingCountdownSec": {
+        "message": "seconde(s)"
+    },
+    "caSettingWarnInteger": {
+        "message": "Veuillez rentrer un nombre"
+    },
+    "caSettingDomainTitle": {
+        "message": "Rentrez le nom du domaine"
+    },
+    "caSettingDomainMessage": {
+        "message": "Rentrez le nom du groupe de votre domaine:"
+    },
+    "caSettingChkConfirmreplyto": {
+        "message": "Confirmez les adresses 'Reply-To' avant d'envoyer"
+    },
+    "caSettingChkMydomain": {
+        "message": "Activez le bouton 'Check all' pour vos domaines"
+    },
+    "caSettingChkOtherdomain": {
+        "message": "Activez le bouton 'Check all' pour vos autres domaines"
+    }
+}
