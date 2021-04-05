@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Confirm-Address Settings</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="setting.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="common.css">
     <script src="../scripts/l10n.js" defer></script>
     <script src="../scripts/setting.js" defer></script>
 </head>
@@ -17,7 +17,7 @@
 
             <div>
                 <label l10n-tag="caSettingYourDomain" for="domain_list"></label><br />
-                <select size="5" style="width: 420px" class="indent" id="group-list"></select>
+                <select size="5" style="width: 420px" class="indent bgInputbox" id="group-list"></select>
             </div>
             <div>
                 <input type="button" style="width: 120px" l10n-val-tag="caSettingAdd" id="add">
@@ -34,7 +34,7 @@
             <div>
                 <input type="checkbox" id="countdown">
                 <label l10n-tag="caSettingChkCountdown" for="countdown"></label>
-                <input type="text" id="countdown-time">
+                <input type="text" id="countdown-time" class="bgInputbox">
                 <label l10n-tag="caSettingCountdownSec" for="countdown-time"></label>
             </div>
 
