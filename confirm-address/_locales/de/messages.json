@@ -31,6 +31,9 @@
     "caDialogOtherdomainTooltip": {
         "message": "Klicken, um alle anderen Domain-Adressen auszuwählen/abzuwählen"
     },
+    "caDialogFirstLinesOfBody": {
+        "message": "Die ersten paar Zeilen aus dem Postkörper"
+    },
     "caDialogCheck": {
         "message": "Prüfen!"
     },
@@ -76,6 +79,12 @@
     },
     "caSettingChkNotdisplay": {
         "message": "Dialogfenster unterdrücken, wenn alle Empfänger aus meinen Domains sind"
+    },
+    "caSettingChkShowBody":{
+        "message": "Bestätigen Sie die ersten Zeilen des E-Mail-Textes:"
+    },
+    "caSettingShowBodyLines":{
+        "message": "Linie(n)"
     },
     "caSettingChkCountdown": {
         "message": "Countdown vor Versenden der E-Mail:"

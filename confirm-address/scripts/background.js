@@ -4,6 +4,8 @@ var default_prefs = {
     CA_IS_NOT_DISPLAY: false,
     CA_IS_COUNT_DOWN: false,
     CA_COUNT_DOWN_TIME: 5,
+    CA_SHOW_BODY: false,
+    CA_SHOW_BODY_LINES: 3,
     CA_IS_CONFIRM_REPLY_TO: false,
     CA_IS_BATCH_CHECK_MYDOMAIN: false,
     CA_IS_BATCH_CHECK_OTHERDOMAIN: false
@@ -45,11 +47,13 @@ browser.runtime.onMessage.addListener(async message => {
             await loadPrefs();
             var recipients = [];
             await collectAddress(message.tabId, recipients);
+            var mailbody = await getMailBody(message.tabId);
             let inSendSession = promiseMap.get(message.tabId) ? true : false;
             //console.dir(recipients);
             browser.runtime.sendMessage({
                 message: "SEND_RECIPIENTS",
                 recipients: recipients,
+                mailbody: mailbody,
                 prefs: prefs,
                 session: inSendSession
             });
@@ -72,10 +76,33 @@ browser.runtime.onMessage.addListener(async message => {
                 });
             }
             break;
-        default:
-            break;
+       default:
+           break;
     }
 });
+ 
+async function getMailBody(tabId){
+    if (tabId == null) {
+        return;
+    }
+
+    let details = await browser.compose.getComposeDetails(tabId);
+    var htmlbody = details.body; //テキストメールでもHTML!
+
+    const parser = new DOMParser();
+    var doc = parser.parseFromString(htmlbody, 'text/html');
+    var htmlbody = doc.getElementsByTagName("body")[0].innerHTML;
+
+    var bodyLines = Number(prefs['CA_SHOW_BODY_LINES']);
+    var splitedBody = htmlbody.split("<br>");
+    var mailbody = "";
+    
+    for (var i=0; i<bodyLines; i++){
+        mailbody += splitedBody[i] + "<br>\n";
+    }
+    //console.log(mailbody);
+    return mailbody;
+}
 
 async function collectAddress(tabId, recipients) {
     if (tabId == null) {

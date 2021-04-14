@@ -34,6 +34,9 @@
     "caDialogOtherdomainTooltip": {
         "message": "Clique para selecionar/desselecionar outros endereços de domínio"
     },
+    "caDialogFirstLinesOfBody": {
+        "message": "Primeiro algumas linhas do corpo da mensagem"
+    },
     "caDialogCheck": {
         "message": "Confirme!"
     },
@@ -82,6 +85,12 @@
     },
     "caSettingCountdownSec": {
         "message": "(s)"
+    },
+    "caSettingChkShowBody":{
+        "message": "Confirme às primeiras linhas do corpo do e-mail:"
+    },
+    "caSettingShowBodyLines":{
+        "message": "linha"
     },
     "caSettingWarnInteger": {
         "message": "Please input integer."

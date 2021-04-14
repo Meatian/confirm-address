@@ -31,6 +31,9 @@
     "caDialogOtherdomain": {
         "message": "組織外へのメール"
     },
+    "caDialogFirstLinesOfBody": {
+        "message": "メール本文の冒頭数行"
+    },
     "caDialogOtherdomainTooltip": {
         "message": "クリックすると組織外へのメールをすべて選択または選択解除します"
     },
@@ -76,6 +79,12 @@
     },
     "caSettingChkNotdisplay": {
         "message": "自ドメイン宛てのメール送信時は確認ダイアログを表示しない"
+    },
+    "caSettingChkShowBody":{
+        "message": "本文の冒頭行を表示する-->"
+    },
+    "caSettingShowBodyLines":{
+        "message": "行"
     },
     "caSettingChkCountdown": {
         "message": "[送信]ボタン押下後にカウントダウンを開始する-->"

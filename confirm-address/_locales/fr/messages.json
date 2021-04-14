@@ -34,6 +34,9 @@
     "caDialogOtherdomainTooltip": {
         "message": "Cliquez pour (dé)sélectionner toutes les adresses d'autres domaines"
     },
+    "caDialogFirstLinesOfBody": {
+        "message": "Les premières lignes du corps de l'e-mail"
+    },
     "caDialogCheck": {
         "message": "Vérfifier!"
     },
@@ -76,6 +79,12 @@
     },
     "caSettingChkNotdisplay": {
         "message": "Ne pas montrer de fenêtre de confirmation quand tous les destinataires sont dans mes domaines"
+    },
+    "caSettingChkShowBody":{
+        "message": "Confirmez les premières lignes du corps de l'e-mail:"
+    },
+    "caSettingShowBodyLines":{
+        "message": "ligne(s)"
     },
     "caSettingChkCountdown": {
         "message": "Compte à rebours avant d'envoyer le mail:"

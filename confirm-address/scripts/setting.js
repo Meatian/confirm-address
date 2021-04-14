@@ -40,6 +40,25 @@ async function loadPrefs() {
 	prop = "CA_COUNT_DOWN_TIME";
 	cdTimeBox.value = prefs[prop] ? prefs[prop] : "";
 
+	//init checkbox [countdown]
+	var showBodyBox = document.getElementById("show-body");
+	var showBodyLinesBox = document.getElementById("show-body-lines");
+	showBodyBox.addEventListener('change', (event) => {
+		showBodyLinesBox.disabled = !showBodyBox.checked;
+	});
+
+	prop = "CA_SHOW_BODY";
+	if (prefs[prop] === undefined || prefs[prop] === false) {
+		showBodyBox.checked = false;
+		showBodyLinesBox.disabled = true;
+	} else {
+		showBodyBox.checked = true;
+		showBodyLinesBox.disable = false;
+	}
+
+	prop = "CA_SHOW_BODY_LINES";
+	showBodyLinesBox.value = prefs[prop] ? prefs[prop] : "";
+
 	// init checkbox [confrim Reply-To address before sending]
 	prop = "CA_IS_CONFIRM_REPLY_TO";
 	var replyBox = document.getElementById("confirm-reply-to");
@@ -65,6 +84,8 @@ function setEventListener() {
 	document.getElementById("not-display").addEventListener("change", (event) => { autoSave() });
 	document.getElementById("countdown").addEventListener("change", (event) => { autoSave() });
 	document.getElementById("countdown-time").addEventListener("blur", (event) => { autoSave() });
+	document.getElementById("show-body").addEventListener("change", (event) => { autoSave() });
+	document.getElementById("show-body-lines").addEventListener("blur", (event) => { autoSave() });
 	document.getElementById("confirm-reply-to").addEventListener("change", (event) => { autoSave() });
 	document.getElementById("batchcheck-mydomain").addEventListener("change", (event) => { autoSave() });
 	document.getElementById("batchcheck-otherdomain").addEventListener("change", (event) => { autoSave() });
@@ -125,7 +146,8 @@ async function autoSave() {
 	var chk = await fetchCheckboxStates();
 
 	// Input validate for countdown time
-	if ((isNaN(Number(chk['cdTime'])) || chk['cdTime'] === "") && chk['isCountdown']) {
+	if (((isNaN(Number(chk['cdTime'])) || chk['cdTime'] === "") && chk['isCountdown'])
+	|| ((isNaN(Number(chk['sbLines'])) || chk['sbLines'] === "") && chk['isShowBody'])) {
 		var alertMessage = browser.i18n.getMessage("caSettingWarnInteger");
 		alert(alertMessage);
 		return false;
@@ -137,6 +159,8 @@ async function autoSave() {
 		CA_IS_NOT_DISPLAY: chk['notDisplay'],
 		CA_IS_COUNT_DOWN: chk['isCountdown'],
 		CA_COUNT_DOWN_TIME: chk['cdTime'],
+		CA_SHOW_BODY: chk['isShowBody'],
+		CA_SHOW_BODY_LINES: chk['sbLines'],
 		CA_IS_CONFIRM_REPLY_TO: chk['replyTo'],
 		CA_IS_BATCH_CHECK_MYDOMAIN: chk['batchCheck_my'],
 		CA_IS_BATCH_CHECK_OTHERDOMAIN: chk['batchCheck_other']
@@ -164,6 +188,8 @@ async function fetchCheckboxStates() {
 		notDisplay: document.getElementById("not-display").checked,
 		isCountdown: document.getElementById("countdown").checked,
 		cdTime: document.getElementById("countdown-time").value,
+		isShowBody: document.getElementById("show-body").checked,
+		sbLines: document.getElementById("show-body-lines").value,
 		replyTo: document.getElementById("confirm-reply-to").checked,
 		batchCheck_my: document.getElementById("batchcheck-mydomain").checked,
 		batchCheck_other: document.getElementById("batchcheck-otherdomain").checked

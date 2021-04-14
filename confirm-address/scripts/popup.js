@@ -13,6 +13,9 @@ function init() {
         batchCheck("otherDomainAddresses", state);
         checkAllChecked();
     });
+    document.caPopup.check_firstLinesOfBody.addEventListener("change", (event) => {
+        checkAllChecked();
+    });
     document.caPopup.btn_send.addEventListener("click", (event) => {
         if (countdown_running) {
             sendResult(true);
@@ -41,6 +44,8 @@ function checkAllChecked() {
     //console.log("checkAllChecked() fired.");
     var internalComplete = true;
     externalComplete = true;
+    var externalComplete = true;
+    var mailHeadComfirmed = true;
 
     //Confirm my domain check states
     var yourdomains = document.getElementById("yourDomainAddresses"),
@@ -63,12 +68,16 @@ function checkAllChecked() {
             if (!od_checkboxes[j].checked) {
                 externalComplete = false;
             }
-        }
-        document.caPopup.batchCheck_otherDomains.checked = externalComplete;
-    }
+         }
+         document.caPopup.batchCheck_otherDomains.checked = externalComplete;
+     }
+
+    //Confirm first mail body states
+    mailHeadComfirmed = document.caPopup.check_firstLinesOfBody.checked;
+
     //Switch disable state to Send button
     var okBtn = document.caPopup.btn_send;
-    okBtn.disabled = !(internalComplete && externalComplete);
+    okBtn.disabled = !(internalComplete && externalComplete && mailHeadComfirmed);
 }
 
 async function requestRecipients() {
@@ -125,12 +134,14 @@ async function sendResult(confirmed) {
 }
 
 browser.runtime.onMessage.addListener(async (message) => {
-    switch (message.message) {
-        case "SEND_RECIPIENTS":
-            recipients = message.recipients;
-            prefs = message.prefs;
-
-            var domainList = getDomainList(prefs["CA_DOMAIN_LIST"]);
+     switch (message.message) {
+         case "SEND_RECIPIENTS":
+             recipients = message.recipients;
+             mailbody = message.mailbody;
+             console.log(mailbody);
+             prefs = message.prefs;
+ 
+             var domainList = getDomainList(prefs["CA_DOMAIN_LIST"]);
 
             var internalList = [];
             var externalList = [];
@@ -143,12 +154,20 @@ browser.runtime.onMessage.addListener(async (message) => {
             } else {
                 document.getElementById("DialogMessage").style = "display:block;";
                 document.getElementById("yourDomains").style = "display:block;";
-                document.getElementById("otherDomains").style = "display:block;";
-                await pushToList("yourDomainAddresses", internalList);
-                await pushToList("otherDomainAddresses", externalList);
-            }
+                 document.getElementById("otherDomains").style = "display:block;";
+                 await pushToList("yourDomainAddresses", internalList);
+                 await pushToList("otherDomainAddresses", externalList);
 
-            // Change batch check checkboxes state
+                 var isShowBody = prefs["CA_SHOW_BODY"];
+                 if(isShowBody){
+                     document.getElementById("firstLinesofBody").style = "display:block;";
+                     document.getElementById("mailBody").innerHTML = mailbody;
+                 } else {
+                     document.caPopup.check_firstLinesOfBody.checked = true;
+                 }
+             }
+ 
+             // Change batch check checkboxes state
             document.caPopup.batchCheck_yourDomains.disabled = !prefs["CA_IS_BATCH_CHECK_MYDOMAIN"];
             document.caPopup.batchCheck_otherDomains.disabled = !prefs["CA_IS_BATCH_CHECK_OTHERDOMAIN"];
 

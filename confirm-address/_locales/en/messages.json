@@ -34,6 +34,9 @@
     "caDialogOtherdomainTooltip": {
         "message": "Click to select/deselect all addresses from other domains"
     },
+    "caDialogFirstLinesOfBody": {
+        "message": "The first few lines of the mail body"
+    },
     "caDialogCheck": {
         "message": "Check!"
     },
@@ -76,6 +79,12 @@
     },
     "caSettingChkNotdisplay": {
         "message": "Don't show confirmation dialog when all recipients are within my domains"
+    },
+    "caSettingChkShowBody":{
+        "message": "Confirm the first few lines of the mail body:"
+    },
+    "caSettingShowBodyLines":{
+        "message": "line(s)"
     },
     "caSettingChkCountdown": {
         "message": "Countdown before sending mail:"
