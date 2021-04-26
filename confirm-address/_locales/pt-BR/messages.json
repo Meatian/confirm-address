@@ -37,6 +37,9 @@
     "caDialogFirstLinesOfBody": {
         "message": "Primeiro algumas linhas do corpo da mensagem"
     },
+    "caDialogConfirmAttachments": {
+        "message": "Attached Filename"
+    },
     "caDialogCheck": {
         "message": "Confirme!"
     },
@@ -103,6 +106,9 @@
     },
     "caSettingChkConfirmreplyto": {
         "message": "Confirme os endereços de resposta antes de enviar"
+    },
+    "caSettingChkConfirmAttachments": {
+        "message": "Confirme os nomes dos arquivos em anexo antes de enviar"
     },
     "caSettingChkMydomain": {
         "message": "Ativar o botao Todos os Cheques do seu dominio"

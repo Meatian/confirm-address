@@ -34,6 +34,9 @@
     "caDialogFirstLinesOfBody": {
         "message": "メール本文の冒頭数行"
     },
+    "caDialogConfirmAttachments": {
+        "message": "添付ファイル名"
+    },
     "caDialogOtherdomainTooltip": {
         "message": "クリックすると組織外へのメールをすべて選択または選択解除します"
     },
@@ -103,6 +106,9 @@
     },
     "caSettingChkConfirmreplyto": {
         "message": "Reply-To アドレスを確認ダイアログに表示する"
+    },
+    "caSettingChkConfirmAttachments": {
+        "message": "添付ファイル名を確認ダイアログに表示する"
     },
     "caSettingChkMydomain": {
         "message": "自ドメインの一括チェックボタンを有効にする"

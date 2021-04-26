@@ -60,6 +60,11 @@ async function loadPrefs() {
 	showBodyLinesBox.value = prefs[prop] ? prefs[prop] : "";
 
 	// init checkbox [confrim Reply-To address before sending]
+	prop = "CA_CONFIRM_ATTACHMENTS";
+	var attachmentBox = document.getElementById("confirm-attachments");
+	attachmentBox.checked = prefs[prop] ? prefs[prop] : false;
+
+	// init checkbox [confrim Reply-To address before sending]
 	prop = "CA_IS_CONFIRM_REPLY_TO";
 	var replyBox = document.getElementById("confirm-reply-to");
 	replyBox.checked = prefs[prop] ? prefs[prop] : false;
@@ -80,12 +85,13 @@ function setEventListener() {
 	document.ca_form.edit.addEventListener("click", (event) => { editItem() });
 	document.ca_form.remove.addEventListener("click", (event) => { removeItem() });
 
-	// ドメイン指定以外のオートセーブイベント
+	// Set Autosave Events outside of the Domain Settings
 	document.getElementById("not-display").addEventListener("change", (event) => { autoSave() });
 	document.getElementById("countdown").addEventListener("change", (event) => { autoSave() });
 	document.getElementById("countdown-time").addEventListener("blur", (event) => { autoSave() });
 	document.getElementById("show-body").addEventListener("change", (event) => { autoSave() });
 	document.getElementById("show-body-lines").addEventListener("blur", (event) => { autoSave() });
+	document.getElementById("confirm-attachments").addEventListener("change", (event) => { autoSave() });	
 	document.getElementById("confirm-reply-to").addEventListener("change", (event) => { autoSave() });
 	document.getElementById("batchcheck-mydomain").addEventListener("change", (event) => { autoSave() });
 	document.getElementById("batchcheck-otherdomain").addEventListener("change", (event) => { autoSave() });
@@ -161,6 +167,7 @@ async function autoSave() {
 		CA_COUNT_DOWN_TIME: chk['cdTime'],
 		CA_SHOW_BODY: chk['isShowBody'],
 		CA_SHOW_BODY_LINES: chk['sbLines'],
+		CA_CONFIRM_ATTACHMENTS: chk['attachments'],
 		CA_IS_CONFIRM_REPLY_TO: chk['replyTo'],
 		CA_IS_BATCH_CHECK_MYDOMAIN: chk['batchCheck_my'],
 		CA_IS_BATCH_CHECK_OTHERDOMAIN: chk['batchCheck_other']
@@ -190,6 +197,7 @@ async function fetchCheckboxStates() {
 		cdTime: document.getElementById("countdown-time").value,
 		isShowBody: document.getElementById("show-body").checked,
 		sbLines: document.getElementById("show-body-lines").value,
+		attachments: document.getElementById("confirm-attachments").checked,
 		replyTo: document.getElementById("confirm-reply-to").checked,
 		batchCheck_my: document.getElementById("batchcheck-mydomain").checked,
 		batchCheck_other: document.getElementById("batchcheck-otherdomain").checked

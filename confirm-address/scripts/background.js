@@ -6,6 +6,7 @@ var default_prefs = {
     CA_COUNT_DOWN_TIME: 5,
     CA_SHOW_BODY: false,
     CA_SHOW_BODY_LINES: 3,
+    CA_CONFIRM_ATTACHMENTS: false,
     CA_IS_CONFIRM_REPLY_TO: false,
     CA_IS_BATCH_CHECK_MYDOMAIN: false,
     CA_IS_BATCH_CHECK_OTHERDOMAIN: false
@@ -48,12 +49,15 @@ browser.runtime.onMessage.addListener(async message => {
             var recipients = [];
             await collectAddress(message.tabId, recipients);
             var mailbody = await getMailBody(message.tabId);
+            var attachments = [];
+            await getAttachments(message.tabId, attachments);
             let inSendSession = promiseMap.get(message.tabId) ? true : false;
             //console.dir(recipients);
             browser.runtime.sendMessage({
                 message: "SEND_RECIPIENTS",
                 recipients: recipients,
                 mailbody: mailbody,
+                attachments: attachments,
                 prefs: prefs,
                 session: inSendSession
             });
@@ -80,6 +84,18 @@ browser.runtime.onMessage.addListener(async message => {
            break;
     }
 });
+
+async function getAttachments(tabId, attachments){
+    if (tabId == null){
+        return;
+    }
+
+    var atts = await browser.compose.listAttachments(tabId);
+    //console.dir(atts);
+    for(var item in atts){
+        attachments.push({name: atts[item].name});
+    }
+}
  
 async function getMailBody(tabId){
     if (tabId == null) {
@@ -87,14 +103,18 @@ async function getMailBody(tabId){
     }
 
     let details = await browser.compose.getComposeDetails(tabId);
-    var htmlbody = details.body; //テキストメールでもHTML!
+    //Even when composing plain text mail, it outputs as HTML!
+    var htmlbody = details.body;
 
     const parser = new DOMParser();
     var doc = parser.parseFromString(htmlbody, 'text/html');
     var htmlbody = doc.getElementsByTagName("body")[0].innerHTML;
 
-    var bodyLines = Number(prefs['CA_SHOW_BODY_LINES']);
     var splitedBody = htmlbody.split("<br>");
+    var bodyLines = Number(prefs['CA_SHOW_BODY_LINES']);
+    if(splitedBody.length < bodyLines){
+        bodyLines = splitedBody.length;
+    }
     var mailbody = "";
     
     for (var i=0; i<bodyLines; i++){

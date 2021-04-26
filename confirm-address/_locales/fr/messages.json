@@ -37,6 +37,9 @@
     "caDialogFirstLinesOfBody": {
         "message": "Les premières lignes du corps de l'e-mail"
     },
+    "caDialogConfirmAttachments": {
+        "message": "Attached Filename"
+    },
     "caDialogCheck": {
         "message": "Vérfifier!"
     },
@@ -103,6 +106,9 @@
     },
     "caSettingChkConfirmreplyto": {
         "message": "Confirmez les adresses 'Reply-To' avant d'envoyer"
+    },
+    "caSettingChkConfirmAttachments": {
+        "message": "Confirmez les noms des fichiers joints avant l'envoi"
     },
     "caSettingChkMydomain": {
         "message": "Activez le bouton 'Check all' pour vos domaines"

@@ -4,7 +4,10 @@ DUMP = false;
  * ドメインリストが空なら全員部外者
  */
 function testJudge_domainListIsNull() {
-	addressList = new Array({ address: "aaa@me.com" }, { address: "bbb@me.com" });
+	addressList = new Array(
+		{ address: "aaa@me.com" }, 
+		{ address: "bbb@me.com" }
+		);
 	domainList = new Array();
 	insiders = new Array();
 	outsiders = new Array();
@@ -17,7 +20,10 @@ function testJudge_domainListIsNull() {
  * 同僚だけ
  */
 function testJudge_onlyInSiders() {
-	addressList = new Array({ address: "aaa@me.com" }, { address: "bbb@me.com" });
+	addressList = new Array(
+		{ address: "aaa@me.com" }, 
+		{ address: "bbb@me.com" }
+		);
 	domainList = new Array("me.com");
 	insiders = new Array();
 	outsiders = new Array();
@@ -30,7 +36,10 @@ function testJudge_onlyInSiders() {
  * 部外者だけ
  */
 function testJudge_onlyOutSiders() {
-	addressList = new Array({ address: "aaa@out.com" }, { address: "bbb@out.com" });
+	addressList = new Array(
+		{ address: "aaa@out.com" }, 
+		{ address: "bbb@out.com" }
+		);
 	domainList = new Array("me.com");
 	insiders = new Array();
 	outsiders = new Array();
@@ -43,7 +52,12 @@ function testJudge_onlyOutSiders() {
  * 部外者、同僚いりまじり
  */
 function testJudge_InOutSiders() {
-	addressList = new Array({ address: "zzz@me.com" }, { address: "aaa@out.com" }, { address: "bbb@out.com" }, { address: "ccc@me.com" });
+	addressList = new Array(
+		{ address: "zzz@me.com" }, 
+		{ address: "aaa@out.com" }, 
+		{ address: "bbb@out.com" }, 
+		{ address: "ccc@me.com" }
+		);
 	domainList = new Array("me.com");
 	insiders = new Array();
 	outsiders = new Array();
@@ -70,7 +84,10 @@ function testJudge_UpperCase() {
  * 場合に、ただしくそのアドレスを組織外として認識するか
  */
 function testJudge_OutSiderNameLooksLikeInSiderDomainName() {
-	addressList = new Array({ address: "me.com@outsider.com" }, { address: "bbb@me.com" });
+	addressList = new Array(
+		{ address: "me.com@outsider.com" }, 
+		{ address: "bbb@me.com" }
+		);
 	domainList = new Array("me.com");
 	insiders = new Array();
 	outsiders = new Array();
@@ -86,7 +103,7 @@ function testGetDomainList() {
 	var prefs = {
 		CA_DOMAIN_LIST: "gmail.com,me.com"
 	}
-	list = prefs["CA_DOMAIN_LIST"].split(",");
+	list = getDomainList(prefs["CA_DOMAIN_LIST"]);
 	assertEquals(2, list.length);
 }
 
