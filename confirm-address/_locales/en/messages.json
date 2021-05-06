@@ -107,9 +107,6 @@
     "caSettingChkConfirmreplyto": {
         "message": "Confirm 'Reply-To' addresses before sending"
     },
-    "caSettingChkConfirmAttachments": {
-        "message": "Confirm the attachment file name(s) before sending"
-    },
     "caSettingChkMydomain": {
         "message": "Enable 'Check all' button for your domains"
     },

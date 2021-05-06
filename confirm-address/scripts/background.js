@@ -6,7 +6,6 @@ var default_prefs = {
     CA_COUNT_DOWN_TIME: 5,
     CA_SHOW_BODY: false,
     CA_SHOW_BODY_LINES: 3,
-    CA_CONFIRM_ATTACHMENTS: false,
     CA_IS_CONFIRM_REPLY_TO: false,
     CA_IS_BATCH_CHECK_MYDOMAIN: false,
     CA_IS_BATCH_CHECK_OTHERDOMAIN: false

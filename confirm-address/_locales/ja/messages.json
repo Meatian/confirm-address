@@ -107,9 +107,6 @@
     "caSettingChkConfirmreplyto": {
         "message": "Reply-To アドレスを確認ダイアログに表示する"
     },
-    "caSettingChkConfirmAttachments": {
-        "message": "添付ファイル名を確認ダイアログに表示する"
-    },
     "caSettingChkMydomain": {
         "message": "自ドメインの一括チェックボタンを有効にする"
     },

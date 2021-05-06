@@ -60,11 +60,6 @@ async function loadPrefs() {
 	showBodyLinesBox.value = prefs[prop] ? prefs[prop] : "";
 
 	// init checkbox [confrim Reply-To address before sending]
-	prop = "CA_CONFIRM_ATTACHMENTS";
-	var attachmentBox = document.getElementById("confirm-attachments");
-	attachmentBox.checked = prefs[prop] ? prefs[prop] : false;
-
-	// init checkbox [confrim Reply-To address before sending]
 	prop = "CA_IS_CONFIRM_REPLY_TO";
 	var replyBox = document.getElementById("confirm-reply-to");
 	replyBox.checked = prefs[prop] ? prefs[prop] : false;

@@ -107,9 +107,6 @@
     "caSettingChkConfirmreplyto": {
         "message": "'Antwort an' Adressen vor dem Senden bestätigen"
     },
-    "caSettingChkConfirmAttachments": {
-        "message": "Bestätigen Sie den Namen der Anhangsdatei(en) vor dem Senden"
-    },
     "caSettingChkMydomain": {
         "message": "Aktiviere Schaltfläche zum Abhaken aller Adressen meiner Domains"
     },

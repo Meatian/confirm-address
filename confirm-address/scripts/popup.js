@@ -195,8 +195,7 @@ browser.runtime.onMessage.addListener(async (message) => {
                     document.caPopup.check_firstLinesOfBody.checked = true;
                 }
 
-                var isConfirmAttachments = prefs["CA_CONFIRM_ATTACHMENTS"];
-                if(isConfirmAttachments){
+                if(attachments.length >= 1){
                     document.getElementById("confirmAttachments").style = "display:block;";
                     pushArgs = {
                         targetId: "Attachments",
