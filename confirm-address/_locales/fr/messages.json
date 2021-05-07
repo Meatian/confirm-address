@@ -38,7 +38,7 @@
         "message": "Les premières lignes du corps de l'e-mail"
     },
     "caDialogConfirmAttachments": {
-        "message": "Attached Filename"
+        "message": "Nom de fichier attaché"
     },
     "caDialogCheck": {
         "message": "Vérfifier!"

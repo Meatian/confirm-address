@@ -35,7 +35,7 @@
         "message": "Die ersten paar Zeilen aus dem Postkörper"
     },
     "caDialogConfirmAttachments": {
-        "message": "Attached Filename"
+        "message": "Angehängter Dateiname"
     },
     "caDialogCheck": {
         "message": "Prüfen!"
