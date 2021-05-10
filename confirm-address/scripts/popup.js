@@ -9,8 +9,13 @@ function init() {
         checkAllChecked();
     });
     document.caPopup.batchCheck_otherDomains.addEventListener("change", (event) => {
-        var state = document.caPopup.batchCheck_otherDomains.checked
+        var state = document.caPopup.batchCheck_otherDomains.checked;
         batchCheck("otherDomainAddresses", state);
+        checkAllChecked();
+    });
+    document.caPopup.batchCheck_Attachments.addEventListener("change", (event) => {
+        var state = document.caPopup.batchCheck_Attachments.checked;
+        batchCheck("Attachments", state);
         checkAllChecked();
     });
     document.caPopup.check_firstLinesOfBody.addEventListener("change", (event) => {
@@ -42,42 +47,54 @@ function batchCheck(targetId, val) {
 
 function checkAllChecked() {
     //console.log("checkAllChecked() fired.");
-    var internalComplete = true;
-    externalComplete = true;
-    var externalComplete = true;
-    var mailHeadComfirmed = true;
+    var internalConfirmed = true;
+    var externalConfirmed = true;
+    var mailHeadConfirmed = true;
+    var attachmentsConfirmed = true;
 
     //Confirm my domain check states
     var yourdomains = document.getElementById("yourDomainAddresses"),
         yd_checkboxes = yourdomains.getElementsByTagName("input");
-    if (0 < yd_checkboxes.length) {
-        for (var i = 0, ylen = yd_checkboxes.length; i < ylen; i++) {
-            if (!yd_checkboxes[i].checked) {
-                internalComplete = false;
+        if (0 < yd_checkboxes.length) {
+            for (var i = 0, ylen = yd_checkboxes.length; i < ylen; i++) {
+                if (!yd_checkboxes[i].checked) {
+                    internalConfirmed = false;
+                }
             }
+            //When my domain checkboxes all checked, "all select" checkbox state turns on.
+            document.caPopup.batchCheck_yourDomains.checked = internalConfirmed;
         }
-        //When my domain checkboxes all checked, "all select" checkbox state turns on.
-        document.caPopup.batchCheck_yourDomains.checked = internalComplete;
-    }
-
+    
     //Confirm other domain check states
     var otherdomains = document.getElementById("otherDomainAddresses"),
         od_checkboxes = otherdomains.getElementsByTagName("input");
     if (0 < od_checkboxes.length) {
         for (var j = 0, len = od_checkboxes.length; j < len; j++) {
             if (!od_checkboxes[j].checked) {
-                externalComplete = false;
+                externalConfirmed = false;
             }
-         }
-         document.caPopup.batchCheck_otherDomains.checked = externalComplete;
-     }
-
+        }
+        document.caPopup.batchCheck_otherDomains.checked = externalConfirmed;
+    }
+    
     //Confirm first mail body states
-    mailHeadComfirmed = document.caPopup.check_firstLinesOfBody.checked;
+    mailHeadConfirmed = document.caPopup.check_firstLinesOfBody.checked;
+
+    //Confirm Attachments
+    var attachments = document.getElementById("Attachments"),
+        att_checkboxes = attachments.getElementsByTagName("input");
+    if(0 < att_checkboxes.length){
+        for (var k = 0, len=att_checkboxes.length; k<len; k++){
+            if(!att_checkboxes[k].checked){
+                attachmentsConfirmed = false;
+            }
+        }
+        document.caPopup.batchCheck_Attachments.checked = attachmentsConfirmed;
+    }
 
     //Switch disable state to Send button
     var okBtn = document.caPopup.btn_send;
-    okBtn.disabled = !(internalComplete && externalComplete && mailHeadComfirmed);
+    okBtn.disabled = !(internalConfirmed && externalConfirmed && mailHeadConfirmed && attachmentsConfirmed);
 }
 
 async function requestRecipients() {
@@ -136,12 +153,13 @@ async function sendResult(confirmed) {
 browser.runtime.onMessage.addListener(async (message) => {
      switch (message.message) {
          case "SEND_RECIPIENTS":
-             recipients = message.recipients;
-             mailbody = message.mailbody;
-             console.log(mailbody);
-             prefs = message.prefs;
+            recipients = message.recipients;
+            mailbody = message.mailbody;
+            //console.log(mailbody);
+            attachments = message.attachments;
+            var prefs = message.prefs;
  
-             var domainList = getDomainList(prefs["CA_DOMAIN_LIST"]);
+            var domainList = getDomainList(prefs["CA_DOMAIN_LIST"]);
 
             var internalList = [];
             var externalList = [];
@@ -154,22 +172,44 @@ browser.runtime.onMessage.addListener(async (message) => {
             } else {
                 document.getElementById("DialogMessage").style = "display:block;";
                 document.getElementById("yourDomains").style = "display:block;";
-                 document.getElementById("otherDomains").style = "display:block;";
-                 await pushToList("yourDomainAddresses", internalList);
-                 await pushToList("otherDomainAddresses", externalList);
+                document.getElementById("otherDomains").style = "display:block;";
+                var pushArgs = {
+                    targetId: "yourDomainAddresses",
+                    listType: "Addresses",
+                    pushingList: internalList
+                };
+                pushToList(pushArgs);
+                
+                pushArgs = {
+                    targetId: "otherDomainAddresses",
+                    listType: "Addresses",
+                    pushingList: externalList
+                };
+                pushToList(pushArgs);
 
-                 var isShowBody = prefs["CA_SHOW_BODY"];
-                 if(isShowBody){
-                     document.getElementById("firstLinesofBody").style = "display:block;";
-                     document.getElementById("mailBody").innerHTML = mailbody;
-                 } else {
-                     document.caPopup.check_firstLinesOfBody.checked = true;
-                 }
-             }
+                var isShowBody = prefs["CA_SHOW_BODY"];
+                if(isShowBody){
+                    document.getElementById("firstLinesofBody").style = "display:block;";
+                    document.getElementById("mailBody").innerHTML = mailbody;
+                } else {
+                    document.caPopup.check_firstLinesOfBody.checked = true;
+                }
+
+                if(attachments.length >= 1){
+                    document.getElementById("confirmAttachments").style = "display:block;";
+                    pushArgs = {
+                        targetId: "Attachments",
+                        listType: "Attachments",
+                        pushingList: attachments
+                    };
+                    pushToList(pushArgs);    
+                }
+            }
  
              // Change batch check checkboxes state
             document.caPopup.batchCheck_yourDomains.disabled = !prefs["CA_IS_BATCH_CHECK_MYDOMAIN"];
             document.caPopup.batchCheck_otherDomains.disabled = !prefs["CA_IS_BATCH_CHECK_OTHERDOMAIN"];
+            document.caPopup.batchCheck_Attachments.disabled = !prefs["CA_IS_BATCH_CHECK_ATTACHMENT"];
 
             break;
         default:
@@ -220,21 +260,40 @@ async function judge(addressArray, domainList, yourDomainAddress, otherDomainAdd
     }
 }
 
-async function pushToList(targetId, AddressList) {
-    var targetDiv = document.getElementById(targetId);
-    for (var i = 0; i < AddressList.length; i++) {
-        var chkbox = document.createElement("input");
-        chkbox.setAttribute("type", "checkbox");
-        chkbox.setAttribute("id", Math.random());
-        chkbox.addEventListener("change", (event) => {
-            checkAllChecked();
-        });
-        var label = document.createElement("label");
-        label.appendChild(chkbox);
-        label.appendChild(document.createTextNode(AddressList[i].type + AddressList[i].address));
-        targetDiv.appendChild(label);
-        targetDiv.appendChild(document.createElement("br"));
+function pushToList(args) {
+    /*
+    args:
+    {
+        targetId: "divfoo",
+        listType: "Addresses" or "Attachments",
+        pushingList: []
     }
+    */
+   //console.dir(args);
+   var targetDiv = document.getElementById(args.targetId);
+   var pushTxtNode;
+
+   for (var i = 0; i < args.pushingList.length; i++) {
+       switch(args.listType){
+           case "Addresses":
+               pushTxtNode = args.pushingList[i].type + args.pushingList[i].address;
+               break;
+           case "Attachments":
+               pushTxtNode = args.pushingList[i].name;
+               break;
+       }
+       var chkbox = document.createElement("input");
+       chkbox.setAttribute("type", "checkbox");
+       chkbox.setAttribute("id", Math.random());
+       chkbox.addEventListener("change", (event) => {
+           checkAllChecked();
+       });
+       var label = document.createElement("label");
+       label.appendChild(chkbox);
+       label.appendChild(document.createTextNode(pushTxtNode));
+       targetDiv.appendChild(label);
+       targetDiv.appendChild(document.createElement("br"));
+   }
 }
 
 init();

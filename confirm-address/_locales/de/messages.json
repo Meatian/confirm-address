@@ -34,6 +34,9 @@
     "caDialogFirstLinesOfBody": {
         "message": "Die ersten paar Zeilen aus dem Postkörper"
     },
+    "caDialogConfirmAttachments": {
+        "message": "Angehängter Dateiname"
+    },
     "caDialogCheck": {
         "message": "Prüfen!"
     },
@@ -109,5 +112,8 @@
     },
     "caSettingChkOtherdomain": {
         "message": "Aktiviere Schaltfläche zum Abhaken aller Adressen anderer Domains"
+    },
+    "caSettingChkAttachment":{
+        "message": "Aktiviere Schaltfläche zum Abhaken aller angehängte Dateien"
     }
 }
