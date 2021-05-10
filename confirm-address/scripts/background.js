@@ -8,7 +8,8 @@ var default_prefs = {
     CA_SHOW_BODY_LINES: 3,
     CA_IS_CONFIRM_REPLY_TO: false,
     CA_IS_BATCH_CHECK_MYDOMAIN: false,
-    CA_IS_BATCH_CHECK_OTHERDOMAIN: false
+    CA_IS_BATCH_CHECK_OTHERDOMAIN: false,
+    CA_IS_BATCH_CHECK_ATTACHMENT: false
 };
 var promiseMap = new Map();
 

@@ -112,5 +112,8 @@
     },
     "caSettingChkOtherdomain": {
         "message": "他ドメインの一括チェックボタンを有効にする"
+    },
+    "caSettingChkAttachment":{
+        "message": "添付ファイル名の一括チェックボタンを有効にする"
     }
 }

@@ -73,6 +73,11 @@ async function loadPrefs() {
 	prop = "CA_IS_BATCH_CHECK_OTHERDOMAIN";
 	var batchCheckBoxother = document.getElementById("batchcheck-otherdomain");
 	batchCheckBoxother.checked = prefs[prop] ? prefs[prop] : false;
+
+	// init checkbox [confirm batch-check attachments]
+	prop = "CA_IS_BATCH_CHECK_ATTACHMENT";
+	var batchCheckBoxAttach = document.getElementById("batchcheck-attachment");
+	batchCheckBoxAttach.checked = prefs[prop] ? prefs[prop] : false;
 }
 
 function setEventListener() {
@@ -86,10 +91,10 @@ function setEventListener() {
 	document.getElementById("countdown-time").addEventListener("blur", (event) => { autoSave() });
 	document.getElementById("show-body").addEventListener("change", (event) => { autoSave() });
 	document.getElementById("show-body-lines").addEventListener("blur", (event) => { autoSave() });
-	document.getElementById("confirm-attachments").addEventListener("change", (event) => { autoSave() });	
 	document.getElementById("confirm-reply-to").addEventListener("change", (event) => { autoSave() });
 	document.getElementById("batchcheck-mydomain").addEventListener("change", (event) => { autoSave() });
 	document.getElementById("batchcheck-otherdomain").addEventListener("change", (event) => { autoSave() });
+	document.getElementById("batchcheck-attachment").addEventListener("change", (event) => { autoSave() });	
 }
 
 function addItem() {
@@ -162,10 +167,10 @@ async function autoSave() {
 		CA_COUNT_DOWN_TIME: chk['cdTime'],
 		CA_SHOW_BODY: chk['isShowBody'],
 		CA_SHOW_BODY_LINES: chk['sbLines'],
-		CA_CONFIRM_ATTACHMENTS: chk['attachments'],
 		CA_IS_CONFIRM_REPLY_TO: chk['replyTo'],
 		CA_IS_BATCH_CHECK_MYDOMAIN: chk['batchCheck_my'],
-		CA_IS_BATCH_CHECK_OTHERDOMAIN: chk['batchCheck_other']
+		CA_IS_BATCH_CHECK_OTHERDOMAIN: chk['batchCheck_other'],
+		CA_IS_BATCH_CHECK_ATTACHMENT: chk['attachments']
 	});
 
 	//console.log("autoSave() done.\n");
@@ -192,10 +197,10 @@ async function fetchCheckboxStates() {
 		cdTime: document.getElementById("countdown-time").value,
 		isShowBody: document.getElementById("show-body").checked,
 		sbLines: document.getElementById("show-body-lines").value,
-		attachments: document.getElementById("confirm-attachments").checked,
 		replyTo: document.getElementById("confirm-reply-to").checked,
 		batchCheck_my: document.getElementById("batchcheck-mydomain").checked,
-		batchCheck_other: document.getElementById("batchcheck-otherdomain").checked
+		batchCheck_other: document.getElementById("batchcheck-otherdomain").checked,
+		attachments: document.getElementById("batchcheck-attachment").checked
 	};
 
 	return CheckboxStates;

@@ -8,7 +8,7 @@
   "applications": {
     "gecko": {
       "id": "confirm-address@kenmaz.net",
-      "strict_min_version": "78.4"
+      "strict_min_version": "78.0S"
     }
   },
   "icons": {

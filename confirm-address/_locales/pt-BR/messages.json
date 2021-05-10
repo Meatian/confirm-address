@@ -112,5 +112,8 @@
     },
     "caSettingChkOtherdomain": {
         "message": "Ativar o botao Todos os Cheques para outros dominios"
+    },
+    "caSettingChkAttachment":{
+        "message": "Ativar o botao Todos os Cheques para arquivos anexos"
     }
 }

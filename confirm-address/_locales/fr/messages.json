@@ -112,5 +112,8 @@
     },
     "caSettingChkOtherdomain": {
         "message": "Activez le bouton 'Check all' pour vos autres domaines"
+    },
+    "caSettingChkAttachment":{
+        "message": "Activez le bouton 'Check All' pour les fichiers joints"
     }
 }

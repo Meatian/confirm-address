@@ -13,12 +13,12 @@ function init() {
         batchCheck("otherDomainAddresses", state);
         checkAllChecked();
     });
-    document.caPopup.check_firstLinesOfBody.addEventListener("change", (event) => {
+    document.caPopup.batchCheck_Attachments.addEventListener("change", (event) => {
+        var state = document.caPopup.batchCheck_Attachments.checked;
+        batchCheck("Attachments", state);
         checkAllChecked();
     });
-    document.caPopup.batchCheck_confirmAttachments.addEventListener("change", (event)=>{
-        var state = document.caPopup.batchCheck_confirmAttachments.checked;
-        batchCheck("Attachments", state);
+    document.caPopup.check_firstLinesOfBody.addEventListener("change", (event) => {
         checkAllChecked();
     });
     document.caPopup.btn_send.addEventListener("click", (event) => {
@@ -89,7 +89,7 @@ function checkAllChecked() {
                 attachmentsConfirmed = false;
             }
         }
-        document.caPopup.batchCheck_confirmAttachments.checked = attachmentsConfirmed;
+        document.caPopup.batchCheck_Attachments.checked = attachmentsConfirmed;
     }
 
     //Switch disable state to Send button
@@ -209,6 +209,7 @@ browser.runtime.onMessage.addListener(async (message) => {
              // Change batch check checkboxes state
             document.caPopup.batchCheck_yourDomains.disabled = !prefs["CA_IS_BATCH_CHECK_MYDOMAIN"];
             document.caPopup.batchCheck_otherDomains.disabled = !prefs["CA_IS_BATCH_CHECK_OTHERDOMAIN"];
+            document.caPopup.batchCheck_Attachments.disabled = !prefs["CA_IS_BATCH_CHECK_ATTACHMENT"];
 
             break;
         default:
