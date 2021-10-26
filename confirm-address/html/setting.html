@@ -19,6 +19,13 @@
                 <label l10n-tag="caSettingYourDomain" for="domain_list"></label><br />
                 <select size="5" style="width: 420px" class="indent bgInputbox" id="group-list"></select>
             </div>
+            <div id="domainInputField" style="display: none" class="indent">
+                <label l10n-tag="caSettingDomainMessage"></label><br />
+                <input type="text" style="width: 360px" id="domaintxt" class="bgInputbox"><br/>
+                <input type="button" style="width: 80px" id="domainOK" value="OK">
+                <input type="button" style="width: 80px" id="domainClose" l10n-val-tag="caDialogCancelbtn">
+                <input type="hidden" id="selectedIndex">
+            </div>
             <div>
                 <input type="button" style="width: 120px" l10n-val-tag="caSettingAdd" id="add">
                 <input type="button" style="width: 120px" l10n-val-tag="caSettingEdit" id="edit">
@@ -41,7 +48,7 @@
             <div>
                 <input type="checkbox" id="show-body">
                 <label l10n-tag="caSettingChkShowBody" for="show-body"></label>
-                <input type="text" id="show-body-lines">
+                <input type="text" id="show-body-lines" class="bgInputbox">
                 <label l10n-tag="caSettingShowBodyLines" for="show-body-lines"></label>
             </div>
 
