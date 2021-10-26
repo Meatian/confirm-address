@@ -81,27 +81,65 @@ async function loadPrefs() {
 }
 
 function setEventListener() {
-	document.ca_form.add.addEventListener("click", (event) => { addItem() });
-	document.ca_form.edit.addEventListener("click", (event) => { editItem() });
-	document.ca_form.remove.addEventListener("click", (event) => { removeItem() });
+	document.ca_form.add.addEventListener("click", 
+	(event) => {addItem()});
+	document.ca_form.edit.addEventListener("click", 
+	(event) => {editItem()});
+	document.ca_form.remove.addEventListener("click", 
+	(event) => {removeItem()});
 
-	// Set Autosave Events outside of the Domain Settings
-	document.getElementById("not-display").addEventListener("change", (event) => { autoSave() });
-	document.getElementById("countdown").addEventListener("change", (event) => { autoSave() });
-	document.getElementById("countdown-time").addEventListener("blur", (event) => { autoSave() });
-	document.getElementById("show-body").addEventListener("change", (event) => { autoSave() });
-	document.getElementById("show-body-lines").addEventListener("blur", (event) => { autoSave() });
-	document.getElementById("confirm-reply-to").addEventListener("change", (event) => { autoSave() });
-	document.getElementById("batchcheck-mydomain").addEventListener("change", (event) => { autoSave() });
-	document.getElementById("batchcheck-otherdomain").addEventListener("change", (event) => { autoSave() });
+	document.ca_form.domainOK.addEventListener("click",
+	(event)=>{editDomainList();});
+	document.ca_form.domainClose.addEventListener("click",
+	(event)=>{closeDomainInputField()});
+
+// Set Autosave Events outside of the Domain Settings
+	document.getElementById("not-display").addEventListener("change", 
+	(event) => { autoSave() });
+	document.getElementById("countdown").addEventListener("change", 
+	(event) => { autoSave() });
+	document.getElementById("countdown-time").addEventListener("blur", 
+	(event) => { autoSave() });
+	document.getElementById("show-body").addEventListener("change", 
+	(event) => { autoSave() });
+	document.getElementById("show-body-lines").addEventListener("blur", 
+	(event) => { autoSave() });
+	document.getElementById("confirm-reply-to").addEventListener("change", 
+	(event) => { autoSave() });
+	document.getElementById("batchcheck-mydomain").addEventListener("change", 
+	(event) => { autoSave() });
+	document.getElementById("batchcheck-otherdomain").addEventListener("change", 
+	(event) => { autoSave() });
 	document.getElementById("batchcheck-attachment").addEventListener("change", (event) => { autoSave() });	
 }
 
-function addItem() {
-	var promptMessage = browser.i18n.getMessage("caSettingDomainMessage");
-	var param = window.prompt(promptMessage, "")
-	if (param) {
-		var domainName = param;
+
+function openDomainInputField() {
+	var dif = document.getElementById("domainInputField");
+	var difs = dif.style;
+	if(difs.display == "none"){
+		difs.display = "block";
+	}
+}
+
+function closeDomainInputField(){
+	document.ca_form.domaintxt.value = "";
+	document.ca_form.selectedIndex.value = "";
+
+	var dif = document.getElementById("domainInputField");
+	var difs = dif.style;
+	difs.display = "none";
+}
+
+function editDomainList(){
+	var param = {
+		"domain": document.ca_form.domaintxt.value,
+		"selectedIndex": document.ca_form.selectedIndex.value
+	};
+
+	if (param && param['selectedIndex'] == "") {
+		// Handle as add mode:
+		var domainName = param['domain'];
 		if (domainName.length > 0) {
 			//console.log("[ADD] " + domainName + "\n");
 			var groupList = document.getElementById("group-list");
@@ -111,28 +149,36 @@ function addItem() {
 			groupList.add(option);
 			autoSave();
 		}
+	} else {
+		// Handle as edit mode:
+		if (param) {
+		var domainName = param['domain'];
+			if (domainName.length > 0) {
+				//console.log("[edit] " + domainName + "\n");
+				var groupList = document.getElementById("group-list");
+				var selectedId = groupList.options[param['selectedIndex']].getAttribute("id");
+				document.getElementById(selectedId).textContent = domainName;
+				autoSave();
+			}
+		}
 	}
+
+	closeDomainInputField();
+}
+
+function addItem() {
+	openDomainInputField();
 }
 
 function editItem() {
-	var groupList = document.getElementById("group-list"),
-		selectedIndex = groupList.selectedIndex;
-	if (selectedIndex === -1) {
+	var groupList = document.getElementById("group-list");
+	if (groupList.selectedIndex === -1) {
 		return;
 	}
+	document.ca_form.selectedIndex.value = groupList.selectedIndex;
+	document.ca_form.domaintxt.value = groupList.value;
 
-	var promptMessage = browser.i18n.getMessage("caSettingDomainMessage");
-	var param = window.prompt(promptMessage, groupList.value)
-
-	if (param) {
-		var domainName = param;
-		if (domainName.length > 0) {
-			console.log("[edit] " + domainName + "\n");
-			var selectedId = groupList.options[selectedIndex].getAttribute("id");
-			document.getElementById(selectedId).textContent = domainName;
-			autoSave();
-		}
-	}
+	openDomainInputField();
 }
 
 function removeItem() {
@@ -148,7 +194,6 @@ function removeItem() {
 
 async function autoSave() {
 	var domainListStr = await fetchDomainListString();
-
 	var chk = await fetchCheckboxStates();
 
 	// Input validate for countdown time
