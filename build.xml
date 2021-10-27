@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="windows-31j"?>
-<project name="build XUL" default="build" basedir=".">
+<?xml version="1.0" encoding="utf-8"?>
+<project name="build xpi" default="build" basedir=".">
 
 	<property file="build.properties"/>
 	
