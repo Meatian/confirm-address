@@ -1,3 +1,7 @@
+# Confirm-Address
+
+Add-on release page on thunderbird.net is here: [en-US](https://addons.thunderbird.net/en-US/thunderbird/addon/confirm-address-5582/) [ja](https://addons.thunderbird.net/ja/thunderbird/addon/confirm-address-5582/)
+
 # How to create the release package
 
 ## Build with [Apache Ant](https://ant.apache.org/)
@@ -23,10 +27,10 @@
 # How to Develop
 
 - Clone source files from GitHub
-- Click [≡] -> [🧩 Add-ons and Themes] -> [⚙️] button, and select [Debug Add-on]
-- Click [一時的なアドオンを読み込む...] and select `confirm-address/manifest.json`
+- Click [≡] -> [🧩 Add-ons and Themes] -> [⚙️] button, and select [Debug Add-ons]
+- Click [Load Temporary Add-on...] and select `confirm-address/manifest.json`
 
-By clicking the [調査] button on Confirm-Address, Tool Box tab will open
+Click [Inspect] button on Confirm-Address to open Toolbox Tab.
 
 - To show "foo" in console, write to js source file like this:  
    `console.log("foo");`
