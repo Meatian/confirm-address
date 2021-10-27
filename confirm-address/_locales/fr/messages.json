@@ -29,7 +29,7 @@
         "message": "Cliquez pour (dé)sélectionner toutes les adresses de votre domaine"
     },
     "caDialogOtherdomain": {
-        "message": "D'autres adresses de domaine"
+        "message": "Adresses d'autres domaines"
     },
     "caDialogOtherdomainTooltip": {
         "message": "Cliquez pour (dé)sélectionner toutes les adresses d'autres domaines"
@@ -41,10 +41,10 @@
         "message": "Nom de fichier attaché"
     },
     "caDialogCheck": {
-        "message": "Vérfifier!"
+        "message": "Vérifier!"
     },
     "caDialogAcceptbtn": {
-        "message": "Emvoyer"
+        "message": "Envoyer"
     },
     "caDialogCancelbtn": {
         "message": "Annuler"
