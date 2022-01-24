@@ -11,17 +11,15 @@
     </head>
     <body>
 
-    <h1>Confirm-Address: Countdown</h1>
-    <p id="noitems" style="display:none">
-        There is no mail to countdown.
-    </p>
+    <h1 l10n-tag="caCountdownTitle"></h1>
+    <p id="noitems" style="display:none" l10n-tag="caCountdownNone"></p>
 
     <!-- Countdown Queue Item Template -->
     <template id="caCDQItem">
         <form>
         <div id="caCD">
             <div class="box_title">
-                <span>Subject: </span><span id="mailSubject"></span>
+                <span l10n-tab="caCountdownSubject"></span>&nbsp;<span id="mailSubject"></span>
             </div>
 
             <div id="countdownMessage" class="box_scrollbar">
@@ -31,7 +29,8 @@
                     <span id="countdown2" l10n-tag="caCountdownMsg2"></span>
                 </p>
                 <p>
-                    <button id="btn_send_now">Send Now</button>&nbsp;<button id="btn_abort">Abort</button>
+                    <button id="btn_send_now" l10n-val-tag="caCountdownSkip"></button>
+                    &nbsp;<button id="btn_abort" l10n-val-tag="caDialogCancelbtn"></button>
                 </p>
             </div>
         </div>

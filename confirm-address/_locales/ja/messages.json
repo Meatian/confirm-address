@@ -49,6 +49,9 @@
     "caDialogCancelbtn": {
         "message": "キャンセル"
     },
+    "caCountdownSubject": {
+        "message": "件名:"
+    },
     "caCountdownTitle": {
         "message": "カウントダウン"
     },
@@ -60,6 +63,9 @@
     },
     "caCountdownSkip": {
         "message": "送信"
+    },
+    "caCountdownNone": {
+       "message": "カウントダウン対象のメールはありません"
     },
     //"setting.html": "*** L10n message ***",
     "caSettingTitle": {

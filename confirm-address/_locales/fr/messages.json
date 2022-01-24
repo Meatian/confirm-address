@@ -49,8 +49,11 @@
     "caDialogCancelbtn": {
         "message": "Annuler"
     },
+    "caCountdownSubject": {
+        "message": "Subject:"
+    },    
     "caCountdownTitle": {
-        "message": "Compte à rebours"
+        "message": "Confirm-Address: Compte à rebours"
     },
     "caCountdownMsg1": {
         "message": "Compte à rebours..."
@@ -60,6 +63,9 @@
     },
     "caCountdownSkip": {
         "message": "Envoyer"
+    },
+    "caCountdownNone": {
+       "message": "Il n'y a pas de courrier à décompter."
     },
     //"setting.html": "*** L10n message ***",
     "caSettingTitle": {
