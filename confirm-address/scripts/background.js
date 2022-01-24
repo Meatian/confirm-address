@@ -13,6 +13,8 @@ var default_prefs = {
 };
 var promiseMap = new Map();
 
+var numCountdown = 0;
+
 async function init() {
     browser.composeAction.disable();
     await loadPrefs();
@@ -48,6 +50,7 @@ browser.runtime.onMessage.addListener(async message => {
             await loadPrefs();
             var recipients = [];
             await collectAddress(message.tabId, recipients);
+            var mailsubject = await getMailSubject(message.tabId);
             var mailbody = await getMailBody(message.tabId);
             var attachments = [];
             await getAttachments(message.tabId, attachments);
@@ -56,6 +59,7 @@ browser.runtime.onMessage.addListener(async message => {
             browser.runtime.sendMessage({
                 message: "SEND_RECIPIENTS",
                 recipients: recipients,
+                mailsubject: mailsubject,
                 mailbody: mailbody,
                 attachments: attachments,
                 prefs: prefs,
@@ -63,7 +67,7 @@ browser.runtime.onMessage.addListener(async message => {
             });
             break;
         case "USER_CHECKED":
-            let resolve = promiseMap.get(message.tabId);
+            var resolve = promiseMap.get(message.tabId);
             if (!resolve) {
                 break;
             }
@@ -80,7 +84,65 @@ browser.runtime.onMessage.addListener(async message => {
                 });
             }
             break;
-       default:
+        case "USER_CHECKED_WITH_COUNTDOWN":
+            var resolve = promiseMap.get(message.tabId);
+            if (!resolve) {
+                break;
+            }
+
+            if (message.confirmed) {
+                browser.composeAction.disable(message.tabId);
+                var limit = prefs["CA_COUNT_DOWN_TIME"];
+                if(numCountdown == 0){
+                    var newDialog = {
+                        type: "detached_panel",
+                        url: "html/countdown.html",
+                        width: 550,
+                        height: 400
+                    };
+                    
+                    browser.windows.create(newDialog);
+                }
+
+                numCountdown++;
+                const ms = 333;
+                setTimeout(() => {
+                    browser.runtime.sendMessage({
+                        message: "START_COUNTDOWN",
+                        mailsubject: message.mailsubject,
+                        tabId: message.tabId,
+                        countdownSec: limit
+                    });  
+                }, ms);
+            } else {
+                browser.composeAction.enable(message.tabId);
+                resolve({
+                    cancel: true // for onBeforeSend event
+                });
+            }
+            break;
+        case "SEND_MAIL_NOW":
+            var resolve = promiseMap.get(message.tabId);
+            if (!resolve) {
+                break;
+            }
+            resolve({
+                cancel: false  
+            });
+            numCountdown--;
+            break;
+        case "ABORT_SEND_MAIL":
+            var resolve = promiseMap.get(message.tabId);
+            if (!resolve) {
+                break;
+            }
+            browser.composeAction.enable(message.tabId);
+            resolve({
+                cancel: true
+            });
+            numCountdown--;
+            break;
+        default:
            break;
     }
 });
@@ -95,6 +157,18 @@ async function getAttachments(tabId, attachments){
     for(var item in atts){
         attachments.push({name: atts[item].name});
     }
+}
+
+async function getMailSubject(tabId){
+    if (tabId == null) {
+        return;
+    }
+
+    let details = await browser.compose.getComposeDetails(tabId);
+    var mailsubject = details.subject;
+
+    //console.log(mailsubject);
+    return mailsubject;
 }
  
 async function getMailBody(tabId){
