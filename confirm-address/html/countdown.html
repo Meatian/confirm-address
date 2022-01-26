@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" media="screen" href="common.css">
+        <title>Confirm-Address: Countdown</title>
+        <style type="text/css">
+        </style>
+        <script src="../scripts/countdown.js" defer></script>
+        <script src="../scripts/l10n.js" defer></script>
+    </head>
+    <body>
+
+    <h1 l10n-tag="caCountdownTitle"></h1>
+    <p id="noitems" style="display:none" l10n-tag="caCountdownNone"></p>
+
+    <!-- Countdown Queue Item Template -->
+    <template id="caCDQItem">
+        <form>
+        <div id="caCD">
+            <div class="box_title">
+                <span l10n-tab="caCountdownSubject"></span>&nbsp;<span id="mailSubject"></span>
+            </div>
+
+            <div id="countdownMessage" class="box_scrollbar">
+                <p>
+                    <span id="countdown1" l10n-tag="caCountdownMsg1"></span>
+                    <span id="counter"></span>&nbsp;
+                    <span id="countdown2" l10n-tag="caCountdownMsg2"></span>
+                </p>
+                <p>
+                    <button id="btn_send_now" l10n-tag="caCountdownSkip"></button>
+                    &nbsp;<button id="btn_abort" l10n-tag="caDialogCancelbtn"></button>
+                </p>
+            </div>
+        </div>
+        </form>
+    </template>
+    
+    <!-- Actual countdown queue item places here -->
+    <div id="caCountdownQueue">
+
+    </div>
+    </body>
+</html>

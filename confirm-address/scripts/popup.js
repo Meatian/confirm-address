@@ -1,5 +1,6 @@
 var recipients = {};
 var prefs = null;
+var mailsubject = null;
 var countdown_running = false;
 
 function init() {
@@ -111,28 +112,7 @@ async function requestRecipients() {
 
 function confirmOK() {
     //console.log("confirmOK() fired.");
-    //console.dir(prefs);
-    var isCountdown = prefs["CA_IS_COUNT_DOWN"];
-    //console.log("isCountdown: " + isCountdown);
-    if (isCountdown) {
-        var countDownTime = prefs["CA_COUNT_DOWN_TIME"];
-
-        var limit = countDownTime;
-        var label = document.getElementById("counter");
-        document.getElementById("countdownArea").style = "display:block";
-        countdown_running = true;
-        label.innerHTML = limit;
-        setInterval(function () {
-            limit--;
-            if (limit < 0) {
-                sendResult(true);
-            } else {
-                label.innerHTML = limit;
-            }
-        }, 1000);
-    } else {
-        sendResult(true);
-    }
+    sendResult(true);
 }
 
 async function sendResult(confirmed) {
@@ -141,11 +121,23 @@ async function sendResult(confirmed) {
         currentWindow: true
     });
     let tabId = tabs[0].id;
-    await browser.runtime.sendMessage({
-        message: "USER_CHECKED",
-        tabId: tabId,
-        confirmed: confirmed
-    });
+    var isCountdown = prefs["CA_IS_COUNT_DOWN"];
+    var countdownTime = prefs["CA_COUNT_DOWN_TIME"];
+    if(isCountdown){
+        await browser.runtime.sendMessage({
+            message: "USER_CHECKED_WITH_COUNTDOWN",
+            tabId: tabId,
+            countdownTime: countdownTime,
+            mailsubject: mailsubject,
+            confirmed: confirmed
+        });
+    } else {
+        await browser.runtime.sendMessage({
+            message: "USER_CHECKED",
+            tabId: tabId,
+            confirmed: confirmed
+        });
+    }
 
     window.close();
 }
@@ -154,10 +146,11 @@ browser.runtime.onMessage.addListener(async (message) => {
      switch (message.message) {
          case "SEND_RECIPIENTS":
             recipients = message.recipients;
-            mailbody = message.mailbody;
+            mailsubject = message.mailsubject;
+            var mailbody = message.mailbody;
             //console.log(mailbody);
             attachments = message.attachments;
-            var prefs = message.prefs;
+            prefs = message.prefs;
  
             var domainList = getDomainList(prefs["CA_DOMAIN_LIST"]);
 

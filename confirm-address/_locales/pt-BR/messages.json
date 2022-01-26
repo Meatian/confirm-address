@@ -49,8 +49,11 @@
     "caDialogCancelbtn": {
         "message": "Cancel"
     },
+    "caCountdownSubject": {
+        "message": "Subject:"
+    },    
     "caCountdownTitle": {
-        "message": "Contagem Regressiva"
+        "message": "Confirm-Address: Contagem Regressiva"
     },
     "caCountdownMsg1": {
         "message": "Contagem Regressiva..."
@@ -60,6 +63,9 @@
     },
     "caCountdownSkip": {
         "message": "Enviar"
+    },
+    "caCountdownNone": {
+       "message": "Não há correio a ser contado."
     },
     //"setting.html": "*** L10n message ***",
     "caSettingTitle": {

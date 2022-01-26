@@ -49,8 +49,11 @@
     "caDialogCancelbtn": {
         "message": "Cancel"
     },
+    "caCountdownSubject": {
+        "message": "Subject:"
+    },
     "caCountdownTitle": {
-        "message": "Countdown"
+        "message": "Confirm-Address: Countdown"
     },
     "caCountdownMsg1": {
         "message": "Countdown..."
@@ -60,6 +63,9 @@
     },
     "caCountdownSkip": {
         "message": "Send"
+    },
+    "caCountdownNone": {
+       "message": "There is no mail to countdown."
     },
     //"setting.html": "*** L10n message ***",
     "caSettingTitle": {
