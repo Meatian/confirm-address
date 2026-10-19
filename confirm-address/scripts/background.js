@@ -28,18 +28,78 @@ async function loadPrefs() {
     //console.dir(prefs);
 }
 
+// Compose tab id -> id of the separate check window (fallback mode).
+var checkWindows = new Map();
+
 browser.compose.onBeforeSend.addListener((tab, details) => {
     let tabId = tab.id;
-    let id = details.identityId;
-
-    browser.composeAction.enable(tabId);
-    browser.composeAction.openPopup();
 
     // Do NOT lose this Promise. Most of the compose window UI will be locked
     // until it is resolved. That's a very good way to annoy users.
-    return new Promise(resolve => {
+    // It is stored before the check UI opens, so the UI always finds it.
+    let promise = new Promise(resolve => {
         promiseMap.set(tabId, resolve);
     });
+    showCheck(tab);
+    return promise;
+});
+
+// Resolve the pending send of a compose tab exactly once.
+function finishSend(tabId, cancel) {
+    let resolve = promiseMap.get(tabId);
+    if (!resolve) {
+        return;
+    }
+    promiseMap.delete(tabId);
+    resolve({ cancel: cancel });
+}
+
+// Open the check UI. Newer Thunderbird versions refuse to open the toolbar
+// popup from onBeforeSend (openPopup returns false or throws), which left the
+// check window closed. Then a separate popup window is opened instead.
+async function showCheck(tab) {
+    let tabId = tab.id;
+    let opened = false;
+    try {
+        await browser.composeAction.enable(tabId);
+        opened = await browser.composeAction.openPopup({ windowId: tab.windowId });
+    } catch (e) {
+        opened = false;
+    }
+    // Thunderbird before 113 returns undefined on success.
+    if (opened === undefined) {
+        opened = true;
+    }
+    if (opened) {
+        return;
+    }
+    try {
+        let win = await browser.windows.create({
+            type: "popup",
+            url: browser.runtime.getURL("html/confirm-address-popup.html") + "?tabId=" + tabId,
+            width: 560,
+            height: 640
+        });
+        checkWindows.set(tabId, win.id);
+    } catch (e) {
+        // No way to show the check. Never lock the compose window forever:
+        // let the mail go, as Thunderbird would without the add-on.
+        console.error("Confirm-Address: could not open the check window", e);
+        finishSend(tabId, false);
+    }
+}
+
+// Closing the separate check window without choosing counts as Cancel.
+browser.windows.onRemoved.addListener(windowId => {
+    for (let [tabId, winId] of checkWindows) {
+        if (winId === windowId) {
+            checkWindows.delete(tabId);
+            if (promiseMap.has(tabId)) {
+                browser.composeAction.enable(tabId);
+                finishSend(tabId, true);
+            }
+        }
+    }
 });
 
 browser.runtime.onMessage.addListener(async message => {
@@ -63,21 +123,17 @@ browser.runtime.onMessage.addListener(async message => {
             });
             break;
         case "USER_CHECKED":
-            let resolve = promiseMap.get(message.tabId);
-            if (!resolve) {
+            if (!promiseMap.has(message.tabId)) {
                 break;
             }
+            checkWindows.delete(message.tabId);
 
             if (message.confirmed) {
                 browser.composeAction.disable(message.tabId);
-                resolve({
-                    cancel: false
-                });
+                finishSend(message.tabId, false);
             } else {
                 browser.composeAction.enable(message.tabId);
-                resolve({
-                    cancel: true
-                });
+                finishSend(message.tabId, true);
             }
             break;
        default:
@@ -106,22 +162,23 @@ async function getMailBody(tabId){
     //Even when composing plain text mail, it outputs as HTML!
     var htmlbody = details.body;
 
+    // Turn the HTML into plain text lines. The popup shows them as text only,
+    // so HTML in a quoted message can never run or change the check window.
     const parser = new DOMParser();
-    var doc = parser.parseFromString(htmlbody, 'text/html');
-    var htmlbody = doc.getElementsByTagName("body")[0].innerHTML;
-
-    var splitedBody = htmlbody.split("<br>");
-    var bodyLines = Number(prefs['CA_SHOW_BODY_LINES']);
-    if(splitedBody.length < bodyLines){
-        bodyLines = splitedBody.length;
+    var doc = parser.parseFromString(htmlbody || "", 'text/html');
+    var body = doc.body;
+    if (!body) {
+        return [];
     }
-    var mailbody = "";
-    
-    for (var i=0; i<bodyLines; i++){
-        mailbody += splitedBody[i] + "<br>\n";
+    for (let br of Array.from(body.querySelectorAll("br"))) {
+        br.replaceWith("\n");
     }
-    //console.log(mailbody);
-    return mailbody;
+    for (let block of Array.from(body.querySelectorAll("p, div, li, tr, blockquote"))) {
+        block.append("\n");
+    }
+    var lines = body.textContent.split("\n").map(l => l.trim()).filter(l => l.length > 0);
+    var bodyLines = Number(prefs['CA_SHOW_BODY_LINES']) || 3;
+    return lines.slice(0, bodyLines);
 }
 
 async function collectAddress(tabId, recipients) {
