@@ -169,7 +169,7 @@ browser.runtime.onMessage.addListener(async (message) => {
             mailbody = message.mailbody;
             //console.log(mailbody);
             attachments = message.attachments;
-            var prefs = message.prefs;
+            prefs = message.prefs;
  
             var domainList = getDomainList(prefs["CA_DOMAIN_LIST"]);
 
