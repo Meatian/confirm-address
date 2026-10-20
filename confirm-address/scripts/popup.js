@@ -1,6 +1,22 @@
 var recipients = {};
 var prefs = null;
 var countdown_running = false;
+var answered = false;
+
+// The compose tab this check belongs to. In the separate check window
+// (newer Thunderbird) it comes from the window address; in the toolbar
+// popup it is the active tab of the compose window.
+async function getComposeTabId() {
+    let fromUrl = new URLSearchParams(window.location.search).get("tabId");
+    if (fromUrl) {
+        return Number(fromUrl);
+    }
+    let tabs = await browser.tabs.query({
+        active: true,
+        currentWindow: true
+    });
+    return tabs[0].id;
+}
 
 function init() {
     document.caPopup.batchCheck_yourDomains.addEventListener("change", (event) => {
@@ -98,11 +114,7 @@ function checkAllChecked() {
 }
 
 async function requestRecipients() {
-    let tabs = await browser.tabs.query({
-        active: true,
-        currentWindow: true
-    });
-    let tabId = tabs[0].id;
+    let tabId = await getComposeTabId();
     browser.runtime.sendMessage({
         message: "GET_RECIPIENTS",
         tabId: tabId
@@ -121,13 +133,13 @@ function confirmOK() {
         var label = document.getElementById("counter");
         document.getElementById("countdownArea").style = "display:block";
         countdown_running = true;
-        label.innerHTML = limit;
+        label.textContent = limit;
         setInterval(function () {
             limit--;
             if (limit < 0) {
                 sendResult(true);
             } else {
-                label.innerHTML = limit;
+                label.textContent = limit;
             }
         }, 1000);
     } else {
@@ -136,11 +148,11 @@ function confirmOK() {
 }
 
 async function sendResult(confirmed) {
-    let tabs = await browser.tabs.query({
-        active: true,
-        currentWindow: true
-    });
-    let tabId = tabs[0].id;
+    if (answered) {
+        return;
+    }
+    answered = true;
+    let tabId = await getComposeTabId();
     await browser.runtime.sendMessage({
         message: "USER_CHECKED",
         tabId: tabId,
@@ -157,7 +169,7 @@ browser.runtime.onMessage.addListener(async (message) => {
             mailbody = message.mailbody;
             //console.log(mailbody);
             attachments = message.attachments;
-            var prefs = message.prefs;
+            prefs = message.prefs;
  
             var domainList = getDomainList(prefs["CA_DOMAIN_LIST"]);
 
@@ -190,7 +202,12 @@ browser.runtime.onMessage.addListener(async (message) => {
                 var isShowBody = prefs["CA_SHOW_BODY"];
                 if(isShowBody){
                     document.getElementById("firstLinesofBody").style = "display:block;";
-                    document.getElementById("mailBody").innerHTML = mailbody;
+                    var bodyBox = document.getElementById("mailBody");
+                    bodyBox.textContent = "";
+                    for (let line of (Array.isArray(mailbody) ? mailbody : [])) {
+                        bodyBox.append(line);
+                        bodyBox.append(document.createElement("br"));
+                    }
                 } else {
                     document.caPopup.check_firstLinesOfBody.checked = true;
                 }
@@ -297,3 +314,11 @@ function pushToList(args) {
 }
 
 init();
+
+// Closing the check without choosing counts as Cancel, so the compose
+// window is never left locked.
+window.addEventListener("pagehide", () => {
+    if (!answered) {
+        sendResult(false);
+    }
+});
