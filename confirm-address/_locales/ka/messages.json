@@ -1,0 +1,119 @@
+{
+    //"manifest.json": "*** L10n message ***",
+    "extensionName": {
+        "message": "Confirm-Address"
+    },
+    "extensionDescription": {
+        "message": "ელფოსტის მისამართების დადასტურება წერილის გაგზავნამდე"
+    },
+    "extensionHomepage_url": {
+        "message": "https://github.com/Meatian/confirm-address/"
+    },
+    "extensionDefault_title": {
+        "message": "დომენის შემოწმება"
+    },
+    //"confirm-address-dialog.html": "*** L10n message ***",
+    "caDialogTitle": {
+        "message": "ელფოსტის მისამართების დადასტურება"
+    },
+    "caDialogMessage": {
+        "message": "გთხოვთ, დაადასტუროთ ელფოსტის შემდეგი მისამართები:"
+    },
+    "caDialogCancelBtnToEdit": {
+        "message": "მიმღებების ჩასასწორებლად დააწკაპეთ ღილაკზე „გაუქმება“."
+    },
+    "caDialogYourdomain": {
+        "message": "თქვენი დომენების მისამართები"
+    },
+    "caDialogYourdomainTooltip": {
+        "message": "დააწკაპეთ თქვენი დომენების ყველა მისამართის მოსანიშნად ან მონიშვნის მოსახსნელად"
+    },
+    "caDialogOtherdomain": {
+        "message": "სხვა დომენების მისამართები"
+    },
+    "caDialogOtherdomainTooltip": {
+        "message": "დააწკაპეთ სხვა დომენების ყველა მისამართის მოსანიშნად ან მონიშვნის მოსახსნელად"
+    },
+    "caDialogFirstLinesOfBody": {
+        "message": "წერილის ტექსტის პირველი რამდენიმე ხაზი"
+    },
+    "caDialogConfirmAttachments": {
+        "message": "დანართის ფაილის სახელი"
+    },
+    "caDialogCheck": {
+        "message": "ყველას მონიშვნა"
+    },
+    "caDialogAcceptbtn": {
+        "message": "გაგზავნა"
+    },
+    "caDialogCancelbtn": {
+        "message": "გაუქმება"
+    },
+    "caCountdownTitle": {
+        "message": "უკუთვლა"
+    },
+    "caCountdownMsg1": {
+        "message": "უკუთვლა..."
+    },
+    "caCountdownMsg2": {
+        "message": "წამი"
+    },
+    "caCountdownSkip": {
+        "message": "გაგზავნა"
+    },
+    //"setting.html": "*** L10n message ***",
+    "caSettingTitle": {
+        "message": "Confirm-Address პარამეტრები"
+    },
+    "caSettingMessage": {
+        "message": "დაამატეთ თქვენი ჯგუფის დომენის სახელი"
+    },
+    "caSettingYourDomain": {
+        "message": "თქვენი ჯგუფის დომენი"
+    },
+    "caSettingAdd": {
+        "message": "დამატება"
+    },
+    "caSettingEdit": {
+        "message": "ჩასწორება"
+    },
+    "caSettingRemove": {
+        "message": "მოცილება"
+    },
+    "caSettingChkNotdisplay": {
+        "message": "დადასტურების ფანჯრის დამალვა, როცა ყველა მიმღები თქვენს დომენებშია"
+    },
+    "caSettingChkShowBody":{
+        "message": "წერილის ტექსტის პირველი რამდენიმე ხაზის დადასტურება:"
+    },
+    "caSettingShowBodyLines":{
+        "message": "ხაზი"
+    },
+    "caSettingChkCountdown": {
+        "message": "უკუთვლა წერილის გაგზავნამდე:"
+    },
+    "caSettingCountdownSec": {
+        "message": "წამი"
+    },
+    "caSettingWarnInteger": {
+        "message": "გთხოვთ, შეიყვანოთ მთელი რიცხვი"
+    },
+    "caSettingDomainTitle": {
+        "message": "დომენის სახელის შეყვანა"
+    },
+    "caSettingDomainMessage": {
+        "message": "შეიყვანეთ თქვენი ჯგუფის დომენის სახელი:"
+    },
+    "caSettingChkConfirmreplyto": {
+        "message": "'Reply-To' მისამართების დადასტურება გაგზავნამდე"
+    },
+    "caSettingChkMydomain": {
+        "message": "ღილაკის 'ყველას მონიშვნა' ჩართვა თქვენი დომენებისთვის"
+    },
+    "caSettingChkOtherdomain": {
+        "message": "ღილაკის 'ყველას მონიშვნა' ჩართვა სხვა დომენებისთვის"
+    },
+    "caSettingChkAttachment":{
+        "message": "ღილაკის 'ყველას მონიშვნა' ჩართვა დანართებისთვის"
+    }
+}
