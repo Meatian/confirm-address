@@ -38,7 +38,7 @@
         "message": "წერილის ტექსტის პირველი რამდენიმე ხაზი"
     },
     "caDialogConfirmAttachments": {
-        "message": "დანართის ფაილის სახელი"
+        "message": "დანართი ფაილის სახელი"
     },
     "caDialogCheck": {
         "message": "ყველას მონიშვნა"
@@ -63,13 +63,13 @@
     },
     //"setting.html": "*** L10n message ***",
     "caSettingTitle": {
-        "message": "Confirm-Address პარამეტრები"
+        "message": "Confirm-Address-ის პარამეტრები"
     },
     "caSettingMessage": {
-        "message": "დაამატეთ თქვენი ჯგუფის დომენის სახელი"
+        "message": "დაამატეთ თქვენი ორგანიზაციის დომენის სახელი"
     },
     "caSettingYourDomain": {
-        "message": "თქვენი ჯგუფის დომენი"
+        "message": "თქვენი ორგანიზაციის დომენი"
     },
     "caSettingAdd": {
         "message": "დამატება"
@@ -78,7 +78,7 @@
         "message": "ჩასწორება"
     },
     "caSettingRemove": {
-        "message": "მოცილება"
+        "message": "წაშლა"
     },
     "caSettingChkNotdisplay": {
         "message": "დადასტურების ფანჯრის დამალვა, როცა ყველა მიმღები თქვენს დომენებშია"
@@ -102,18 +102,18 @@
         "message": "დომენის სახელის შეყვანა"
     },
     "caSettingDomainMessage": {
-        "message": "შეიყვანეთ თქვენი ჯგუფის დომენის სახელი:"
+        "message": "შეიყვანეთ თქვენი ორგანიზაციის დომენის სახელი:"
     },
     "caSettingChkConfirmreplyto": {
-        "message": "'Reply-To' მისამართების დადასტურება გაგზავნამდე"
+        "message": "„Reply-To“ მისამართების დადასტურება გაგზავნამდე"
     },
     "caSettingChkMydomain": {
-        "message": "ღილაკის 'ყველას მონიშვნა' ჩართვა თქვენი დომენებისთვის"
+        "message": "ღილაკის „ყველას მონიშვნა“ ჩართვა თქვენი დომენებისთვის"
     },
     "caSettingChkOtherdomain": {
-        "message": "ღილაკის 'ყველას მონიშვნა' ჩართვა სხვა დომენებისთვის"
+        "message": "ღილაკის „ყველას მონიშვნა“ ჩართვა სხვა დომენებისთვის"
     },
     "caSettingChkAttachment":{
-        "message": "ღილაკის 'ყველას მონიშვნა' ჩართვა დანართებისთვის"
+        "message": "ღილაკის „ყველას მონიშვნა“ ჩართვა დანართებისთვის"
     }
 }
