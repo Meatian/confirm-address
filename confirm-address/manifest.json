@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "author": "Meatian",
   "homepage_url": "__MSG_extensionHomepage_url__",
   "applications": {
@@ -23,11 +23,7 @@
     "default_icon": "images/ConfirmAddress-48x48.png"
   },
   "permissions": [
-    "addressBooks",
-    "accountsRead",
     "compose",
-    "tabs",
-    "activeTab",
     "storage"
   ],
   "background": {
