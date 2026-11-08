@@ -101,3 +101,70 @@
     color: #000;
   }
 }
+
+/* 1.4.3: external addresses stand out in the check window, and the
+   settings page shows its messages inline (no pop-up dialogs). */
+.ca-domain {
+  font-weight: bold;
+}
+
+.ca-count {
+  font-weight: normal;
+}
+
+#otherDomains.ca-external .box_title::before {
+  content: "\26A0\FE0E  ";
+}
+
+.ca-error {
+  font-weight: bold;
+}
+
+.ca-hint {
+  font-style: italic;
+}
+
+/* The external box grows to about six lines before it scrolls, so outside
+   addresses are not hidden below the fold. */
+#otherDomainAddresses {
+  height: auto;
+  min-height: 80px;
+  max-height: 170px;
+}
+
+@media (prefers-color-scheme: dark) {
+  #otherDomains.ca-external .box_title {
+    background-color: #b3261e;
+    border-color: #ff8a80;
+    color: #fff;
+  }
+  #otherDomains.ca-external .box_scrollbar {
+    background-color: #4a2222;
+    border: 2px solid #ff8a80;
+  }
+  #otherDomainAddresses label {
+    color: #ffb4ab;
+  }
+  .ca-error,
+  .ca-invalid {
+    color: #ff8a80;
+  }
+}
+@media (prefers-color-scheme: light) {
+  #otherDomains.ca-external .box_title {
+    background-color: #b3261e;
+    border-color: #b3261e;
+    color: #fff;
+  }
+  #otherDomains.ca-external .box_scrollbar {
+    background-color: #fdecea;
+    border: 2px solid #b3261e;
+  }
+  #otherDomainAddresses label {
+    color: #8c1d18;
+  }
+  .ca-error,
+  .ca-invalid {
+    color: #b3261e;
+  }
+}

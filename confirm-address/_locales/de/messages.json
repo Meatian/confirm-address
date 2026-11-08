@@ -104,6 +104,12 @@
     "caSettingDomainMessage": {
         "message": "Geben Sie Ihren Gruppendomainnamen ein:"
     },
+    "caSettingDomainInvalid": {
+        "message": "Bitte geben Sie einen Domainnamen wie example.com ein."
+    },
+    "caSettingDomainHint": {
+        "message": "Subdomains sind eingeschlossen: example.com umfasst auch mail.example.com."
+    },
     "caSettingChkConfirmreplyto": {
         "message": "'Antwort an' Adressen vor dem Senden bestätigen"
     },
