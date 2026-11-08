@@ -104,6 +104,12 @@
     "caSettingDomainMessage": {
         "message": "ドメイン名を入力してください(例：confirmaddress.jp)"
     },
+    "caSettingDomainInvalid": {
+        "message": "example.com のようなドメイン名を入力してください。"
+    },
+    "caSettingDomainHint": {
+        "message": "サブドメインも含まれます。example.com を指定すると mail.example.com も対象になります。"
+    },
     "caSettingChkConfirmreplyto": {
         "message": "Reply-To アドレスを確認ダイアログに表示する"
     },

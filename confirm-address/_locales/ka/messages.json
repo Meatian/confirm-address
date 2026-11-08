@@ -104,6 +104,12 @@
     "caSettingDomainMessage": {
         "message": "შეიყვანეთ თქვენი ორგანიზაციის დომენის სახელი:"
     },
+    "caSettingDomainInvalid": {
+        "message": "გთხოვთ, შეიყვანოთ დომენის სახელი, მაგალითად example.com."
+    },
+    "caSettingDomainHint": {
+        "message": "ქვედომენებიც გათვალისწინებულია: example.com მოიცავს mail.example.com-საც."
+    },
     "caSettingChkConfirmreplyto": {
         "message": "„Reply-To“ მისამართების დადასტურება გაგზავნამდე"
     },

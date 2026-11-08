@@ -199,6 +199,12 @@ browser.runtime.onMessage.addListener(async (message) => {
                 };
                 pushToList(pushArgs);
 
+                // Show how many addresses each box holds, and make the
+                // external box stand out whenever it is not empty.
+                setCount("yourDomainCount", internalList.length);
+                setCount("otherDomainCount", externalList.length);
+                document.getElementById("otherDomains").classList.toggle("ca-external", externalList.length > 0);
+
                 var isShowBody = prefs["CA_SHOW_BODY"];
                 if(isShowBody){
                     document.getElementById("firstLinesofBody").style = "display:block;";
@@ -234,13 +240,10 @@ browser.runtime.onMessage.addListener(async (message) => {
     }
 });
 
+// The stored own domains as a clean list (see domains.js). Empty entries
+// are dropped, because an empty entry used to match every address.
 function getDomainList(domains) {
-    if (domains == null || domains.length == 0) {
-        return new Array();
-    } else {
-        var domainList = domains.split(",");
-        return domainList;
-    }
+    return caOwnDomainList(domains);
 }
 
 async function judge(addressArray, domainList, yourDomainAddress, otherDomainAddress) {
@@ -253,27 +256,41 @@ async function judge(addressArray, domainList, yourDomainAddress, otherDomainAdd
         return;
     }
 
-    //compare addresses with registered domain lists.
+    // Compare the domain of the real address (not the display name) with
+    // the own domains. A whole-domain match or a subdomain counts as own:
+    // with "example.com", user@mail.example.com is own, but
+    // user@notexample.com and user@example.com.evil.net are external.
     for (var i = 0; i < addressArray.length; i++) {
         var target = addressArray[i];
         var address = target.address;
         if (address.length == 0) {
             continue;
         }
-        var domain = address.substring(address.indexOf("@")).toLowerCase();
-
-        var match = false;
-        for (var j = 0; j < domainList.length; j++) {
-            var insiderDomain = domainList[j].toLowerCase();
-            if (domain.indexOf(insiderDomain) != -1) {
-                match = true;
-            }
-        }
-        if (match) {
+        if (caIsOwnDomain(caAddressDomain(address), domainList)) {
             yourDomainAddress.push(target);
         } else {
             otherDomainAddress.push(target);
         }
+    }
+}
+
+function setCount(id, count) {
+    document.getElementById(id).textContent = " (" + count + ")";
+}
+
+// One address line: "To: Name <user@" + bold domain + ">". Built from text
+// nodes only, so nothing in an address can change the check window.
+function appendAddress(label, type, address) {
+    var parts = caSplitAddress(address);
+    label.appendChild(document.createTextNode(type + parts[0]));
+    if (parts[1].length > 0) {
+        var domain = document.createElement("strong");
+        domain.className = "ca-domain";
+        domain.textContent = parts[1];
+        label.appendChild(domain);
+    }
+    if (parts[2].length > 0) {
+        label.appendChild(document.createTextNode(parts[2]));
     }
 }
 
@@ -291,14 +308,6 @@ function pushToList(args) {
    var pushTxtNode;
 
    for (var i = 0; i < args.pushingList.length; i++) {
-       switch(args.listType){
-           case "Addresses":
-               pushTxtNode = args.pushingList[i].type + args.pushingList[i].address;
-               break;
-           case "Attachments":
-               pushTxtNode = args.pushingList[i].name;
-               break;
-       }
        var chkbox = document.createElement("input");
        chkbox.setAttribute("type", "checkbox");
        chkbox.setAttribute("id", Math.random());
@@ -307,7 +316,15 @@ function pushToList(args) {
        });
        var label = document.createElement("label");
        label.appendChild(chkbox);
-       label.appendChild(document.createTextNode(pushTxtNode));
+       switch(args.listType){
+           case "Addresses":
+               appendAddress(label, args.pushingList[i].type, args.pushingList[i].address);
+               break;
+           case "Attachments":
+               pushTxtNode = args.pushingList[i].name;
+               label.appendChild(document.createTextNode(pushTxtNode));
+               break;
+       }
        targetDiv.appendChild(label);
        targetDiv.appendChild(document.createElement("br"));
    }

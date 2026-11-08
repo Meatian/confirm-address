@@ -132,3 +132,68 @@ function testGetDomainList_listInNull() {
 	list = getDomainList(prefs["CA_DOMAIN_LIST"]);
 	assertEquals(0, list.length);
 }
+
+/*
+ * 1.4.3: a domain that only contains an own domain is external
+ * (notme.com, me.com.evil.net), a subdomain is own (mail.me.com)
+ */
+function testJudge_LookAlikeDomainIsOutsider() {
+	addressList = new Array(
+		{ address: "eve@notme.com" },
+		{ address: "mallory@me.com.evil.net" },
+		{ address: "bob@mail.me.com" }
+		);
+	domainList = new Array("me.com");
+	insiders = new Array();
+	outsiders = new Array();
+	r = judge(addressList, domainList, insiders, outsiders);
+	assertEquals(1, insiders.length);
+	assertEquals(2, outsiders.length);
+	assertEquals("bob@mail.me.com", insiders[0].address);
+}
+
+/*
+ * 1.4.3: only the real address counts, not the display name
+ */
+function testJudge_DisplayNameCannotFakeInsider() {
+	addressList = new Array(
+		{ address: "\"boss@me.com\" <spoof@evil.net>" },
+		{ address: "Taro Yamada <taro@ME.com>" }
+		);
+	domainList = new Array("me.com");
+	insiders = new Array();
+	outsiders = new Array();
+	r = judge(addressList, domainList, insiders, outsiders);
+	assertEquals(1, insiders.length);
+	assertEquals(1, outsiders.length);
+	assertEquals("Taro Yamada <taro@ME.com>", insiders[0].address);
+}
+
+/*
+ * 1.4.3: empty entries are dropped (an empty entry used to match every
+ * address) and entries are cleaned up (spaces, capitals, "@")
+ */
+function testGetDomainList_emptyEntryIsDropped() {
+	list = getDomainList("me.com,, ,@Other.ORG ");
+	assertEquals(2, list.length);
+	assertEquals("other.org", list[1]);
+	insiders = new Array();
+	outsiders = new Array();
+	r = judge(new Array({ address: "x@evil.net" }, { address: "y@other.org" }), list, insiders, outsiders);
+	assertEquals(1, insiders.length);
+	assertEquals(1, outsiders.length);
+}
+
+/*
+ * 1.4.3: what the settings page accepts as a domain
+ */
+function testParseDomainInput() {
+	var r = caParseDomainInput(" @MyCompany.COM , b.org;*.c.net");
+	assertEquals(3, r.valid.length);
+	assertEquals("mycompany.com", r.valid[0]);
+	assertEquals("c.net", r.valid[2]);
+	assertEquals(0, r.invalid.length);
+	r = caParseDomainInput("my company");
+	assertEquals(0, r.valid.length);
+	assertEquals(2, r.invalid.length);
+}

@@ -8,6 +8,7 @@
     <style type="text/css">
     </style>
     <script src="../scripts/l10n.js" defer></script>
+    <script src="../scripts/domains.js" defer></script>
     <script src="../scripts/popup.js" defer></script>
 </head>
 
@@ -18,7 +19,7 @@
         <div id="yourDomains" style="display:none;">
             <div class="box_title">
                 <input type="checkbox" name="batchCheck_yourDomains" disabled="true">
-                <label for="batchCheck_yourDomains" l10n-tag="caDialogYourdomain"></label>
+                <label for="batchCheck_yourDomains" l10n-tag="caDialogYourdomain"></label><span id="yourDomainCount" class="ca-count"></span>
             </div>
 
             <!-- <small l10n-tag="caDialogYourdomainTooltip"></small> -->
@@ -29,7 +30,7 @@
         <div id="otherDomains" style="display:none;">
             <div class="box_title">
                 <input type="checkbox" name="batchCheck_otherDomains" disabled="true">
-                <label for="batchCheck_otherDomains" l10n-tag="caDialogOtherdomain"></label>
+                <label for="batchCheck_otherDomains" l10n-tag="caDialogOtherdomain"></label><span id="otherDomainCount" class="ca-count"></span>
             </div>
 
             <!--<small l10n-tag="caDialogOtherdomainTooltip"></small>-->
